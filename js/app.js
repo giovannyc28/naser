@@ -1,5 +1,5 @@
 console.log('local::::::' + localStorage.token);
-var urlBase = "http://localhost:8000/api/";
+var urlBase = window.location.origin.replace('naser', 'apinaser').replace('www.', '').replace('8080', '8000') + "/";;
 var myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
