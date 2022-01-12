@@ -1,5 +1,6 @@
 var myHeaders = new Headers();
 var urlBase = window.location.origin.replace('naser', 'apinaser').replace('www.', '').replace('8080', '8000') + "/public/";
+
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 var urlencoded = new URLSearchParams();
