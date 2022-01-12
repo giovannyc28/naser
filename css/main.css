@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'herr_von_muellerhoffregular';
+    src: url('herrvonmuellerhoff-regular-webfont.woff2') format('woff2'), url('herrvonmuellerhoff-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#signature {
+    font-family: "herr_von_muellerhoffregular";
+    font-size: 2.5em;
+    text-align: center;
+    text-transform: capitalize;
+    /* IE 9 */
+    -ms-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+}
+
+.bgProgress1 {
+    background-color: #101D42!important
+}
+
+.bgProgress2 {
+    background-color: #FFBC42!important
+}
+
+.bgProgress3 {
+    background-color: #27FB6B!important
+}
+
+.bgProgress4 {
+    background-color: #320A28!important
+}
+
+.bgProgress5 {
+    background-color: #6F1D1B!important
+}
+
+.bgProgress6 {
+    background-color: #FE5D26!important
+}
+
+.bgProgress7 {
+    background: color #101d42;
+    !important
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+
+.choice {
+    height: 69vh;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: auto;
+    float: left;
+    align-items: center;
+    transition: width 0.0s;
+    border-radius: 3px;
+}
+
+.expand {
+    width: 100%;
+}
+
+.unset {
+    width: 10%;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.small {
+    width: 0%;
+    background-color: rgb(255, 255, 255) !important;
+}
+
+.small>div {
+    opacity: 0;
+}
+
+.unset>div>p {
+    opacity: 0;
+}
+
+.expand>div {
+    transition-delay: 0ms;
+    opacity: 1;
+}
+
+.fa {
+    position: relative;
+    z-index: 2;
+    top: -35px;
+    left: 50%;
+}
+
+.btn-info.active {
+    background-color: limegreen;
+}
+
+.checkbox-lg .custom-control-label::before,
+.checkbox-lg .custom-control-label::after {
+    top: .8rem;
+    width: 1.55rem;
+    height: 1.55rem;
+}
+
+.checkbox-lg .custom-control-label {
+    padding-top: 13px;
+    padding-left: 6px;
+}
+
+.checkbox-xl .custom-control-label::before,
+.checkbox-xl .custom-control-label::after {
+    top: 1.2rem;
+    width: 1.85rem;
+    height: 1.85rem;
+}
+
+.checkbox-xl .custom-control-label {
+    padding-top: 23px;
+    padding-left: 10px;
+}
