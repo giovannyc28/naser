@@ -1,5 +1,5 @@
 var myHeaders = new Headers();
-var urlBase = window.location.origin.replace('naser', 'apinaser').replace('8080', '8000') + "/public/";
+var urlBase = window.location.origin.replace('naser', 'apinaser').replace('8080', '8000') + "/public/api";
 
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -23,7 +23,7 @@ $('#flagLanguage').change(function() {
 
 function changeLanguage() {
     seccion = window.location.pathname.replace('.html', '').replace('/', '');
-    fetch(urlBase + "api/idioma/" + localStorage.language + "/" + seccion, requestOptions)
+    fetch(urlBase + "idioma/" + localStorage.language + "/" + seccion, requestOptions)
         .then(resp => {
             return resp.json();
         })
