@@ -64,7 +64,7 @@
             urlencoded.append("email", user);
             urlencoded.append("password", password);
 
-            fetch(urlBase + "api/login", requestOptions)
+            fetch(urlBase + "login", requestOptions)
                 .then(resp => {
                     console.log(resp.status);
                     localStorage.setItem("codeResponde", resp.status);
