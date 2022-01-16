@@ -13,7 +13,7 @@ var requestOptions = {
 };
 
 if (!localStorage.language) {
-    localStorage.setItem("language", "SP");
+    localStorage.setItem("language", "es");
 }
 
 $('#flagLanguage').change(function() {
@@ -31,7 +31,12 @@ function changeLanguage() {
             console.log(data);
             $.each(data, function(key, value) {
                 console.log(value);
-                $('#' + value.element).attr(value.attr, value.label);
+                if (value.attr == 'html')
+                    $('#' + value.element).html(value.label);
+                else if (value.attr == 'for')
+                    $("[for='" + value.element + "'").html(value.label);
+                else
+                    $('#' + value.element).attr(value.attr, value.label);
             });
         })
         .catch(error => console.log('error', error));

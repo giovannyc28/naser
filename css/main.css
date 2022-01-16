@@ -122,3 +122,17 @@
     padding-top: 23px;
     padding-left: 10px;
 }
+
+.bottomright {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 500 !important;
+}
+
+.topright {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 500 !important;
+}

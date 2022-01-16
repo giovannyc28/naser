@@ -228,7 +228,7 @@ $("#previous").on("click", function() {
 $('#fechaNacimiento').datepicker({
     autoclose: true,
     todayHighlight: true,
-    language: "es",
+    language: localStorage.language,
     orientation: "bottom auto",
     enableOnReadonly: false,
     disableTouchKeyboard: true,
@@ -237,7 +237,7 @@ $('#fechaNacimiento').datepicker({
 $('#fechaDebito').datepicker({
     autoclose: true,
     todayHighlight: true,
-    language: "es",
+    language: localStorage.language,
     orientation: "bottom auto",
     enableOnReadonly: false,
     disableTouchKeyboard: true,
@@ -249,7 +249,7 @@ $("#expiraTC").datepicker({
     format: "mm-yyyy",
     startView: "months",
     minViewMode: "months",
-    language: "es",
+    language: localStorage.language,
 });
 
 $('#fechaNacimiento').datepicker("setDate", new Date());
