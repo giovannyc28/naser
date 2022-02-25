@@ -55,11 +55,17 @@
                     <a href=""><i class="fa fa-eye-slash"></i></a>
                 </div>
 
+                <input type="text" id="user_dyn" class="fadeIn second form-control" name="user_dyn" placeholder="Número ID - Naser">
+                <input type="text" id="telefono" class="fadeIn second form-control" name="telefono" placeholder="Teléfono" required>
+                <input type="text" id="celular" class="fadeIn second form-control" name="celular" placeholder="Celular" required>
+                <input type="text" id="agentePadre" class="fadeIn second form-control" name="agentePadre" placeholder='Nombre del "Master General Agent"'>
+
 
 
 
                 <div id='mensaje' class="text-danger"></div>
                 <input type="button" id='registrar' class="btn btn-primary fadeIn fourth" value="Registrar">
+                <div class="registroLink"><a href="./login.html">Login</a></div>
 
             </form>
         </div>
@@ -80,8 +86,12 @@
                 urlencoded.append("email", $('#email').val());
                 urlencoded.append("password", $('#password').val());
                 urlencoded.append("password_confirmation", $('#password_confirmation').val());
+                urlencoded.append("user_dyn", $('#user_dyn').val());
+                urlencoded.append("telefono", $('#telefono').val());
+                urlencoded.append("celular", $('#celular').val());
+                urlencoded.append("agentePadre", $('#agentePadre').val());
 
-                fetch(urlBase, requestOptions)
+                fetch(urlBase + 'register', requestOptions)
                     .then(resp => {
                         console.log(resp.status);
                         localStorage.setItem("codeResponde", resp.status);

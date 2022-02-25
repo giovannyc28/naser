@@ -247,11 +247,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="benNombres">Nombres</label>
-                            <input type="text" class="form-control" id="benNombres" name="strECFirstName" required readonly>
+                            <input type="text" class="form-control" id="benNombres" name="benNombres" required readonly>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="benApellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="benApellidos" name="strECLastName" required readonly>
+                            <input type="text" class="form-control" id="benApellidos" name="benApellidos" required readonly>
                         </div>
                     </div>
 
@@ -385,7 +385,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <select id='benPregunta1' name='benPregunta1' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                            <select id='benPregunta1' name='benPregunta1[]' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
                         </select>
                         </div>
                     </div>
@@ -401,7 +401,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <select id='benPregunta2' name='benPregunta2' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>              
+                            <select id='benPregunta2' name='benPregunta2[]' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>              
                         </select>
                         </div>
                     </div>
@@ -417,7 +417,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <select id='benPregunta3' name='benPregunta3' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                            <select id='benPregunta3' name='benPregunta3[]' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
                           
                         </select>
                         </div>
@@ -433,7 +433,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <select id='benPregunta4' name='benPregunta4' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
+                            <select id='benPregunta4' name='benPregunta4[]' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
                           
                         </select>
                         </div>
@@ -452,11 +452,11 @@
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="cteNombres">Nombres</label>
-                            <select id='cteNombres' name="" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search="true" required></select>
+                            <select id='cteNombres' name="strECFirstName" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search="true" required></select>
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="cteApellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="cteApellidos" name="" required>
+                            <input type="text" class="form-control" id="cteApellidos" name="strECLastName" required>
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="cteParentesco">Parentesco</label>
@@ -500,25 +500,25 @@
                     <div class="form-row">
                         <div class="form-group   col-md-12">
                             <label for="cteDireccion">Dirección</label>
-                            <input type="text" class="form-control" id="cteDireccion" name='cteDireccion' required>
+                            <input type="text" class="form-control" id="cteDireccion" name='strECAddress1Street1' required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-3">
                             <label for="cteCiudad">Ciudad</label>
-                            <input type="text" class="form-control" id="cteCiudad" name="cteCiudad" required>
+                            <input type="text" class="form-control" id="cteCiudad" name="strECAddress1City" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="cteProvincia">Provincia o Estado</label>
-                            <input type="text" class="form-control" id="cteProvincia" name="cteProvincia" required>
+                            <input type="text" class="form-control" id="cteProvincia" name="strECAddress1StateOrProvince" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
-                            <input type="text" class="form-control" id="cteCodigoPostal" name="cteCodigoPostal" required>
+                            <input type="text" class="form-control" id="cteCodigoPostal" name="strECAddress1ZIPOrPostalCode" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="ctePais">País</label>
-                            <select id="ctePais" name="ctePais" class="selectpicker form-control" required>
+                            <select id="ctePais" name="strECAddress1CountrOrRegion" class="selectpicker form-control" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                               <option>Argentina</option>
                               <option>Belice</option>
@@ -548,11 +548,11 @@
                     <div class="form-row">
                         <div class="form-group   col-md-3">
                             <label for="cteTelefono">telefono</label>
-                            <input type="text" class="form-control" id="cteTelefono" name="cteTelefono" required>
+                            <input type="text" class="form-control" id="cteTelefono" name="strECBusinessPhone" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="cteCelular">Celular</label>
-                            <input type="text" class="form-control" id="cteCelular" name="cteCelular" required>
+                            <input type="text" class="form-control" id="cteCelular" name="strECMobilePhone" required>
                         </div>
                         <div class="form-group   col-md-6">
                             <label for="cteEmail">Correo Electrónico</label>
@@ -560,7 +560,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="cteEmail" required>
+                                <input type="email" class="form-control" id="cteEmail" name="strECEmail" required>
                             </div>
 
                         </div>
@@ -656,35 +656,35 @@
                     <div class="form-row">
                         <div class="form-group   col-md-6">
                             <label for="infoNombres">Nombres</label>
-                            <input type="text" class="form-control" id="infoNombres" name="" required>
+                            <input type="text" class="form-control" id="infoNombres" name="strFirstName" required>
                         </div>
                         <div class="form-group   col-md-6">
                             <label for="infoApellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="infoApellidos" name="" required>
+                            <input type="text" class="form-control" id="infoApellidos" name="strLastName" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-12">
                             <label for="infoDireccion">Dirección</label>
-                            <input type="text" class="form-control" id="infoDireccion" name='infoDireccion' required>
+                            <input type="text" class="form-control" id="infoDireccion" name='strAddress1Street1' required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-3">
                             <label for="infoCiudad">Ciudad</label>
-                            <input type="text" class="form-control" id="infoCiudad" name="infoCiudad" required>
+                            <input type="text" class="form-control" id="infoCiudad" name="strAddress1City" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoProvincia">Provincia o Estado</label>
-                            <input type="text" class="form-control" id="infoProvincia" name="infoProvincia" required>
+                            <input type="text" class="form-control" id="infoProvincia" name="strAddress1StateOrProvince" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoCodigoPostal">Codigo Postal(si aplica)</label>
-                            <input type="text" class="form-control" id="infoCodigoPostal" name="infoCodigoPostal" required>
+                            <input type="text" class="form-control" id="infoCodigoPostal" name="strAddress1ZIPOrPostalCode" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoPais">País</label>
-                            <select id="infoPais" name="infoPais" class="selectpicker form-control" required>
+                            <select id="infoPais" name="strAddress1CountrOrRegion" class="selectpicker form-control" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                           <option>Argentina</option>
                           <option>Belice</option>
@@ -714,11 +714,11 @@
                     <div class="form-row">
                         <div class="form-group   col-md-3">
                             <label for="infoTelefono">telefono</label>
-                            <input type="text" class="form-control" id="infoTelefono" name="infoTelefono" required>
+                            <input type="text" class="form-control" id="infoTelefono" name="strBusinessPhone" required>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoCelular">Celular</label>
-                            <input type="text" class="form-control" id="infoCelular" name="infoCelular" required>
+                            <input type="text" class="form-control" id="infoCelular" name="strMobilePhone" required>
                         </div>
                         <div class="form-group   col-md-6">
                             <label for="infoEmail">Correo Electrónico</label>
@@ -726,7 +726,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="infoEmail" name="infoEmail" required>
+                                <input type="email" class="form-control" id="infoEmail" name="strEmail" required>
                             </div>
 
                         </div>
@@ -771,26 +771,26 @@
                             <label class="col-lg-12" for="franquiciaCT">Franquicia Tarjeta de Credito</label>
                             <div id="divRadioTc" class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option1" value='MC' > 
+                                <input type="radio" name="franquiciaCT" id="option1" value='Master Card' > 
                                   <span style="font-size: 2em; color:#eb001b;">
                                     <i class="fab fa-cc-mastercard"></i>
                                   </span>
                               </label>
                                 <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option2" value="VS" > 
+                                <input type="radio" name="franquiciaCT" id="option2" value="Visa" > 
                                   <span style="font-size: 2em; color: #172274;">
                                     <i class="fab fa-cc-visa"></i>
                                   </span>
                               </label>
                                 <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option3" value="AM">
+                                <input type="radio" name="franquiciaCT" id="option3" value="American Express">
                                   <span style="font-size: 2em; color: #629f86;">
                                     <i class="fab fa-cc-amex"></i>
                                   </span>
                               </label>
                                 <label class="btn btn-outline-secondary">
                                 <span style="font-size: 2em; color: #E55c20;">
-                                  <input type="radio" name="franquiciaCT" id="option4" value="DV"> 
+                                  <input type="radio" name="franquiciaCT" id="option4" value="Discover"> 
                                     <i class="fab fa-cc-discover"></i>
                                 </span>
                               </label>
@@ -868,9 +868,11 @@
 
         <div id='seccion8' class="choice unset justify-content-center">
             <div class="card-body">
-                <!-- Title -->
-                <h5 class="card-title"><a>OBSERVACIONES</a></h5>
-                <textarea class="form-control " id="validationTextarea" name="validationTextarea" placeholder="" required></textarea>
+                <form id="form8" class="needs-validation" novalidate>
+                    <!-- Title -->
+                    <h5 class="card-title"><a id="titulo8">OBSERVACIONES</a></h5>
+                    <textarea class="form-control " id="observacionBox" name="observacionBox" placeholder="" required></textarea>
+                </form>
             </div>
         </div>
     </div>

@@ -367,7 +367,7 @@ $('#fechaDebitoTc').datepicker({
 
 
 $("#expiraTc").datepicker({
-    format: "mm-yyyy",
+    format: "mm-yy",
     startView: "months",
     minViewMode: "months",
     language: localStorage.language,
@@ -676,8 +676,12 @@ function getFormData($form) {
     var indexed_array = {};
 
     $.map(unindexed_array, function(n, i) {
-        if (n['name'] == 'dtDateofbirth') {
-            indexed_array[n['name']] = $("[name='" + n['name'] + "']").datepicker('getDate').toISOString().slice(0, 10);;
+        if (n['name'] == 'dtDateofbirth' || n['name'] == 'fechaDebitoTc') {
+            indexed_array[n['name']] = $("[name='" + n['name'] + "']").datepicker('getDate').toISOString().slice(0, 10);
+        } else if (n['name'] == 'strECFirstName') {
+            indexed_array[n['name']] = $("[name='" + n['name'] + "'] option:selected").text();
+        } else if (n['name'].indexOf("[]") > -1) {
+            indexed_array[n['name']] = $("[name='" + n['name'] + "']").val();
         } else {
             indexed_array[n['name']] = n['value'];
         }
@@ -688,18 +692,39 @@ function getFormData($form) {
 
 
 $("#finish").on("click", function() {
-    form1Data = $('#form1').serializeArray();
-    form2Data = arrayBeneficiarios;
-    form3Data = $('#form3').serializeArray();
-    form4Data = $('#form4').serializeArray();
-    form5Data = $('#form5').serializeArray();
-    form6Data = $('#form6').serializeArray();
-    form7Data = $('#form7').serializeArray();
-    console.log(form1Data);
-    console.log(form2Data);
-    console.log(form3Data);
-    console.log(form4Data);
-    console.log(form5Data);
-    console.log(form7Data);
+    objSend = {};
+    arrayBeneficiariosData = arrayBeneficiarios;
+    for (let key in arrayBeneficiariosData) {
+        dateOpt = new Date(arrayBeneficiariosData[key]['3']);
+        arrayBeneficiarios[key]['3'] = dateOpt.toISOString().slice(0, 10)
+    }
 
+    objSend.form1 = getFormData($('#form1'))
+    objSend.form2 = Object.assign({}, arrayBeneficiariosData);
+    objSend.form3 = getFormData($('#form3'));
+    objSend.form4 = getFormData($('#form4'));
+    objSend.form5 = getFormData($('#form5'));
+    objSend.form6 = getFormData($('#form6'));
+    objSend.form7 = getFormData($('#form7'));
+    objSend.form8 = getFormData($('#form8'));
+
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer " + localStorage.token);
+
+    var raw = JSON.stringify(objSend);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(urlBase + "registrarContrato", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
 });
