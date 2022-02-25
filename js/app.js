@@ -693,6 +693,7 @@ function getFormData($form) {
 
 $("#finish").on("click", function() {
     objSend = {};
+    $("#finish").prop('disabled', true);
     arrayBeneficiariosData = arrayBeneficiarios;
     for (let key in arrayBeneficiariosData) {
         dateOpt = new Date(arrayBeneficiariosData[key]['3']);
@@ -724,7 +725,13 @@ $("#finish").on("click", function() {
     };
 
     fetch(urlBase + "registrarContrato", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        .then(response => { return response.json(); })
+        .then(result => {
+            alert(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+            console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+        })
+        .catch(error => {
+            $("#finish").prop('disabled', false);
+            console.log('error', error)
+        });
 });
