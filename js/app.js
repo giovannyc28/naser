@@ -728,7 +728,9 @@ $("#finish").on("click", function() {
         .then(response => { return response.json(); })
         .then(result => {
             alert(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+            console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+            location.href = 'login.html';
         })
         .catch(error => {
             $("#finish").prop('disabled', false);
