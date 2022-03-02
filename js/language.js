@@ -47,6 +47,9 @@ function changeLanguage() {
                 } else if (value.attr == 'titleSelectPicker') {
                     $(value.element).selectpicker({ title: value.label });
                     $('select').selectpicker('refresh');
+                } else if (value.attr == 'variable') {
+                    eval("localStorage.setItem('" + value.element + "', '" + value.label + "')");
+                    console.log("Definiendo Var : " + value.element);
                 } else {
                     $('#' + value.element).attr(value.attr, value.label);
                 }

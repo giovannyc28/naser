@@ -84,6 +84,7 @@ $(document).ready(function() {
     $(":input").inputmask();
     $('select').selectpicker();
     $("#previous").prop('disabled', true);
+    $('#numeroTc').prop('disabled', true);
 
     $("#nombres").change(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
@@ -95,8 +96,9 @@ $(document).ready(function() {
     $('#form7 .btn-group input').on('change', function() {
         $('#numeroTc').val('');
         $('#vvcTc').val('');
+        $('#numeroTc').prop('disabled', false);
         $('#expiraTc').val('');
-        if ($(this).val() == "AM") {
+        if ($(this).val() == "American Express") {
             $('#numeroTc').inputmask({ mask: ["9999 999999 99999"] });
             $('#vvcTc').inputmask({ mask: ["9999"] });
         } else {
@@ -367,6 +369,10 @@ $('#fechaDebitoTc').datepicker({
 
 
 $("#expiraTc").datepicker({
+    autoclose: true,
+    orientation: "bottom auto",
+    disableTouchKeyboard: true,
+    enableOnReadonly: false,
     format: "mm-yy",
     startView: "months",
     minViewMode: "months",
@@ -692,6 +698,8 @@ function getFormData($form) {
 
 
 $("#finish").on("click", function() {
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
     objSend = {};
     $("#finish").prop('disabled', true);
     arrayBeneficiariosData = arrayBeneficiarios;
@@ -725,14 +733,31 @@ $("#finish").on("click", function() {
     };
 
     fetch(urlBase + "registrarContrato", requestOptions)
-        .then(response => { return response.json(); })
+        .then(response => {
+            $("div.spanner").removeClass("show");
+            $("div.overlay").removeClass("show");
+            return response.json();
+        })
         .then(result => {
-            alert(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+            //alert(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
+            $('#alertaMsg').html(localStorage.alertTextExitoso);
+            $('#idContract').html(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
             console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
-            location.href = 'login.html';
+            $("#aceptarAlerta").on("click", function() {
+                location.href = 'index.html';
+            })
+            $("#alertaBox").modal('show');
         })
         .catch(error => {
+            $('#alertaMsg').html(localStorage.alertTextNoExitoso);
+            $('#idContract').html('');
+            $("div.spanner").removeClass("show");
+            $("div.overlay").removeClass("show");
+            $("#aceptarAlerta").on("click", function() {
+                $("#alertaBox").modal('hide');
+            })
+            $("#alertaBox").modal('show');
             $("#finish").prop('disabled', false);
             console.log('error', error)
         });
