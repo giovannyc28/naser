@@ -95,6 +95,13 @@
     left: 50%;
 }
 
+#faPass {
+    position: relative;
+    z-index: 2;
+    top: 0px !important;
+    left: -6% !important;
+}
+
 .btn-info.active {
     background-color: limegreen;
 }
@@ -248,4 +255,13 @@
 .spanner.show,
 .overlay.show {
     opacity: 1
+}
+
+#tableContent {
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    padding: 80px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 }
