@@ -23,6 +23,11 @@ $('#flagLanguage').change(function() {
     changeLanguage();
 });
 
+function changeLanguageDrop(language) {
+    localStorage.setItem("language", language);
+    changeLanguage();
+}
+
 
 
 function changeLanguage() {

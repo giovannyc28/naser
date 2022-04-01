@@ -78,6 +78,7 @@ $("#seccion1").addClass("expand");
 $('form').show()
 $('#updateBeneficiario').hide();
 $('#cancelarUpdateBeneficiario').hide();
+$('#adminUserLink').hide()
 
 $(document).ready(function() {
     $('#finish').hide()
@@ -85,6 +86,16 @@ $(document).ready(function() {
     $('select').selectpicker();
     $("#previous").prop('disabled', true);
     $('#numeroTc').prop('disabled', true);
+
+    roleKind = getRole().then(data => {
+        if (data.role == 'admin') {
+            $('#adminUserLink').show()
+            $('#adminLanguageLink').show()
+        } else {
+            $('#adminUserLink').hide()
+            $('#adminLanguageLink').hide()
+        }
+    });
 
     $("#nombres").change(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
@@ -153,6 +164,8 @@ $(document).ready(function() {
             calcValorPlan()
         })
     })
+
+    $('#cheque').hide();
 });
 
 function calcValorPlan(idPlan) {
@@ -762,3 +775,54 @@ $("#finish").on("click", function() {
             console.log('error', error)
         });
 });
+
+function chgMedioPago(that) {
+    console.log($(that).prop('checked'))
+    $('#tarjeta').toggle();
+    $('#cheque').toggle();
+
+    if ($(that).prop('checked')) {
+        $("#password").attr('required', false);
+        $("#nombretc").attr('required', false);
+        $("#numeroTc").attr('required', false);
+        $("#expiraTc").attr('required', false);
+        $("#valorTc").attr('required', false);
+        $("#vvcTc").attr('required', false);
+        $("#fechaDebitoTc").attr('required', false);
+
+        $("#tipoCta").attr('required', true);
+        $("#bancoCheque").attr('required', true);
+        $("#numeroRutaCheque").attr('required', true);
+        $("#numeroCtaCheque").attr('required', true);
+    } else {
+        $("#password").attr('required', true);
+        $("#nombretc").attr('required', true);
+        $("#numeroTc").attr('required', true);
+        $("#expiraTc").attr('required', true);
+        $("#valorTc").attr('required', true);
+        $("#vvcTc").attr('required', true);
+        $("#fechaDebitoTc").attr('required', true);
+
+        $("#tipoCta").attr('required', false);
+        $("#bancoCheque").attr('required', false);
+        $("#numeroRutaCheque").attr('required', false);
+        $("#numeroCtaCheque").attr('required', false);
+    }
+
+}
+
+async function getRole() {
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer " + localStorage.token);
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    const response = await fetch(urlBase + "scope", requestOptions)
+    var data = await response.json();
+    return data;
+}

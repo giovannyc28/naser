@@ -97,7 +97,6 @@
 
 #faPass {
     position: relative;
-    z-index: 2;
     top: 0px !important;
     left: -6% !important;
 }
