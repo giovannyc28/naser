@@ -695,7 +695,7 @@ function getFormData($form) {
     var indexed_array = {};
 
     $.map(unindexed_array, function(n, i) {
-        if (n['name'] == 'dtDateofbirth' || n['name'] == 'fechaDebitoTc') {
+        if ((n['name'] == 'dtDateofbirth' || n['name'] == 'fechaDebitoTc') && $("[name='" + n['name'] + "']").val() != '') {
             indexed_array[n['name']] = $("[name='" + n['name'] + "']").datepicker('getDate').toISOString().slice(0, 10);
         } else if (n['name'] == 'strECFirstName') {
             indexed_array[n['name']] = $("[name='" + n['name'] + "'] option:selected").text();
@@ -729,7 +729,7 @@ $("#finish").on("click", function() {
     objSend.form6 = getFormData($('#form6'));
     objSend.form7 = getFormData($('#form7'));
     objSend.form8 = getFormData($('#form8'));
-
+    objSend.language = $('#flagLanguage').val();
 
     var myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
@@ -758,7 +758,7 @@ $("#finish").on("click", function() {
             console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
             $("#aceptarAlerta").on("click", function() {
-                location.href = 'index.html';
+                location.href = 'contratos.html';
             })
             $("#alertaBox").modal('show');
         })

@@ -73,7 +73,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a id='adminUserLink' class="nav-link" href="./adminUsers.html">Administrar Usuarios</a>
                     </li>
 
@@ -81,7 +81,7 @@
                         <a id='adminLanguageLink' class="nav-link" href="./adminLanguages.html">Administrar Idiomas</a>
                     </li>
 
-                    <li class="nav-item ">
+                    <li class="nav-item active">
                         <a id='listaContratos' class="nav-link" href="./contratos.html">Mis Contratos</a>
                     </li>
 
@@ -96,35 +96,31 @@
 
 
     <div id="tableContent">
-        <button id="adicionarUsuario" onclick="openNewForm()" type="button" class="btn btn-primary">Nuevo Usuario</button>
+        <!--<button id="adicionarUsuario" onclick="openNewForm()" type="button" class="btn btn-primary">Nuevo Usuario</button>-->
         <table class="table table-striped" id="table" data-mobile-responsive="true" data-filter-control="true" data-id-field="id">
             <thead>
                 <tr>
                     <th data-field="id" data-sortable="true">
                         <label for="id">id</label>
                     </th>
-                    <th data-field="name" data-sortable="true" data-filter-control="input">
-                        <label for="nombres">Nombres</label>
+                    <th data-field="strAgreement" data-sortable="true" data-filter-control="input">
+                        <label for="strAgreement">Contrato</label>
                     </th>
-                    <th data-field="lastname" data-sortable="true" data-filter-control="input">
-                        <label for="apellidos">Apellidos</label>
+                    <th data-field="strAHFirstName" data-sortable="true" data-filter-control="input">
+                        <label for="strAHFirstName">Nombres</label>
                     </th>
-                    <th data-field="email" data-sortable="true" data-filter-control="input">
-                        <label for="email">Email</label>
+                    <th data-field="strAHLastName" data-sortable="true" data-filter-control="input">
+                        <label for="strAHLastName">Email</label>
                     </th>
-                    <th data-field="status" data-sortable="true" data-filter-control="select">
-                        <label for="status">Estado</label>
+                    <th data-field="strAgreementType" data-sortable="true" data-filter-control="select">
+                        <label for="strAgreementType">Plan</label>
                     </th>
-                    <th data-field="role.role" data-sortable="true" data-filter-control="select">
-                        <label for="role">Role</label>
+                    <th data-field="dtDateofpayment" data-sortable="true" data-filter-control="select">
+                        <label for="dtDateofpayment">Fecha de Pago</label>
                     </th>
-                    <th data-field="agentePadre" data-sortable="true" data-filter-control="select">
-                        <label for="agentePadre">Agente Padre</label>
+                    <th data-field="created_at" data-sortable="true" data-filter-control="input">
+                        <label for="created_at">Fecha Creación</label>
                     </th>
-                    <th data-field="user_dyn" data-sortable="true" data-filter-control="select">
-                        <label for="user_dyn">Número ID - Naser</label>
-                    </th>
-                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-footer-formatter="footerFormatter">Action</th>
 
                 </tr>
             </thead>
@@ -287,21 +283,13 @@
     }
 
     $(document).ready(function() {
-
-
-        roleKind = getRole().then(data => {
-            if (data.role != 'admin')
-                location.href = 'index.html';
-            else {
-                initTable()
-                $('select').selectpicker('refresh');
-                $('select').on('change', function() {
-                    $(this).selectpicker('refresh')
-                });
-            }
+        initTable()
+        $('select').selectpicker('refresh');
+        $('select').on('change', function() {
+            $(this).selectpicker('refresh')
         });
-
     });
+
 
     function initTable() {
         $('#table').bootstrapTable('destroy').bootstrapTable({
@@ -316,7 +304,7 @@
     function dataRequest(params) {
         console.log("haciendo Peticion");
         console.log(params);
-        fetch(urlBase + "users", requestOptions)
+        fetch(urlBase + "lstcontrato", requestOptions)
             .then(resp => {
                 console.log(resp.status);
                 //localStorage.setItem("codeResponde", resp.status);
@@ -373,10 +361,10 @@
             idUser = $('#id').val();
             objSend = getFormData($('#formData'));
             metodo = 'PUT'
-            urlREST = urlBase + "user/" + idUser
+            urlREST = urlBase + "lstcontrato/" + idUser
             if (idUser == '') {
                 metodo = 'POST';
-                urlREST = urlBase + "user";
+                urlREST = urlBase + "lstcontrato";
             }
 
             var myHeaders = new Headers();
