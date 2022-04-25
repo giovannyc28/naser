@@ -63,14 +63,14 @@ function changeLanguage() {
         .catch(error => console.log('error', error));
     getMaritalStatus();
     getRelationShips();
-    getPaises('#paisResidencia')
-    getPaises('#paisOrigen')
     getRelationShipsCte();
-    getPaises('#benPaisResidencia')
-    getPaises('#benPaisOrigen')
-    getPaises('#ctePais')
-    getPaises('#infoPais')
-    getPaises('#infoPais')
+    getPaises('#paisResidencia')
+        /*getPaises('#paisOrigen')
+        getPaises('#benPaisResidencia')
+        getPaises('#benPaisOrigen')
+        getPaises('#ctePais')
+        getPaises('#infoPais')
+        getPaises('#infoPais')*/
 
 }
 changeLanguage();
