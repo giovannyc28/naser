@@ -229,7 +229,7 @@ $('#cteNombres').change(function() {
     opcionSel = $('#cteNombres').val();
     if (opcionSel >= 0) {
         arrayLinea = arrayBeneficiarios["'" + opcionSel + "'"];
-        if (arrayLinea[0] == 'titular') {
+        if (arrayLinea[0].toLowerCase() == 'titular' || arrayLinea[0].toLowerCase() == 'holder') {
             $('#cteParentesco').val(arrayLinea[0]);
             $('#cteParentesco').selectpicker('refresh');
             $('#cteApellidos').val($('#form1 #apellidos').val());
@@ -428,8 +428,8 @@ function GetAge(birthDate) {
 }
 
 $('#benParentesco').change(function() {
-    opcionParentesco = $('#form2 #benParentesco').val();
-    if (opcionParentesco == 'titular') {
+    opcionParentesco = $('#form2 #benParentesco').val().toLowerCase();
+    if (opcionParentesco == 'titular' || opcionParentesco == 'holder') {
         if (updateBen === true) {
             $('#form2 #benParentesco').prop('disabled', true);
         }

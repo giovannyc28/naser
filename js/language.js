@@ -61,5 +61,109 @@ function changeLanguage() {
             });
         })
         .catch(error => console.log('error', error));
+    getMaritalStatus();
+    getRelationShips();
+    getPaises('#paisResidencia')
+    getPaises('#paisOrigen')
+    getRelationShipsCte();
+    getPaises('#benPaisResidencia')
+    getPaises('#benPaisOrigen')
+    getPaises('#ctePais')
+    getPaises('#infoPais')
+    getPaises('#infoPais')
+
 }
 changeLanguage();
+
+function getPaises($elemento) {
+    var $parameters = new Array();
+    $parameters['metodo'] = "getPlaceOfBirthOrCountryOfResidence";
+    $parameters['attrIngles'] = "nln_countryofresidence";
+    $parameters['attr2ndLanguage'] = "nln_spanish";
+    if (localStorage.language == 'pt')
+        $parameters['attr2ndLanguage'] = "nln_portuguese";
+    $parameters['idSelect'] = $elemento;
+    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
+    getOptionsCMR($parameters)
+}
+
+function getMaritalStatus() {
+    var $parameters = new Array();
+    $parameters['metodo'] = "getMaritalStatus";
+    $parameters['attrIngles'] = "nln_maritalstatus";
+    $parameters['attr2ndLanguage'] = "nln_spanish";
+    if (localStorage.language == 'pt')
+        $parameters['attr2ndLanguage'] = "nln_portuguese";
+    $parameters['idSelect'] = "#estadoCivil";
+    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
+    getOptionsCMR($parameters)
+}
+
+function getRelationShips() {
+    var $parameters = new Array();
+    $parameters['metodo'] = "getRelationShips";
+    $parameters['attrIngles'] = "nln_relationship";
+    $parameters['attr2ndLanguage'] = "nln_spanish";
+    if (localStorage.language == 'pt')
+        $parameters['attr2ndLanguage'] = "nln_portuguese";
+    $parameters['idSelect'] = "#benParentesco";
+    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
+    getOptionsCMR($parameters)
+}
+
+
+function getRelationShipsCte() {
+    var $parameters = new Array();
+    $parameters['metodo'] = "getRelationShips";
+    $parameters['attrIngles'] = "nln_relationship";
+    $parameters['attr2ndLanguage'] = "nln_spanish";
+    if (localStorage.language == 'pt')
+        $parameters['attr2ndLanguage'] = "nln_portuguese";
+    $parameters['idSelect'] = "#cteParentesco";
+    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
+    getOptionsCMR($parameters)
+}
+
+
+function getOptionsCMR($parameters) {
+    var raw = JSON.stringify({
+        "metodo": $parameters['metodo'],
+        "attrIngles": $parameters['attrIngles'],
+        "attr2ndLanguage": $parameters['attr2ndLanguage']
+    });
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer " + localStorage.token);
+    $($parameters['idSelect'] + " option[value!='']").remove();
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch(urlBase + "options", requestOptions)
+        .then(resp => {
+            localStorage.setItem("codeRespondegetRelationShips", resp.status);
+            return resp.json();
+        })
+        .then(data => {
+            if (localStorage.codeResponde == 200) {
+
+                $.each(data, function(key, value) {
+                    if (localStorage.language == 'en')
+                        $($parameters['idSelect']).append('<option value= "' + key + '">' + key + '</option>')
+                    else
+                        $($parameters['idSelect']).append('<option value= "' + value + '">' + value + '</option>')
+                })
+                $($parameters['idSelect'] + ' option').eq($parameters['indexSelected']).prop('selected', true);
+                $($parameters['idSelect']).selectpicker('refresh')
+                $($parameters['idSelect']).selectpicker('refresh')
+            }
+
+        })
+        .catch(error => console.log('error', error));
+}
