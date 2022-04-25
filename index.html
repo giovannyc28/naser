@@ -210,7 +210,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="benParentesco">Parentesco</label>
-                            <select id="benParentesco" name="benParentesco" class="selectpicker form-control" required>
+                            <select id="benParentesco" name="benParentesco" class="selectpicker form-control" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -262,6 +262,11 @@
                             <input type="text" class="form-control" id="benProvincia" name="benProvincia" required>
                         </div>
 
+                        <div class="form-group   col-md-3">
+                            <label for="benEmail">Email</label>
+                            <input type="text" class="form-control" id="benEmail" name="benEmail" required>
+                        </div>
+
                     </div>
 
                     <button id='addBeneficiario' type="button" class="btn btn-primary">Adicionar</button>
@@ -280,6 +285,7 @@
                                     <th scope="col" id="thBenPaisOrigen">País Origen</th>
                                     <th scope="col" id="thBenCiudad">Ciudad</th>
                                     <th scope="col" id="thBenProvincia">Provincia</th>
+                                    <th scope="col" id="thBenEmail">Email</th>
                                     <th scope="col" id="thBenEditar">Editar</th>
                                     <th scope="col" id="thBenEliminar">Borrar</th>
                                 </tr>

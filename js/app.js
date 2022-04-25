@@ -428,8 +428,8 @@ function GetAge(birthDate) {
 }
 
 $('#benParentesco').change(function() {
-    opcionParentesco = $('#form2 #benParentesco').val().toLowerCase();
-    if (opcionParentesco == 'titular' || opcionParentesco == 'holder') {
+    opcionParentesco = $('#form2 #benParentesco').val();
+    if (opcionParentesco.toLowerCase() == 'titular' || opcionParentesco.toLowerCase() == 'holder') {
         if (updateBen === true) {
             $('#form2 #benParentesco').prop('disabled', true);
         }
@@ -447,6 +447,8 @@ $('#benParentesco').change(function() {
         $('#form2 #benCiudad').val($('#form1 #ciudad').val());
         $('#form2 #benProvincia').prop('readonly', true);
         $('#form2 #benProvincia').val($('#form1 #provincia').val());
+        $('#form2 #benEmail').prop('readonly', true);
+        $('#form2 #benEmail').val($('#form1 #email').val());
         $('#form2 select').selectpicker('refresh');
         $('#benFechaNacimiento').trigger('change');
 
@@ -458,6 +460,7 @@ $('#benParentesco').change(function() {
         $('#form2 #benPaisOrigen').prop('disabled', false);
         $('#form2 #benCiudad').prop('readonly', false);
         $('#form2 #benProvincia').prop('readonly', false);
+        $('#form2 #benEmail').prop('readonly', false);
         $('#form2 select').selectpicker('refresh');
     } else {
         resetForm('form2');
@@ -470,6 +473,7 @@ $('#benParentesco').change(function() {
         $('#form2 #benPaisOrigen').prop('disabled', false);
         $('#form2 #benCiudad').prop('readonly', false);
         $('#form2 #benProvincia').prop('readonly', false);
+        $('#form2 #benEmail').prop('readonly', false);
         $('#form2 select').selectpicker('refresh');
     }
 })
@@ -554,6 +558,7 @@ function editarBen(idTabla) {
     $('#benPaisOrigen').val(arrayLinea[6]);
     $('#benCiudad').val(arrayLinea[7]);
     $('#benProvincia').val(arrayLinea[8]);
+    $('#benEmail').val(arrayLinea[9]);
     $('#addBeneficiario').hide();
     $('#updateBeneficiario').show();
     $('#cancelarUpdateBeneficiario').show();
