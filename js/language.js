@@ -63,14 +63,14 @@ function changeLanguage() {
         .catch(error => console.log('error', error));
     getMaritalStatus();
     getRelationShips();
-    //getRelationShipsCte();
-    //getPaises('#paisResidencia')
-    /*getPaises('#paisOrigen')
-    getPaises('#benPaisResidencia')
-    getPaises('#benPaisOrigen')
-    getPaises('#ctePais')
-    getPaises('#infoPais')
-    getPaises('#infoPais')*/
+    getRelationShipsCte();
+    getPaises('#paisResidencia');
+    getPaises('#paisOrigen');
+    getPaises('#benPaisResidencia');
+    getPaises('#benPaisOrigen');
+    getPaises('#ctePais');
+    getPaises('#infoPais');
+    getPaises('#infoPais');
 
 }
 changeLanguage();
@@ -125,7 +125,7 @@ function getRelationShipsCte() {
 }
 
 
-function getOptionsCMR($parameters) {
+async function getOptionsCMR($parameters) {
     var raw = JSON.stringify({
         "metodo": $parameters['metodo'],
         "attrIngles": $parameters['attrIngles'],
