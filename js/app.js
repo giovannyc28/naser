@@ -104,17 +104,30 @@ $(document).ready(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
     });
 
-    $('#form7 .btn-group input').on('change', function() {
+    $('#form7 #franquiciaCT').on('change', function() {
         $('#numeroTc').val('');
         $('#vvcTc').val('');
         $('#numeroTc').prop('disabled', false);
         $('#expiraTc').val('');
+        $('#numeroTc').removeClass("is-valid");
+        $('#numeroTc').removeClass("is-invalid");
+        $('#vvcTc').removeClass("is-valid");
+        $('#vvcTc').removeClass("is-invalid");
+
         if ($(this).val() == "American Express") {
-            $('#numeroTc').inputmask({ mask: ["9999 999999 99999"] });
-            $('#vvcTc').inputmask({ mask: ["9999"] });
+            $("#numeroTc").attr('maxlength', 17);
+            $("#numeroTc").attr('minlength', 17);
+            $('#numeroTc').inputmask({ mask: ["9999 999999 99999"], greedy: false });
+            $("#vvcTc").attr('maxlength', 4);
+            $("#vvcTc").attr('minlength', 4);
+            $('#vvcTc').inputmask({ mask: ["9999"], greedy: false });
         } else {
-            $('#numeroTc').inputmask({ mask: ["9999 9999 9999 9999"] });
-            $('#vvcTc').inputmask({ mask: ["999"] });
+            $("#numeroTc").attr('maxlength', 19);
+            $("#numeroTc").attr('minlength', 19);
+            $('#numeroTc').inputmask({ mask: ["9999 9999 9999 9999"], greedy: false });
+            $("#vvcTc").attr('maxlength', 3);
+            $("#vvcTc").attr('minlength', 3);
+            $('#vvcTc').inputmask({ mask: ["999"], greedy: false });
         }
     });
 
@@ -165,8 +178,30 @@ $(document).ready(function() {
         })
     })
 
+    $("#numeroTc").keyup(function() {
+        valTarjeta('#numeroTc')
+    });
+
+    $("#vvcTc").keyup(function() {
+        valTarjeta('#vvcTc')
+    });
+
+    $('#tarjeta').hide();
+    $('#cheque').hide();
+    $('#transferencia').hide();
+
     $('#cheque').hide();
 });
+
+function valTarjeta(idSelector) {
+    $(idSelector).removeClass("is-invalid");
+    $(idSelector).removeClass("is-valid");
+    if ($(idSelector).inputmask("isComplete")) {
+        $(idSelector).addClass("is-valid");
+    } else {
+        $(idSelector).addClass("is-invalid");
+    }
+}
 
 function calcValorPlan(idPlan) {
     if (planSeleccionado.cant_person == -1) {
@@ -782,12 +817,32 @@ $("#finish").on("click", function() {
 });
 
 function chgMedioPago(that) {
-    console.log($(that).prop('checked'))
-    $('#tarjeta').toggle();
-    $('#cheque').toggle();
+    console.log($(that).val())
 
-    if ($(that).prop('checked')) {
-        $("#password").attr('required', false);
+    $('#franquiciaCT').val('');
+    $('#franquiciaCT').selectpicker('refresh');
+    $('#nombretc').val('');
+    $('#numeroTc').val('');
+    $('#expiraTc').val('');
+    $('#valorTc').val('');
+    $('#vvcTc').val('');
+    $('#fechaDebitoTc').val('');
+    $('#tipoCta').val('');
+    $('#tipoCta').selectpicker('refresh');
+    $('#bancoCheque').val('');
+    $('#numeroRutaCheque').val('');
+    $('#numeroCtaCheque').val('');
+    $('#tipoTransferencia').val('');
+    $('#tipoTransferencia').selectpicker('refresh');
+    $('#nombreTransferencia').val('');
+    $('#numeroReferencia').val('');
+
+    if ($(that).val() == 'BC') {
+        $('#tarjeta').hide();
+        $('#cheque').show();
+        $('#transferencia').hide();
+
+        $("#franquiciaCT").attr('required', false);
         $("#nombretc").attr('required', false);
         $("#numeroTc").attr('required', false);
         $("#expiraTc").attr('required', false);
@@ -799,8 +854,16 @@ function chgMedioPago(that) {
         $("#bancoCheque").attr('required', true);
         $("#numeroRutaCheque").attr('required', true);
         $("#numeroCtaCheque").attr('required', true);
-    } else {
-        $("#password").attr('required', true);
+        $("#tipoTransferencia").attr('required', false);
+        $("#nombreTransferencia").attr('required', false);
+        $("#numeroReferencia").attr('required', false);
+
+    } else if ($(that).val() == 'TC') {
+        $('#tarjeta').show();
+        $('#cheque').hide();
+        $('#transferencia').hide();
+
+        $("#franquiciaCT").attr('required', true);
         $("#nombretc").attr('required', true);
         $("#numeroTc").attr('required', true);
         $("#expiraTc").attr('required', true);
@@ -812,6 +875,30 @@ function chgMedioPago(that) {
         $("#bancoCheque").attr('required', false);
         $("#numeroRutaCheque").attr('required', false);
         $("#numeroCtaCheque").attr('required', false);
+
+        $("#tipoTransferencia").attr('required', false);
+        $("#nombreTransferencia").attr('required', false);
+        $("#numeroReferencia").attr('required', false);
+    } else {
+        $('#tarjeta').hide();
+        $('#cheque').hide();
+        $('#transferencia').show();
+        $("#franquiciaCT").attr('required', false);
+        $("#nombretc").attr('required', false);
+        $("#numeroTc").attr('required', false);
+        $("#expiraTc").attr('required', false);
+        $("#valorTc").attr('required', false);
+        $("#vvcTc").attr('required', false);
+        $("#fechaDebitoTc").attr('required', false);
+
+        $("#tipoCta").attr('required', false);
+        $("#bancoCheque").attr('required', false);
+        $("#numeroRutaCheque").attr('required', false);
+        $("#numeroCtaCheque").attr('required', false);
+
+        $("#tipoTransferencia").attr('required', true);
+        $("#nombreTransferencia").attr('required', true);
+        $("#numeroReferencia").attr('required', true);
     }
 
 }

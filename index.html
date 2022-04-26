@@ -480,7 +480,7 @@
                               </label>
                                 <label for="mensualOpt" class="btn btn-outline-secondary">
                                 <input type="radio" name="options" id="mensualOpt" name="mensualOpt" value="monthly_fee" required>
-                                <div id="mensualOptLabel">      Mensual</div>
+                                <div id="mensualOptLabel">Mensual</div>
                               </label>
                             </div>
                         </div>
@@ -605,46 +605,60 @@
                 <h5 class="card-title"><a id="titulo7">INFORMACIÓN DE PAGO</a></h5>
                 <form id="form7" class="needs-validation" novalidate>
                     <div class='form-row'>
-                        <div class="form-group col-md-12">
-                            <label for="medioPago">Pago Con Cheque</label>
-                            <input id='medioPago' name='medioPago' onChange='chgMedioPago(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
-                        </div>
-                    </div>
-
-                    <div class='form-row'>
-                        <div class="form-group text-center col-md-12">
-                            <label class="col-lg-12" for="franquiciaCT">Franquicia Tarjeta de Credito</label>
-                            <div id="divRadioTc" class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option1" value='Master Card' > 
-                                  <span style="font-size: 2em; color:#eb001b;">
-                                    <i class="fab fa-cc-mastercard"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option2" value="Visa" > 
-                                  <span style="font-size: 2em; color: #172274;">
-                                    <i class="fab fa-cc-visa"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <input type="radio" name="franquiciaCT" id="option3" value="American Express">
-                                  <span style="font-size: 2em; color: #629f86;">
-                                    <i class="fab fa-cc-amex"></i>
-                                  </span>
-                              </label>
-                                <label class="btn btn-outline-secondary">
-                                <span style="font-size: 2em; color: #E55c20;">
-                                  <input type="radio" name="franquiciaCT" id="option4" value="Discover"> 
-                                    <i class="fab fa-cc-discover"></i>
-                                </span>
-                              </label>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <!--<label for="medioPago">Pago Con Cheque</label>
+                            <input id='medioPago' name='medioPago' onChange='chgMedioPago(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">-->
+                            <label for="medioPago">Medio de Pago</label>
+                            <select id='medioPago' name="medioPago" class="selectpicker form-control" onChange='chgMedioPago(this)' required>
+                                    <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                                    <option  value = "TC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-credit-card"></span> Tarjeta de Credito'></option>
+                                    <option  value = "BC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-money-check-alt"></span> Cheque'></option>
+                                    <option  value = "TB" data-content='<span style="font-size: 1.37em; color: #60a0ff;" class="fas fa-random"></span> Transferencia'></option>
+                                </select>
                         </div>
                     </div>
                     <div id="tarjeta">
-                        <div class="form-row">
-                            <div class="form-group   col-md-5">
+                        <div class='form-row'>
+                            <div class="form-group  col-md-3">
+                                <label for="franquiciaCT">Franquicia Tarjeta de Credito</label>
+                                <select id='franquiciaCT' name="franquiciaCT" class="selectpicker form-control" required>
+                                    <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                                    <option  value = "Master Card" data-content='<span style="font-size: 1.37em;color:#eb001b;" class="fab fa-cc-mastercard"></span> Master Card'></option>
+                                    <option  value = "Visa" data-content='<span style="font-size: 1.37em; color: #172274;" class="fab fa-cc-visa"></span> VISA'></option>
+                                    <option  value = "American Express" data-content='<span style="font-size: 1.37em; color: #629f86;" class="fab fa-cc-amex"></span> American Express'></option>
+                                    <option  value = "Discover" data-content='<span style="font-size: 1.37em;color: #E55c20;" class="fab fa-cc-discover"></span> Discover'></option>
+                                </select>
+
+
+                                <!--<label class="col-lg-12" for="franquiciaCT">Franquicia Tarjeta de Credito</label>
+                                <div id="divRadioTc" class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn ">
+                                <input type="radio" name="franquiciaCT" id="option1" value='Master Card' required> 
+                                  <span style="font-size: 2em;color:#eb001b;">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                  </span>
+                              </label>
+                                    <label class="btn ">
+                                <input type="radio" name="franquiciaCT" id="option2" value="Visa" required> 
+                                  <span style="color: #172274;">
+                                    <i class="fab fa-cc-visa"></i>
+                                  </span>
+                              </label>
+                                    <label class="btn ">
+                                <input type="radio" name="franquiciaCT" id="option3" value="American Express" required>
+                                  <span style=" color: #629f86;">
+                                    <i class="fab fa-cc-amex"></i>
+                                  </span>
+                              </label>
+                                    <label class="btn ">
+                                <span style="color: #E55c20;">
+                                  <input type="radio" name="franquiciaCT" id="option4" value="Discover" required> 
+                                    <i class="fab fa-cc-discover"></i>
+                                </span>
+                              </label>-->
+                            </div>
+
+                            <div class="form-group   col-md-4">
                                 <label for="nombreTc">Nombre (como aparece en la tarjeta)</label>
                                 <input type="text" class="form-control" id="nombretc" name="nombretc" required>
                             </div>
@@ -654,10 +668,31 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">#</span>
                                     </div>
-                                    <input id="numeroTc" name="numeroTc" class="form-control" required>
+                                    <input id="numeroTc" name="numeroTc" class="form-control" required maxlength="19">
+                                    <div class="invalid-feedback">
+                                        &nbsp;
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="form-row">
+                            <div class="form-group   col-md-3">
+                                <label for="expiraTc">Fecha Expira</label>
+                                <div class="input-group mb-0">
+                                    <input type="text" class="form-control" id="expiraTc" name="expiraTc" data-date-start-date="0d" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group   col-md-1">
+                                <label for="vvcTc">CVV</label>
+                                <input id="vvcTc" name="vvcTc" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    &nbsp;
+                                </div>
+                            </div>
                             <div class="form-group   col-md-3">
                                 <label for="valorTc">Valor a Debitar</label>
                                 <div class="input-group mb-0">
@@ -666,19 +701,6 @@
                                     </div>
                                     <input id="valorTc" name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group   col-md-3">
-                                <label for="expiraTc">Fecha Expira</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="expiraTc" name="expiraTc" data-date-start-date="0d" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group   col-md-1">
-                                <label for="vvcTc">CVV</label>
-                                <input id="vvcTc" name="vvcTc" class="form-control" required>
                             </div>
                             <div class="form-group   col-md-3">
                                 <label for="fechaDebitoTc">Fecha a Debitar</label>
@@ -689,9 +711,19 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div id="cheque">
+                        <div class="form-row">
+                            <div class="form-group   col-md-12">
+                                <label for="notaCheque">
+                                <p id="notaCheque" name="notaCheque" style="font-size: 0.7em;" class="p-2 bg-secondary text-white">
+                                    <strong>Información de la cuenta de Cheques.</strong> 
+                                </p>
+                            </label>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group   col-md-3">
                                 <label for="tipoCta">Tipo de Cuenta</label>
@@ -713,6 +745,40 @@
                             <div class="form-group   col-md-3">
                                 <label for="numeroCtaCheque">Número de Cuenta</label>
                                 <input type="text" class="form-control" id="numeroCtaCheque" name="numeroCtaCheque">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="transferencia">
+                        <div class="form-row">
+                            <div class="form-group   col-md-12">
+                                <label for="notaTransferencia">
+                                <p id="notaTransferencia" name="notaTransferencia" style="font-size: 0.7em;" class="p-2 bg-secondary text-white">
+                                    <strong>Información Pago Zelle o Transferecia Bancaria.</strong> 
+                                </p>
+                            </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group   col-md-3">
+                                <label for="tipoTransferencia">Entidad</label>
+                                <select id="tipoTransferencia" name="tipoTransferencia" class="selectpicker form-control" required>
+                                    <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                                    <option id="optZelle" value="zelle">Zelle</option>
+                                    <option id="optWireTransfer" value="wireTransfer">Wire Transfer</option>
+                            </select>
+                            </div>
+                            <div class="form-group   col-md-3">
+                                <label for="nombreTransferencia">Nombre y Apellidos</label>
+                                <input type="text" class="form-control" id="nombreTransferencia" name="nombreTransferencia">
+                            </div>
+                            <div class="form-group   col-md-3">
+                                <label for="numeroReferencia">Número de Referencia</label>
+                                <input type="text" class="form-control" id="numeroReferencia" name="numeroReferencia">
+                            </div>
+                            <div class="form-group   col-md-3">
+                                <label for="numeroConfirmacion">Número de Confirmacion</label>
+                                <input type="text" class="form-control" id="numeroConfirmacion" name="numeroConfirmacion">
                             </div>
 
                         </div>
@@ -836,6 +902,7 @@
     <script src="./js/language.js"></script>
     <script src="./js/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="./js/jquery.creditCardValidator.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
