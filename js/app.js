@@ -187,11 +187,17 @@ $(document).ready(function() {
     });
 
     $("#celular").keyup(function() {
-        maskCel();
+        maskCel('#celular');
+    });
+
+    $("#cteCelular").keyup(function() {
+        maskCel('#cteCelular');
     });
 
 
+
     $('#telefono').inputmask('999 999 9999');
+    $('#cteTelefono').inputmask('999 999 9999');
 
     maskCel();
     $('#tarjeta').hide();
@@ -203,9 +209,9 @@ $(document).ready(function() {
 
 });
 
-function maskCel() {
+function maskCel(selectorMask) {
     var phones = [{ "mask": "+# ### ### ####" }, { "mask": "+## ### ### ####" }, { "mask": "+### ### ### ####" }];
-    $('#celular').inputmask({
+    $(selectorMask).inputmask({
         mask: phones,
         greedy: false,
         definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
