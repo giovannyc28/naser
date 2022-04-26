@@ -119,7 +119,9 @@
                     <th data-field="status" data-sortable="true" data-filter-control="select">
                         <label for="status">Estado</label>
                     </th>
-                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-footer-formatter="footerFormatter">Action</th>
+                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-footer-formatter="footerFormatter">
+                        <label for="action">Accion</label>
+                    </th>
 
                 </tr>
             </thead>
@@ -290,8 +292,8 @@
                 location.href = 'index.html';
             else {
                 initTable()
-                $('select').selectpicker('refresh');
-                $('select').on('change', function() {
+                $('#formData select').selectpicker('refresh');
+                $('#formData select').on('change', function() {
                     $(this).selectpicker('refresh')
                 });
             }
@@ -321,7 +323,9 @@
             .then(data => {
                 console.log(data);
                 params.success(data)
-                    //localStorage.setItem("token", data.access_token);
+                $("div.spanner").removeClass("show");
+                $("div.overlay").removeClass("show");
+                //localStorage.setItem("token", data.access_token);
 
             })
             .catch(error => {
@@ -338,8 +342,8 @@
 
     function openNewForm() {
         $('#id').val('');
-        $('select').val('')
-        $('select').selectpicker('refresh');
+        $('#formData select').val('')
+        $('#formData select').selectpicker('refresh');
         $('#formData')[0].reset();
         $('#formModalIdioma').modal('show');
         $('#formData').removeClass('was-validated');

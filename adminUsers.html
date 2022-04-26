@@ -104,10 +104,10 @@
                         <label for="id">id</label>
                     </th>
                     <th data-field="name" data-sortable="true" data-filter-control="input">
-                        <label for="nombres">Nombres</label>
+                        <label for="name">Nombres</label>
                     </th>
                     <th data-field="lastname" data-sortable="true" data-filter-control="input">
-                        <label for="apellidos">Apellidos</label>
+                        <label for="lastname">Apellidos</label>
                     </th>
                     <th data-field="email" data-sortable="true" data-filter-control="input">
                         <label for="email">Email</label>
@@ -124,7 +124,9 @@
                     <th data-field="user_dyn" data-sortable="true" data-filter-control="select">
                         <label for="user_dyn">Número ID - Naser</label>
                     </th>
-                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-footer-formatter="footerFormatter">Action</th>
+                    <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents" data-footer-formatter="footerFormatter">
+                        <label for="accion">Accion</label>
+                    </th>
 
                 </tr>
             </thead>
@@ -309,7 +311,6 @@
             flat: "true",
             ajax: "dataRequest",
             pagination: "true"
-
         })
     }
 
@@ -325,7 +326,9 @@
             .then(data => {
                 console.log(data);
                 params.success(data)
-                    //localStorage.setItem("token", data.access_token);
+                $("div.spanner").removeClass("show");
+                $("div.overlay").removeClass("show");
+                //localStorage.setItem("token", data.access_token);
 
             })
             .catch(error => {
@@ -342,8 +345,8 @@
 
     function openNewForm() {
         $('#id').val('');
-        $('select').val('')
-        $('select').selectpicker('refresh');
+        $('#formData select').val('')
+        $('#formData select').selectpicker('refresh');
         $('#formData')[0].reset();
         $('#formModalUsers').modal('show');
         $('#formData').removeClass('was-validated');

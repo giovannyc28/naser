@@ -19,8 +19,11 @@ if (!localStorage.language) {
 $("#flagLanguage").val(localStorage.language);
 
 $('#flagLanguage').change(function() {
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
     localStorage.setItem("language", $(this).val());
     changeLanguage();
+
 });
 
 function changeLanguageDrop(language) {
@@ -31,6 +34,8 @@ function changeLanguageDrop(language) {
 
 
 function changeLanguage() {
+    $("div.spanner").addClass("show");
+    $("div.overlay").addClass("show");
     seccion = window.location.pathname.replace('.html', '').replace('/', '');
     fetch(urlBase + "idioma/" + localStorage.language + "/" + seccion, requestOptions)
         .then(resp => {
@@ -59,84 +64,93 @@ function changeLanguage() {
                     $('#' + value.element).attr(value.attr, value.label);
                 }
             });
+            if (seccion == 'index') {
+                selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
+                getMaritalStatus(['#estadoCivil']);
+                getRelationShips(['#benParentesco', "#cteParentesco"]);
+                getPaisesMulti(selectorPais);
+            } else {
+                initTable();
+            }
+
         })
         .catch(error => console.log('error', error));
-    getMaritalStatus();
-    getRelationShips();
-    getRelationShipsCte();
-    getPaises('#paisResidencia');
-    getPaises('#paisOrigen');
-    getPaises('#benPaisResidencia');
-    getPaises('#benPaisOrigen');
-    getPaises('#ctePais');
-    getPaises('#infoPais');
-    getPaises('#infoPais');
 
 }
 changeLanguage();
 
-function getPaises($elemento) {
-    var $parameters = new Array();
-    $parameters['metodo'] = "getPlaceOfBirthOrCountryOfResidence";
-    $parameters['attrIngles'] = "nln_countryofresidence";
-    $parameters['attr2ndLanguage'] = "nln_spanish";
+function getPaisesMulti(elemento) {
+    var parameters = new Array();
+    parameters['metodo'] = "getPlaceOfBirthOrCountryOfResidence";
+    parameters['attrIngles'] = "nln_countryofresidence";
+    parameters['attr2ndLanguage'] = "nln_spanish";
+    parameters['finaliza'] = true;
     if (localStorage.language == 'pt')
-        $parameters['attr2ndLanguage'] = "nln_portuguese";
-    $parameters['idSelect'] = $elemento;
-    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
-    getOptionsCMR($parameters)
+        parameters['attr2ndLanguage'] = "nln_portuguese";
+    parameters['idSelect'] = elemento
+    indicesSelected = new Array();
+    $.each(elemento, function(key, value) {
+        indicesSelected.push($(value + " option:selected").index())
+    })
+    parameters['indexSelected'] = indicesSelected;
+    console.log(parameters);
+    getOptionsCMR(parameters)
 }
 
-function getMaritalStatus() {
-    var $parameters = new Array();
-    $parameters['metodo'] = "getMaritalStatus";
-    $parameters['attrIngles'] = "nln_maritalstatus";
-    $parameters['attr2ndLanguage'] = "nln_spanish";
+function getMaritalStatus(elemento) {
+    var parameters = new Array();
+    parameters['metodo'] = "getMaritalStatus";
+    parameters['attrIngles'] = "nln_maritalstatus";
+    parameters['attr2ndLanguage'] = "nln_spanish";
+    parameters['finaliza'] = false;
     if (localStorage.language == 'pt')
         $parameters['attr2ndLanguage'] = "nln_portuguese";
-    $parameters['idSelect'] = "#estadoCivil";
-    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
-    getOptionsCMR($parameters)
+    parameters['idSelect'] = elemento
+    indicesSelected = new Array();
+    $.each(elemento, function(key, value) {
+        indicesSelected.push($(value + " option:selected").index())
+    })
+    parameters['indexSelected'] = indicesSelected;
+    console.log(parameters);
+    getOptionsCMR(parameters)
 }
 
-function getRelationShips() {
-    var $parameters = new Array();
-    $parameters['metodo'] = "getRelationShips";
-    $parameters['attrIngles'] = "nln_relationship";
-    $parameters['attr2ndLanguage'] = "nln_spanish";
+function getRelationShips(elemento) {
+    var parameters = new Array();
+    parameters['metodo'] = "getRelationShips";
+    parameters['attrIngles'] = "nln_relationship";
+    parameters['attr2ndLanguage'] = "nln_spanish";
+    parameters['finaliza'] = false;
     if (localStorage.language == 'pt')
         $parameters['attr2ndLanguage'] = "nln_portuguese";
-    $parameters['idSelect'] = "#benParentesco";
-    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
-    getOptionsCMR($parameters)
+    parameters['idSelect'] = elemento
+    indicesSelected = new Array();
+    $.each(elemento, function(key, value) {
+        indicesSelected.push($(value + " option:selected").index())
+    })
+    parameters['indexSelected'] = indicesSelected;
+    console.log(parameters);
+    getOptionsCMR(parameters)
 }
 
 
-function getRelationShipsCte() {
-    var $parameters = new Array();
-    $parameters['metodo'] = "getRelationShips";
-    $parameters['attrIngles'] = "nln_relationship";
-    $parameters['attr2ndLanguage'] = "nln_spanish";
-    if (localStorage.language == 'pt')
-        $parameters['attr2ndLanguage'] = "nln_portuguese";
-    $parameters['idSelect'] = "#cteParentesco";
-    $parameters['indexSelected'] = $($parameters['idSelect'] + " option:selected").index()
-    getOptionsCMR($parameters)
-}
-
-
-async function getOptionsCMR($parameters) {
+function getOptionsCMR(parameters) {
     var raw = JSON.stringify({
-        "metodo": $parameters['metodo'],
-        "attrIngles": $parameters['attrIngles'],
-        "attr2ndLanguage": $parameters['attr2ndLanguage']
+        "metodo": parameters['metodo'],
+        "attrIngles": parameters['attrIngles'],
+        "attr2ndLanguage": parameters['attr2ndLanguage']
     });
 
     var myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", "Bearer " + localStorage.token);
-    $($parameters['idSelect'] + " option[value!='']").remove();
+
+
+    $.each($(parameters['idSelect']), function(key, value) {
+        $(value + " option[value!='']").remove();
+    })
+
 
     var requestOptions = {
         method: 'POST',
@@ -152,16 +166,21 @@ async function getOptionsCMR($parameters) {
         })
         .then(data => {
             if (localStorage.codeResponde == 200) {
-
-                $.each(data, function(key, value) {
-                    if (localStorage.language == 'en')
-                        $($parameters['idSelect']).append('<option value= "' + key + '">' + key + '</option>')
-                    else
-                        $($parameters['idSelect']).append('<option value= "' + value + '">' + value + '</option>')
+                $.each($(parameters['idSelect']), function(llave, idElemento) {
+                    $.each(data, function(key, value) {
+                        if (localStorage.language == 'en')
+                            $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
+                        else
+                            $(idElemento).append('<option value= "' + value + '">' + value + '</option>')
+                    })
+                    $(idElemento + ' option').eq(parameters['indexSelected']).prop('selected', true);
+                    $(idElemento).selectpicker('refresh')
+                    $(idElemento).selectpicker('refresh')
                 })
-                $($parameters['idSelect'] + ' option').eq($parameters['indexSelected']).prop('selected', true);
-                $($parameters['idSelect']).selectpicker('refresh')
-                $($parameters['idSelect']).selectpicker('refresh')
+                if (parameters['finaliza']) {
+                    $("div.spanner").removeClass("show");
+                    $("div.overlay").removeClass("show");
+                }
             }
 
         })

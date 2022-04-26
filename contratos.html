@@ -110,7 +110,7 @@
                         <label for="strAHFirstName">Nombres</label>
                     </th>
                     <th data-field="strAHLastName" data-sortable="true" data-filter-control="input">
-                        <label for="strAHLastName">Email</label>
+                        <label for="strAHLastName">Apellidos</label>
                     </th>
                     <th data-field="strAgreementType" data-sortable="true" data-filter-control="select">
                         <label for="strAgreementType">Plan</label>
@@ -313,7 +313,9 @@
             .then(data => {
                 console.log(data);
                 params.success(data)
-                    //localStorage.setItem("token", data.access_token);
+                $("div.spanner").removeClass("show");
+                $("div.overlay").removeClass("show");
+                //localStorage.setItem("token", data.access_token);
 
             })
             .catch(error => {
