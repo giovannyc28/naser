@@ -186,12 +186,31 @@ $(document).ready(function() {
         valTarjeta('#vvcTc')
     });
 
+    $("#celular").keyup(function() {
+        maskCel();
+    });
+
+
+    $('#telefono').inputmask('999 999 9999');
+
+    maskCel();
     $('#tarjeta').hide();
     $('#cheque').hide();
     $('#transferencia').hide();
 
-    $('#cheque').hide();
+
+
+
 });
+
+function maskCel() {
+    var phones = [{ "mask": "+# ### ### ####" }, { "mask": "+## ### ### ####" }, { "mask": "+### ### ### ####" }];
+    $('#celular').inputmask({
+        mask: phones,
+        greedy: false,
+        definitions: { '#': { validator: "[0-9]", cardinality: 1 } }
+    });
+}
 
 function valTarjeta(idSelector) {
     $(idSelector).removeClass("is-invalid");
