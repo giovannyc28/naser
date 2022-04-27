@@ -829,7 +829,7 @@ $("#finish").on("click", function() {
             console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
             $("#aceptarAlerta").on("click", function() {
-                //location.href = 'contratos.html';
+                location.href = 'contratos.html';
             })
             $("#alertaBox").modal('show');
         })
