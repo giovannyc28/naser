@@ -166,7 +166,8 @@ function getOptionsCMR(parameters) {
             return resp.json();
         })
         .then(data => {
-            if (localStorage.codeResponde == 200) {
+            if (localStorage.codeRespondegetRelationShips == 200) {
+                localStorage.setItem(parameters['metodo'], JSON.stringify(data));
                 $.each($(parameters['idSelect']), function(llave, idElemento) {
                     $.each(data, function(key, value) {
                         if (localStorage.language == 'en')
