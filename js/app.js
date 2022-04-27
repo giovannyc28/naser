@@ -114,6 +114,8 @@ $(document).ready(function() {
         $('#vvcTc').removeClass("is-valid");
         $('#vvcTc').removeClass("is-invalid");
 
+        calculaValor = (parseFloat($('#planValorHide').val()) + parseFloat($('#planValorCargoHide').val())).toFixed(2);
+        $('#valorTc').val(calculaValor);
         if ($(this).val() == "American Express") {
             $("#numeroTc").attr('maxlength', 17);
             $("#numeroTc").attr('minlength', 17);
@@ -258,9 +260,13 @@ function calcValorPlan(idPlan) {
         valorTotal = ((cantMenores * planSeleccionado.value_kid) + (cantMayores * planSeleccionado.value_adult)) * noCuotas
         $('#planValor').val(valorTotal);
         $('#planValorCargo').val(planSeleccionado.subscription_fee);
+        $('#planValorHide').val(valorTotal);
+        $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
     } else {
         $('#planValor').val(eval('planSeleccionado.' + $('#form5 input:radio:checked').val()));
         $('#planValorCargo').val(planSeleccionado.subscription_fee);
+        $('#planValorHide').val(eval('planSeleccionado.' + $('#form5 input:radio:checked').val()));
+        $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
     }
 }
 
@@ -823,7 +829,7 @@ $("#finish").on("click", function() {
             console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
             $("#aceptarAlerta").on("click", function() {
-                location.href = 'contratos.html';
+                //location.href = 'contratos.html';
             })
             $("#alertaBox").modal('show');
         })
@@ -861,6 +867,7 @@ function chgMedioPago(that) {
     $('#tipoTransferencia').selectpicker('refresh');
     $('#nombreTransferencia').val('');
     $('#numeroReferencia').val('');
+    $('#numeroConfirmacion').val('');
 
     if ($(that).val() == 'BC') {
         $('#tarjeta').hide();

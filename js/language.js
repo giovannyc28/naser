@@ -64,6 +64,7 @@ function changeLanguage() {
                     $('#' + value.element).attr(value.attr, value.label);
                 }
             });
+            $('select').selectpicker('refresh');
             if (seccion == 'index') {
                 selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
                 getMaritalStatus(['#estadoCivil']);
