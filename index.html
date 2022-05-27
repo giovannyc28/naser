@@ -108,6 +108,12 @@
                 <h5 class="card-title"><a id='titulo1'>INFORMACION DEL CONTRATANTE</a></h5>
                 <form id='form1' class="needs-validation" novalidate>
                     <input type="hidden" name="strSupervisor" id="strSupervisor" value="Susana Gomez">
+                    <input type="hidden" name="estadoCivilValue" id="estadoCivilValue" value="">
+                    <input type="hidden" name="strGenderValue" id="strGenderValue" value="">
+                    <input type="hidden" name="strCountryofResidenceValue" id="strCountryofResidenceValue" value="">
+                    <input type="hidden" name="strAHAddress1CountrOrRegionValue" id="strAHAddress1CountrOrRegionValue" value="">
+
+
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="nombres">Nombres</label>
@@ -141,10 +147,10 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="genero">Genero</label>
-                            <select id="genero" name="strGender" class="selectpicker form-control" required>
+                            <select id="genero" name="strGender" class="selectpicker form-control" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                                <option id='optFemale' value="F">Mujer</option>
-                                <option id='optMale' value="M">Hombre</option>
+                                <option id='optFemale' value="female">Mujer</option>
+                                <option id='optMale' value="male">Hombre</option>
                             </select>
                         </div>
                     </div>
@@ -240,13 +246,13 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisResidencia">País Residencia</label>
-                            <select id="benPaisResidencia" name="benPaisResidencia" class="selectpicker form-control" required>
+                            <select id="benPaisResidencia" name="benPaisResidencia" class="selectpicker form-control" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisOrigen">País Origen</label>
-                            <select id="benPaisOrigen" name="benPaisOrigen" class="selectpicker form-control" required>
+                            <select id="benPaisOrigen" name="benPaisOrigen" class="selectpicker form-control" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -264,10 +270,14 @@
 
                         <div class="form-group   col-md-3">
                             <label for="benEmail">Email</label>
-                            <input type="text" class="form-control" id="benEmail" name="benEmail" required>
+                            <input type="email" class="form-control" id="benEmail" name="benEmail">
                         </div>
 
                     </div>
+                    <input type="hidden" name="benParentescoValue" id="benParentescoValue" value="">
+                    <input type="hidden" name="benPaisResidenciaValue" id="benPaisResidenciaValue" value="">
+                    <input type="hidden" name="benPaisOrigenValue" id="benPaisOrigenValue" value="">
+
 
                     <button id='addBeneficiario' type="button" class="btn btn-primary">Adicionar</button>
                     <button id='updateBeneficiario' type="button" class="btn btn-primary">Actualizar</button>
@@ -380,6 +390,8 @@
                 <!-- Title -->
                 <h5 class="card-title"><a id="titulo4">CONTACTO DE EMERGENCIA</a></h5>
                 <form id="form4" class="needs-validation" novalidate>
+
+
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="cteNombres">Nombres</label>
@@ -443,6 +455,8 @@
 
                         </div>
                     </div>
+                    <input type="hidden" name="strECAddress1CountrOrRegionValue" id="strECAddress1CountrOrRegionValue" value="">
+                    <input type="hidden" name="cteParentescoValue" id="cteParentescoValue" value="">
                 </form>
             </div>
         </div>
@@ -467,7 +481,10 @@
                         </div>
                         <div class="form-group   col-md-5">
                             <label for="planPeriodo">Modalidad de pago</label>
-                            <div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
+                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                            </select>
+                            <!--<div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
                                 <label for="anualOpt" class="btn btn-outline-secondary">
                                 <input type="radio" name="options" id="anualOpt" id="nameOpt" value="yearly_fee" required>
                                     <div id="anualOptLabel">Anual</div>
@@ -484,16 +501,16 @@
                                 <input type="radio" name="options" id="mensualOpt" name="mensualOpt" value="monthly_fee" required>
                                 <div id="mensualOptLabel">Mensual</div>
                               </label>
-                            </div>
+                            </div>-->
                         </div>
-                        <div id="checAnualDiv" class="form-group  col-md-3">
+                        <!--<div id="checAnualDiv" class="form-group  col-md-3">
                             <div class="checkbox disabled">
                                 <label for="planCheck" id="planCheckLabel">Pago Anual a Cuotas</label>
                                 <div>
                                     <input type="checkbox" id="planCheck" name='planCheck' class="form-control" data-toggle="toggle" data-on="Si" data-off="No">
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="form-row">
                         <div class="form-group   col-md-4">
@@ -528,6 +545,7 @@
             <div class="card-body">
                 <h5 class="card-title"><a id="titulo6">Información de la tarjeta (Donde recibe el estado de cuenta)</a></h5>
                 <form id="form6" class="needs-validation" novalidate>
+                    <input type="hidden" name="strAddress1CountrOrRegionValue" id="infoPaisValue" value="">
                     <p class="p-2 bg-white">
                         <label id="infoPregunta1Label">Por favor indique si la dirección es la misma que el contratante</label>
                         <input id='infoPregunta1' name='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
@@ -727,7 +745,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="tipoCta">Tipo de Cuenta</label>
                                 <select id="tipoCta" name="tipoCta" class="selectpicker form-control" required>
                                     <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
@@ -740,13 +758,22 @@
                                 <label for="bancoCheque">Nombre Banco</label>
                                 <input type="text" class="form-control" id="bancoCheque" name="bancoCheque">
                             </div>
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="numeroRutaCheque">Número de Ruta ó ABA</label>
                                 <input type="text" class="form-control" id="numeroRutaCheque" name="numeroRutaCheque">
                             </div>
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="numeroCtaCheque">Número de Cuenta</label>
                                 <input type="text" class="form-control" id="numeroCtaCheque" name="numeroCtaCheque">
+                            </div>
+                            <div class="form-group   col-md-2">
+                                <label for="fechaDebitoBC">Fecha a Debitar</label>
+                                <div class="input-group mb-0">
+                                    <input type="text" class="form-control" id="fechaDebitoBC" name="fechaDebitoBC" data-date-start-date="0d" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -762,7 +789,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="tipoTransferencia">Entidad</label>
                                 <select id="tipoTransferencia" name="tipoTransferencia" class="selectpicker form-control" required>
                                     <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
@@ -774,13 +801,22 @@
                                 <label for="nombreTransferencia">Nombre y Apellidos</label>
                                 <input type="text" class="form-control" id="nombreTransferencia" name="nombreTransferencia">
                             </div>
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="numeroReferencia">Número de Referencia</label>
                                 <input type="text" class="form-control" id="numeroReferencia" name="numeroReferencia">
                             </div>
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="numeroConfirmacion">Número de Confirmacion</label>
                                 <input type="text" class="form-control" id="numeroConfirmacion" name="numeroConfirmacion">
+                            </div>
+                            <div class="form-group   col-md-3">
+                                <label for="fechaDebitoTB">Fecha a Debitar</label>
+                                <div class="input-group mb-0">
+                                    <input type="text" class="form-control" id="fechaDebitoTB" name="fechaDebitoTB" data-date-start-date="0d" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

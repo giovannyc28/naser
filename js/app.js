@@ -57,6 +57,13 @@ function getTarifas() {
 
 getTarifas();
 
+var namePlanes = new Array();
+namePlanes['Annual'] = "yearly_fee";
+namePlanes['Annual 3 payments'] = "yearly_fee";
+namePlanes['Monthly'] = "monthly_fee";
+namePlanes['Quartely'] = "quarterly_fee";
+namePlanes['Semester'] = "halfyear_fee";
+
 /*$(".choice").removeClass("expand unset ");
 $(".choice").addClass("small");
 $("#seccion"+seccionInicial).removeClass("small");
@@ -100,9 +107,49 @@ $(document).ready(function() {
     $("#nombres").change(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
     })
+
     $("#apellidos").change(function() {
         $('#signature').text($("#nombres").val() + ' ' + $("#apellidos").val());
     });
+
+    $("#estadoCivil").change(function() {
+        $('#estadoCivilValue').val($("#estadoCivil option:selected").text());
+    });
+
+    $("#genero").change(function() {
+        $('#strGenderValue').val($("#genero option:selected").text());
+    });
+
+    $("#paisResidencia").change(function() {
+        $('#strCountryofResidenceValue').val($("#paisResidencia option:selected").text());
+    });
+
+    $("#paisOrigen").change(function() {
+        $('#strAHAddress1CountrOrRegionValue').val($("#paisOrigen option:selected").text());
+    });
+
+
+    $("#benPaisResidencia").change(function() {
+        $('#benPaisResidenciaValue').val($("#benPaisResidencia option:selected").text());
+    });
+
+    $("#benPaisOrigen").change(function() {
+        $('#benPaisOrigenValue').val($("#benPaisOrigen option:selected").text());
+    });
+
+    $("#ctePais").change(function() {
+        $('#strECAddress1CountrOrRegionValue').val($("#ctePais option:selected").text());
+    });
+
+    $("#cteParentesco").change(function() {
+        $('#cteParentescoValue').val($("#cteParentesco option:selected").text());
+    });
+
+    $("#infoPais").change(function() {
+        $('#infoPaisValue').val($("#infoPais option:selected").text());
+    });
+
+
 
     $('#form7 #franquiciaCT').on('change', function() {
         $('#numeroTc').val('');
@@ -138,46 +185,48 @@ $(document).ready(function() {
 
     $('#plan').change(function() {
         opcion = $(this).val();
-        planSeleccionado = planesRequest.find(function(element) {
-            return element.id == opcion;
-        });
-        $("[name='planPeridoOpt_1']").removeClass('disabled')
-        $("[name='planPeridoOpt_2']").removeClass('disabled')
-        $("[name='planPeridoOpt_3']").removeClass('disabled')
-        $("[name='planPeridoOpt_4']").removeClass('disabled')
+        if (opcion > 0) {
+            planSeleccionado = planesRequest.find(function(element) {
+                return element.id == opcion;
+            });
+            $("[name='planPeridoOpt_1']").removeClass('disabled')
+            $("[name='planPeridoOpt_2']").removeClass('disabled')
+            $("[name='planPeridoOpt_3']").removeClass('disabled')
+            $("[name='planPeridoOpt_4']").removeClass('disabled')
 
-        if (planSeleccionado.yearly_fee == '0.00')
-            $("[name='planPeridoOpt_1']").addClass('disabled')
-        if (planSeleccionado.halfyear_fee == '0.00')
-            $("[name='planPeridoOpt_2']").addClass('disabled')
-        if (planSeleccionado.quarterly_fee == '0.00')
-            $("[name='planPeridoOpt_3']").addClass('disabled')
-        if (planSeleccionado.monthly_fee == '0.00')
-            $("[name='planPeridoOpt_4']").addClass('disabled')
+            if (planSeleccionado.yearly_fee == '0.00')
+                $("[name='planPeridoOpt_1']").addClass('disabled')
+            if (planSeleccionado.halfyear_fee == '0.00')
+                $("[name='planPeridoOpt_2']").addClass('disabled')
+            if (planSeleccionado.quarterly_fee == '0.00')
+                $("[name='planPeridoOpt_3']").addClass('disabled')
+            if (planSeleccionado.monthly_fee == '0.00')
+                $("[name='planPeridoOpt_4']").addClass('disabled')
 
-        if (cantBeneficiarios > planSeleccionado.cant_person && planSeleccionado.cant_person > 0) {
-            resetForm('form5');
-            $("[name^='planPeridoOpt']").addClass('disabled')
-            $('#planCheck').bootstrapToggle('off')
-            $('#planCheck').bootstrapToggle('disable');
-            $('#checAnualDiv').hide('slow');
-            $("#alertaPLan").modal('show');
-        } else {
-            if (planSeleccionado.anualmultiple_pays > 0 && planSeleccionado.cant_person > 0) {
-                $('#planCheck').bootstrapToggle('off')
-                $('#planCheck').bootstrapToggle('enable');
-                $('#checAnualDiv').show('slow');
-            } else {
+            if (Object.keys(arrayBeneficiarios).length > planSeleccionado.cant_person && planSeleccionado.cant_person > 0) {
+                resetForm('form5');
+                $("[name^='planPeridoOpt']").addClass('disabled')
                 $('#planCheck').bootstrapToggle('off')
                 $('#planCheck').bootstrapToggle('disable');
                 $('#checAnualDiv').hide('slow');
+                $("#alertaPLan").modal('show');
+            } else {
+                if (planSeleccionado.anualmultiple_pays > 0 && planSeleccionado.cant_person > 0) {
+                    $('#planCheck').bootstrapToggle('off')
+                    $('#planCheck').bootstrapToggle('enable');
+                    $('#checAnualDiv').show('slow');
+                } else {
+                    $('#planCheck').bootstrapToggle('off')
+                    $('#planCheck').bootstrapToggle('disable');
+                    $('#checAnualDiv').hide('slow');
+                }
+                calcValorPlan();
             }
-            calcValorPlan();
-        }
 
-        $('#form5 input:radio').change(function() {
-            calcValorPlan()
-        })
+            $('#form5 #planPeriodo').change(function() {
+                calcValorPlan()
+            })
+        }
     })
 
     $("#numeroTc").keyup(function() {
@@ -207,7 +256,7 @@ $(document).ready(function() {
     $('#transferencia').hide();
 
 
-
+    $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
 
 });
 
@@ -231,6 +280,7 @@ function valTarjeta(idSelector) {
 }
 
 function calcValorPlan(idPlan) {
+    userPlan = namePlanes[$('#form5 #planPeriodo').val()]
     if (planSeleccionado.cant_person == -1) {
         valorTotal = 0;
         cantMenores = 0;
@@ -248,13 +298,13 @@ function calcValorPlan(idPlan) {
             }
         }
 
-        if ($('#form5 input:radio:checked').val() == 'yearly_fee')
+        if (userPlan == 'yearly_fee')
             noCuotas = 12;
-        if ($('#form5 input:radio:checked').val() == 'halfyear_fee')
+        if (userPlan == 'halfyear_fee')
             noCuotas = 6;
-        if ($('#form5 input:radio:checked').val() == 'quarterly_fee')
+        if (userPlan == 'quarterly_fee')
             noCuotas = 3;
-        if ($('#form5 input:radio:checked').val() == 'monthly_fee')
+        if (userPlan == 'monthly_fee')
             noCuotas = 1;
 
         valorTotal = ((cantMenores * planSeleccionado.value_kid) + (cantMayores * planSeleccionado.value_adult)) * noCuotas
@@ -263,9 +313,10 @@ function calcValorPlan(idPlan) {
         $('#planValorHide').val(valorTotal);
         $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
     } else {
-        $('#planValor').val(eval('planSeleccionado.' + $('#form5 input:radio:checked').val()));
+
+        $('#planValor').val(eval('planSeleccionado.' + userPlan));
         $('#planValorCargo').val(planSeleccionado.subscription_fee);
-        $('#planValorHide').val(eval('planSeleccionado.' + $('#form5 input:radio:checked').val()));
+        $('#planValorHide').val(eval('planSeleccionado.' + userPlan));
         $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
     }
 }
@@ -337,6 +388,7 @@ $('#cteNombres').change(function() {
         $('#cteEmail').val('');
 
     }
+    $('#ctePais, #cteParentesco').trigger('change');
 });
 /*$('#cteNombresApellidos').selectpicker({
     liveSearch: true,
@@ -347,36 +399,7 @@ $('#cteNombres').change(function() {
 $("#next").on("click", function() {
 
     $('#form' + seccionInicial).addClass('was-validated');
-
-    //if ($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) {
-    /*console.log("---------------ENVIA DATOS A DYNAMICS----------------");
-    var $form = $("#form1");
-    var data = getFormData($form);
-    var raw = JSON.stringify(data);
-
-
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Content-Type", "application/json");
-    //var urlencoded = new URLSearchParams();
-
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch(urlBase + "createAgreementDetail", requestOptions)
-        .then(resp => {
-            if (resp.status != 200) {
-                console.log(resp);
-            } else {
-                console.log('Error');
-            }
-        })
-        .catch(error => console.log('error', error));*/
-    //}
-    if (($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) || seccionInicial == 2) {
+    if (($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) || (seccionInicial == 2 && Object.keys(arrayBeneficiarios).length > 0)) {
         if (seccionInicial == 2)
             $('#form' + seccionInicial).removeClass('was-validated');
         else
@@ -446,6 +469,26 @@ $('#fechaDebitoTc').datepicker({
     format: "mm/dd/yyyy",
 });
 
+$('#fechaDebitoTB').datepicker({
+    autoclose: true,
+    todayHighlight: true,
+    language: localStorage.language,
+    orientation: "bottom auto",
+    enableOnReadonly: false,
+    disableTouchKeyboard: true,
+    format: "mm/dd/yyyy",
+});
+
+$('#fechaDebitoBC').datepicker({
+    autoclose: true,
+    todayHighlight: true,
+    language: localStorage.language,
+    orientation: "bottom auto",
+    enableOnReadonly: false,
+    disableTouchKeyboard: true,
+    format: "mm/dd/yyyy",
+});
+
 
 $("#expiraTc").datepicker({
     autoclose: true,
@@ -506,7 +549,9 @@ $('#benParentesco').change(function() {
         $('#form2 #benFechaNacimiento').datepicker("setDate", $('#form1 #fechaNacimiento').val());
         $('#form2 #benFechaNacimiento').prop('readonly', true);
         $('#form2 #benPaisResidencia').val($('#form1 #paisResidencia').val());
+        $('#form2 #benPaisResidenciaValue').val($('#form1 #paisResidencia option:selected').text())
         $('#form2 #benPaisOrigen').val($('#form1 #paisOrigen').val());
+        $('#form2 #benPaisOrigenValue').val($('#form1 #paisOrigen option:selected').text());
         $('#form2 #benPaisResidencia').prop('disabled', true);
         $('#form2 #benPaisOrigen').prop('disabled', true);
         $('#form2 #benCiudad').prop('readonly', true);
@@ -542,7 +587,10 @@ $('#benParentesco').change(function() {
         $('#form2 #benEmail').prop('readonly', false);
         $('#form2 select').selectpicker('refresh');
     }
+    $('#benParentescoValue').val($("#benParentesco option:selected").text())
 })
+
+
 
 
 var cantBeneficiarios = 0;
@@ -560,9 +608,20 @@ $("#addBeneficiario").on("click", function() {
         strHtmlTable = '';
         arrayLinea = []
         serialForm.forEach(function(element) {
-            strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
+            // strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
             arrayLinea.push(element['value']);
         });
+        strHtmlTable += '<td>' + serialForm[10]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[1]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[2]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[3]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[4]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[5]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[6]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[7]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[8]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[9]['value'] + '</td>';
+
         arrayBeneficiarios["'" + cantBeneficiarios + "'"] = [];
         arrayBeneficiarios["'" + cantBeneficiarios + "'"] = arrayLinea;
         strHtmlTable = '<tr id="trBen_' + cantBeneficiarios + '">' + strHtmlTable + '<td><button type="button" onClick="editarBen(' + cantBeneficiarios + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + cantBeneficiarios + ')"><i class="bi bi-trash-fill"></i></button></td></tr>';
@@ -577,6 +636,7 @@ $("#addBeneficiario").on("click", function() {
         cantBeneficiarios++;
 
     }
+    $('#plan').trigger('change');
 });
 
 $("#updateBeneficiario").on("click", function() {
@@ -591,9 +651,19 @@ $("#updateBeneficiario").on("click", function() {
         strHtmlTable = '';
         arrayLinea = []
         serialForm.forEach(function(element) {
-            strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
+            //strHtmlTable = strHtmlTable + '<td>' + element['value'] + '</td>';
             arrayLinea.push(element['value']);
         });
+        strHtmlTable += '<td>' + serialForm[10]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[1]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[2]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[3]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[4]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[5]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[6]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[7]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[8]['value'] + '</td>';
+        strHtmlTable += '<td>' + serialForm[9]['value'] + '</td>';
         arrayBeneficiarios["'" + idTablaGlobal + "'"] = [];
         arrayBeneficiarios["'" + idTablaGlobal + "'"] = arrayLinea;
         $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html('');
@@ -694,6 +764,7 @@ function respuestaInfoCheck(elemento) {
         $('#infoCelular').val('');
         $('#infoEmail').val('');
     }
+    $('#infoPais').trigger('change');
 
 }
 
@@ -726,7 +797,9 @@ modalConfirm(function(confirm) {
         $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
         $('[id^=benPregunta]').selectpicker('refresh');
         $('#cteNombres option[value=' + idTablaGlobal + ']').remove();
+        $('#plan').trigger('change');
         $('#cteNombres').selectpicker('refresh');
+
     }
 });
 
@@ -766,7 +839,7 @@ function getFormData($form) {
     var indexed_array = {};
 
     $.map(unindexed_array, function(n, i) {
-        if ((n['name'] == 'dtDateofbirth' || n['name'] == 'fechaDebitoTc') && $("[name='" + n['name'] + "']").val() != '') {
+        if ((n['name'] == 'dtDateofbirth' || n['name'] == 'fechaDebitoTc' || n['name'] == 'fechaDebitoBC' || n['name'] == 'fechaDebitoTB') && $("[name='" + n['name'] + "']").val() != '') {
             indexed_array[n['name']] = $("[name='" + n['name'] + "']").datepicker('getDate').toISOString().slice(0, 10);
         } else if (n['name'] == 'strECFirstName') {
             indexed_array[n['name']] = $("[name='" + n['name'] + "'] option:selected").text();
@@ -858,6 +931,8 @@ function chgMedioPago(that) {
     $('#valorTc').val('');
     $('#vvcTc').val('');
     $('#fechaDebitoTc').val('');
+    $('#fechaDebitoBC').val('');
+    $('#fechaDebitoTB').val('');
     $('#tipoCta').val('');
     $('#tipoCta').selectpicker('refresh');
     $('#bancoCheque').val('');
@@ -881,6 +956,7 @@ function chgMedioPago(that) {
         $("#valorTc").attr('required', false);
         $("#vvcTc").attr('required', false);
         $("#fechaDebitoTc").attr('required', false);
+        $("#fechaDebitoTB").attr('required', false);
 
         $("#tipoCta").attr('required', true);
         $("#bancoCheque").attr('required', true);
@@ -889,6 +965,7 @@ function chgMedioPago(that) {
         $("#tipoTransferencia").attr('required', false);
         $("#nombreTransferencia").attr('required', false);
         $("#numeroReferencia").attr('required', false);
+        $("#fechaDebitoBC").attr('required', true);
 
     } else if ($(that).val() == 'TC') {
         $('#tarjeta').show();
@@ -907,10 +984,12 @@ function chgMedioPago(that) {
         $("#bancoCheque").attr('required', false);
         $("#numeroRutaCheque").attr('required', false);
         $("#numeroCtaCheque").attr('required', false);
+        $("#fechaDebitoBC").attr('required', false);
 
         $("#tipoTransferencia").attr('required', false);
         $("#nombreTransferencia").attr('required', false);
         $("#numeroReferencia").attr('required', false);
+        $("#fechaDebitoTB").attr('required', false);
     } else {
         $('#tarjeta').hide();
         $('#cheque').hide();
@@ -927,10 +1006,12 @@ function chgMedioPago(that) {
         $("#bancoCheque").attr('required', false);
         $("#numeroRutaCheque").attr('required', false);
         $("#numeroCtaCheque").attr('required', false);
+        $("#fechaDebitoBC").attr('required', false);
 
         $("#tipoTransferencia").attr('required', true);
         $("#nombreTransferencia").attr('required', true);
         $("#numeroReferencia").attr('required', true);
+        $("#fechaDebitoTB").attr('required', true);
     }
 
 }

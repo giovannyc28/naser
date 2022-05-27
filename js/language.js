@@ -65,11 +65,13 @@ function changeLanguage() {
                 }
             });
             $('select').selectpicker('refresh');
-            if (seccion == 'index') {
+            if (seccion == 'index' || seccion == 'login') {
                 selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
                 getMaritalStatus(['#estadoCivil']);
                 getRelationShips(['#benParentesco', "#cteParentesco"]);
                 getPaisesMulti(selectorPais);
+                getPlanPeriodo(['#planPeriodo']);
+                $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
             } else {
                 initTable();
             }
@@ -91,7 +93,7 @@ function getPaisesMulti(elemento) {
     parameters['idSelect'] = elemento
     indicesSelected = new Array();
     $.each(elemento, function(key, value) {
-        indicesSelected.push($(value + " option:selected").index())
+        indicesSelected[value] = $(value + " option:selected").val();
     })
     parameters['indexSelected'] = indicesSelected;
     console.log(parameters);
@@ -109,7 +111,7 @@ function getMaritalStatus(elemento) {
     parameters['idSelect'] = elemento
     indicesSelected = new Array();
     $.each(elemento, function(key, value) {
-        indicesSelected.push($(value + " option:selected").index())
+        indicesSelected[value] = $(value + " option:selected").val();
     })
     parameters['indexSelected'] = indicesSelected;
     console.log(parameters);
@@ -127,13 +129,30 @@ function getRelationShips(elemento) {
     parameters['idSelect'] = elemento
     indicesSelected = new Array();
     $.each(elemento, function(key, value) {
-        indicesSelected.push($(value + " option:selected").index())
+        indicesSelected[value] = $(value + " option:selected").val();
     })
     parameters['indexSelected'] = indicesSelected;
     console.log(parameters);
     getOptionsCMR(parameters)
 }
 
+function getPlanPeriodo(elemento) {
+    var parameters = new Array();
+    parameters['metodo'] = "getPaymentTerms";
+    parameters['attrIngles'] = "nln_name";
+    parameters['attr2ndLanguage'] = "nln_spanish";
+    parameters['finaliza'] = false;
+    if (localStorage.language == 'pt')
+        $parameters['attr2ndLanguage'] = "nln_portuguese";
+    parameters['idSelect'] = elemento
+    indicesSelected = new Array();
+    $.each(elemento, function(key, value) {
+        indicesSelected[value] = $(value + " option:selected").val();
+    })
+    parameters['indexSelected'] = indicesSelected;
+    console.log(parameters);
+    getOptionsCMR(parameters)
+}
 
 function getOptionsCMR(parameters) {
     var raw = JSON.stringify({
@@ -152,39 +171,60 @@ function getOptionsCMR(parameters) {
         $(value + " option[value!='']").remove();
     })
 
+    if (eval('localStorage.' + parameters['metodo'])) {
+        $("div.spanner").addClass("show");
+        $("div.overlay").addClass("show");
+        $.each($(parameters['idSelect']), function(llave, idElemento) {
+            $.each(JSON.parse(eval('localStorage.' + parameters['metodo'])), function(key, value) {
+                if (localStorage.language == 'en')
+                    $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
+                else
+                    $(idElemento).append('<option value= "' + key + '">' + value + '</option>')
+            })
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
-
-    fetch(urlBase + "options", requestOptions)
-        .then(resp => {
-            localStorage.setItem("codeRespondegetRelationShips", resp.status);
-            return resp.json();
+            $(idElemento).val(parameters['indexSelected'][idElemento]);
+            $(idElemento).selectpicker('refresh')
+            $(idElemento).selectpicker('refresh')
         })
-        .then(data => {
-            if (localStorage.codeRespondegetRelationShips == 200) {
-                localStorage.setItem(parameters['metodo'], JSON.stringify(data));
-                $.each($(parameters['idSelect']), function(llave, idElemento) {
-                    $.each(data, function(key, value) {
-                        if (localStorage.language == 'en')
-                            $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
-                        else
-                            $(idElemento).append('<option value= "' + value + '">' + value + '</option>')
+
+        $("div.spanner").removeClass("show");
+        $("div.overlay").removeClass("show");
+
+    } else {
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch(urlBase + "options", requestOptions)
+            .then(resp => {
+                localStorage.setItem("codeRespondegetRelationShips", resp.status);
+                return resp.json();
+            })
+            .then(data => {
+                if (localStorage.codeRespondegetRelationShips == 200) {
+                    localStorage.setItem(parameters['metodo'], JSON.stringify(data));
+                    $.each($(parameters['idSelect']), function(llave, idElemento) {
+                        $.each(data, function(key, value) {
+                            if (localStorage.language == 'en')
+                                $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
+                            else
+                                $(idElemento).append('<option value= "' + key + '">' + value + '</option>')
+                        })
+                        $(idElemento).val(parameters['indexSelected'][idElemento]);
+                        $(idElemento).selectpicker('refresh')
+                        $(idElemento).selectpicker('refresh')
                     })
-                    $(idElemento + ' option').eq(parameters['indexSelected']).prop('selected', true);
-                    $(idElemento).selectpicker('refresh')
-                    $(idElemento).selectpicker('refresh')
-                })
-                if (parameters['finaliza']) {
-                    $("div.spanner").removeClass("show");
-                    $("div.overlay").removeClass("show");
+                    if (parameters['finaliza']) {
+                        $("div.spanner").removeClass("show");
+                        $("div.overlay").removeClass("show");
+                    }
                 }
-            }
 
-        })
-        .catch(error => console.log('error', error));
+            })
+            .catch(error => console.log('error', error));
+    }
 }
