@@ -72,6 +72,17 @@ function changeLanguage() {
                 getPaisesMulti(selectorPais);
                 getPlanPeriodo(['#planPeriodo']);
                 $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
+                for (let key in arrayBeneficiarios) {
+                    relation = arrayBeneficiarios[key]['0'];
+                    relationShips = JSON.parse(eval('localStorage.' + 'getRelationShips'));
+                    if (localStorage.language == 'en')
+                        arrayBeneficiarios[key]['10'] = relation
+                    else
+                        arrayBeneficiarios[key]['10'] = eval('relationShips.' + relation)
+                    index = key.replace(/\'/g, "");
+                    $("#trBen_" + index + " td:first").html(arrayBeneficiarios[key]['10']);
+                }
+
             } else {
                 initTable();
             }
