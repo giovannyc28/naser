@@ -214,11 +214,11 @@ function getOptionsCMR(parameters) {
 
         fetch(urlBase + "options", requestOptions)
             .then(resp => {
-                localStorage.setItem("codeRespondegetRelationShips", resp.status);
+                localStorage.setItem('codeResponde' + parameters['metodo'], resp.status);
                 return resp.json();
             })
             .then(data => {
-                if (localStorage.codeRespondegetRelationShips == 200) {
+                if (JSON.parse(eval('localStorage.' + 'codeResponde' + parameters['metodo'])) == 200) {
                     localStorage.setItem(parameters['metodo'], JSON.stringify(data));
                     $.each($(parameters['idSelect']), function(llave, idElemento) {
                         $.each(data, function(key, value) {
