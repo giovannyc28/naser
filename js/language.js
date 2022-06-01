@@ -67,9 +67,9 @@ function changeLanguage() {
             $('select').selectpicker('refresh');
             if (seccion == 'index' || seccion == 'login') {
                 selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
+                getPaisesMulti(selectorPais);
                 getMaritalStatus(['#estadoCivil']);
                 getRelationShips(['#benParentesco', "#cteParentesco"]);
-                getPaisesMulti(selectorPais);
                 getPlanPeriodo(['#planPeriodo']);
                 $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
                 for (let key in arrayBeneficiarios) {
