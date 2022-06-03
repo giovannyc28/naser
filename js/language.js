@@ -63,7 +63,8 @@ function changeLanguage() {
                     $('select').selectpicker('refresh');
                 } else if (value.attr == 'variable') {
                     eval("localStorage.setItem('" + value.element + "', '" + value.label + "')");
-                    console.log("Definiendo Var : " + value.element);
+                } else if (value.attr == 'optMedioPago') {
+                    $('[id^=' + value.element + ']').text(value.label);
                 } else {
                     $('#' + value.element).attr(value.attr, value.label);
                 }
