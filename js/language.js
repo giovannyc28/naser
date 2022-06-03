@@ -3,6 +3,7 @@ var urlBase = window.location.origin.replace('naser', 'apinaser').replace('8080'
 
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+myHeaders.append('Origin', window.location.origin);
 var urlencoded = new URLSearchParams();
 
 var requestOptions = {
