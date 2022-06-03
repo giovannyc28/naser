@@ -71,7 +71,7 @@
             <div class="bg-dark p-4">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a id='homeLink' class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a id='adminUserLink' class="nav-link" href="./adminUsers.html">Administrar Usuarios</a>
@@ -301,8 +301,8 @@
 
     });
 
-    function initTable() {
-        $('#table').bootstrapTable('destroy').bootstrapTable({
+    async function initTable() {
+        await $('#table').bootstrapTable('destroy').bootstrapTable({
             locale: localStorage.language,
             flat: "true",
             ajax: "dataRequest",

@@ -858,7 +858,7 @@ $("#finish").on("click", function() {
     $("div.spanner").addClass("show");
     $("div.overlay").addClass("show");
     objSend = {};
-    $("#finish").prop('disabled', true);
+    //$("#finish").prop('disabled', true);
     arrayBeneficiariosData = arrayBeneficiarios;
     for (let key in arrayBeneficiariosData) {
         dateOpt = new Date(arrayBeneficiariosData[key]['3']);
@@ -902,7 +902,7 @@ $("#finish").on("click", function() {
             console.log(result);
             console.log(result.createAgreementDetail.createAgreementDetailResult.AgreementNumber);
             $("#aceptarAlerta").on("click", function() {
-                location.href = 'contratos.html';
+                //location.href = 'contratos.html';
             })
             $("#alertaBox").modal('show');
         })

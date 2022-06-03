@@ -42,7 +42,11 @@ function changeLanguage() {
             return resp.json();
         })
         .then(data => {
+            if ($("#table").length && (seccion != 'index' || seccion != 'login')) {
+                initTable();
+            }
             $.each(data, function(key, value) {
+
                 if (value.attr == 'html') {
                     $('#' + value.element).html(value.label);
                 } else if (value.attr == 'text') {
@@ -85,8 +89,6 @@ function changeLanguage() {
                     }
                 }
 
-            } else {
-                initTable();
             }
 
         })
@@ -168,6 +170,7 @@ function getPlanPeriodo(elemento) {
 }
 
 function getOptionsCMR(parameters) {
+
     var raw = JSON.stringify({
         "metodo": parameters['metodo'],
         "attrIngles": parameters['attrIngles'],
@@ -183,7 +186,6 @@ function getOptionsCMR(parameters) {
     $.each($(parameters['idSelect']), function(key, value) {
         $(value + " option[value!='']").remove();
     })
-
     if (eval('localStorage.' + parameters['metodo'])) {
         $("div.spanner").addClass("show");
         $("div.overlay").addClass("show");
