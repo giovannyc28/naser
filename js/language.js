@@ -3,10 +3,14 @@ var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', 
 //var urlBase = 'https://api.naserglobal.com'+"/public/api/";
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+<<<<<<< HEAD
 //myHeaders.append('Origin','https://api.naserglobal.com');
 //myHeaders.append('Access-Control-Allow-Origin', 'https://api.naserglobal.com');
 //myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
+=======
+myHeaders.append('Origin', window.location.origin);
+>>>>>>> 28e9e35e366bcee0dbec2608c7689589d1cb8896
 var urlencoded = new URLSearchParams();
 
 var requestOptions = {
@@ -80,7 +84,13 @@ function changeLanguage() {
                     $(value.element).selectpicker({ title: value.label });
                 } else if (value.attr == 'variable') {
                     eval("localStorage.setItem('" + value.element + "', '" + value.label + "')");
+<<<<<<< HEAD
                 }  else {
+=======
+                } else if (value.attr == 'optMedioPago') {
+                    $('[id^=' + value.element + ']').text(value.label);
+                } else {
+>>>>>>> 28e9e35e366bcee0dbec2608c7689589d1cb8896
                     $('#' + value.element).attr(value.attr, value.label);
                 }
             });
@@ -104,6 +114,7 @@ function changeLanguage() {
                         index = key.replace(/\'/g, "");
                         $("#trBen_" + index + " td:first").html(arrayBeneficiarios[key]['10']);
                     }
+<<<<<<< HEAD
                 }
                 if (seccion != 'login' || seccion != 'contratos') {
                     updateCalendar('fechaNacimiento');
@@ -112,6 +123,8 @@ function changeLanguage() {
                     updateCalendar('fechaDebitoBC');
                     updateCalendar('expiraTc');
                     updateCalendar('benFechaNacimiento');
+=======
+>>>>>>> 28e9e35e366bcee0dbec2608c7689589d1cb8896
                 }
 
             }
@@ -263,7 +276,10 @@ function getOptionsCMR(parameters) {
             })
             .then(data => {
                 if (JSON.parse(eval('localStorage.' + 'codeResponde' + parameters['metodo'])) == 200) {
+<<<<<<< HEAD
                     data = Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
+=======
+>>>>>>> 28e9e35e366bcee0dbec2608c7689589d1cb8896
                     localStorage.setItem(parameters['metodo'], JSON.stringify(data));
 
                     $.each($(parameters['idSelect']), function(llave, idElemento) {
