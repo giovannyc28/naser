@@ -1,5 +1,5 @@
 console.log('local::::::' + localStorage.token);
-var urlBase = window.location.origin.replace('naser', 'apinaser').replace('8080', '8000') + "/public/api/";
+var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
 var myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -249,19 +249,29 @@ $(document).ready(function() {
 
     $('#telefono').inputmask('999 999 9999');
     $('#cteTelefono').inputmask('999 999 9999');
+    $('#fechaNacimiento').inputmask({alias: "mm/dd/yyyy"});
+    $('#fechaDebitoTc').inputmask({alias: "mm/dd/yyyy"});
+    $('#fechaDebitoTB').inputmask({alias: "mm/dd/yyyy"});
+    $('#fechaDebitoBC').inputmask({alias: "mm/dd/yyyy"});
+    $('#benFechaNacimiento').inputmask({alias: "mm/dd/yyyy"});
 
     maskCel();
     $('#tarjeta').hide();
     $('#cheque').hide();
     $('#transferencia').hide();
 
+    $(".filter-option").on("click", function() {
+        idSelect = $(this).closest("button").attr('data-id');
+        $('#'+idSelect).selectpicker('toggle');
+        //alert(idSelect);
+    });
 
     $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
 
 });
 
 function maskCel(selectorMask) {
-    var phones = [{ "mask": "+# ### ### ####" }, { "mask": "+## ### ### ####" }, { "mask": "+### ### ### ####" }];
+    var phones = [{ "mask": "### ### ####" }, { "mask": "+# ### ### ####" }, { "mask": "+## ### ### ####" }, { "mask": "+### ### ### ####" }];
     $(selectorMask).inputmask({
         mask: phones,
         greedy: false,
@@ -281,48 +291,63 @@ function valTarjeta(idSelector) {
 
 function calcValorPlan(idPlan) {
     userPlan = namePlanes[$('#form5 #planPeriodo').val()]
-    if (planSeleccionado.cant_person == -1) {
-        valorTotal = 0;
-        cantMenores = 0;
-        cantMayores = 0;
-        noCuotas = 0;
-        $('#planCheck').bootstrapToggle('off');
-        $('#planCheck').bootstrapToggle('disable');
-        $('#checAnualDiv').hide('slow');
-        for (let key in arrayBeneficiarios) {
-            edad = arrayBeneficiarios[key]['4']
-            if (edad < edadLimite) {
-                cantMenores++;
-            } else {
-                cantMayores++;
+    if (userPlan !== undefined ) {
+        discountStr = userPlan.replace("fee", "subscription_discount");
+        if (planSeleccionado.cant_person == -1) {
+            valorTotal = 0;
+            cantMenores = 0;
+            cantMayores = 0;
+            noCuotas = 0;
+            $('#planCheck').bootstrapToggle('off');
+            $('#planCheck').bootstrapToggle('disable');
+            $('#checAnualDiv').hide('slow');
+            for (let key in arrayBeneficiarios) {
+                edad = arrayBeneficiarios[key]['4']
+                if (edad < edadLimite) {
+                    cantMenores++;
+                } else {
+                    cantMayores++;
+                }
             }
+
+            if (userPlan == 'yearly_fee')
+                noCuotas = 12;
+            if (userPlan == 'halfyear_fee')
+                noCuotas = 6;
+            if (userPlan == 'quarterly_fee')
+                noCuotas = 3;
+            if (userPlan == 'monthly_fee')
+                noCuotas = 1;
+
+            valorTotal = ((cantMenores * planSeleccionado.value_kid) + (cantMayores * planSeleccionado.value_adult)) * noCuotas
+        
+
+            $('#planValor').val(valorTotal);
+            $('#planValorCargo').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
+            $('#planValorHide').val(valorTotal);
+            $('#planValorCargoHide').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
+        } else {
+
+            $('#planValor').val(eval('planSeleccionado.' + userPlan));
+            $('#planValorCargo').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee) );
+            $('#planValorHide').val(eval('planSeleccionado.' + userPlan));
+            $('#planValorCargoHide').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
         }
-
-        if (userPlan == 'yearly_fee')
-            noCuotas = 12;
-        if (userPlan == 'halfyear_fee')
-            noCuotas = 6;
-        if (userPlan == 'quarterly_fee')
-            noCuotas = 3;
-        if (userPlan == 'monthly_fee')
-            noCuotas = 1;
-
-        valorTotal = ((cantMenores * planSeleccionado.value_kid) + (cantMayores * planSeleccionado.value_adult)) * noCuotas
-        $('#planValor').val(valorTotal);
-        $('#planValorCargo').val(planSeleccionado.subscription_fee);
-        $('#planValorHide').val(valorTotal);
-        $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
-    } else {
-
-        $('#planValor').val(eval('planSeleccionado.' + userPlan));
-        $('#planValorCargo').val(planSeleccionado.subscription_fee);
-        $('#planValorHide').val(eval('planSeleccionado.' + userPlan));
-        $('#planValorCargoHide').val(planSeleccionado.subscription_fee);
     }
 }
 
+
+$('.selectpicker').selectpicker({
+    container: 'body'   
+});
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
-    $('.selectpicker').selectpicker('mobile');
+    //$('.selectpicker').selectpicker('mobile');
+    /*var elements = document.querySelectorAll('.mobile-device'); 
+                    for(var i = 0; i < elements.length; i++)
+                    {
+                        elements[i].classList.remove('mobile-device');
+                    }*/
 }
 
 $('#cteNombres').selectpicker({
@@ -373,6 +398,19 @@ $('#cteNombres').change(function() {
             $('#cteCelular').val('');
             $('#cteEmail').val('');
         }
+    } else if (opcionSel == '-2') {
+        $('#cteParentesco').val('Holder');
+        $('#cteParentesco').selectpicker('refresh');
+        $('#cteApellidos').val($('#form1 #apellidos').val());
+        $('#cteDireccion').val($('#form1 #direccion').val());
+        $('#cteCiudad').val($('#form1 #ciudad').val());
+        $('#cteProvincia').val($('#form1 #provincia').val());
+        $('#cteCodigoPostal').val($('#form1 #codigoPostal').val());
+        $('#ctePais').val($('#form1 #paisResidencia').val());
+        $('#ctePais').selectpicker('refresh');
+        $('#cteTelefono').val($('#form1 #telefono').val());
+        $('#cteCelular').val($('#form1 #celular').val());
+        $('#cteEmail').val($('#form1 #email').val()); 
     } else {
         $('#cteParentesco').val('');
         $('#cteParentesco').selectpicker('refresh');
@@ -404,6 +442,19 @@ $("#next").on("click", function() {
             $('#form' + seccionInicial).removeClass('was-validated');
         else
             $('#form' + seccionInicial).addClass('was-validated');
+
+         if (seccionInicial == 2 && !optHolder) {
+            $("#cteNombres option[value='-2']").remove();
+            $('#cteNombres').append('<option value= "-2">' + $('#form1 #nombres').val() + '</option>');
+            $('#cteNombres').selectpicker('refresh');
+            $('#cteNombres').selectpicker('refresh');
+        }
+
+        if (seccionInicial == 2 && optHolder) {
+            $("#cteNombres option[value='-2']").remove();
+            $('#cteNombres').selectpicker('refresh');
+            $('#cteNombres').selectpicker('refresh');
+        }
 
         $('#pb' + seccionInicial).removeClass("bg-transparent");
         $('#pb' + seccionInicial).addClass("bgProgress" + seccionInicial);
@@ -450,11 +501,14 @@ $("#previous").on("click", function() {
     $("#seccion" + seccionInicial).addClass("expand");
 
 })
+
+
+
 $('#fechaNacimiento').datepicker({
     autoclose: true,
     todayHighlight: true,
     language: localStorage.language,
-    orientation: "bottom auto",
+    orientation: "bottom righ",
     enableOnReadonly: false,
     disableTouchKeyboard: true,
     format: "mm/dd/yyyy",
@@ -506,7 +560,7 @@ $('#fechaNacimiento').datepicker("setDate", new Date());
 $('#benFechaNacimiento').datepicker({
     autoclose: true,
     todayHighlight: true,
-    language: "es",
+    language: localStorage.language,
     orientation: "bottom auto",
     enableOnReadonly: false,
     disableTouchKeyboard: true,
@@ -516,16 +570,27 @@ $('#benFechaNacimiento').datepicker("setDate", new Date());
 
 
 $("#benFechaNacimiento").change(function() {
-    var today = new Date();
-    var birthDate = new Date($(this).datepicker('getDate'));
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return $('#benEdad').val(age);
+    calcularEdad ()    
 });
 
+$("#benFechaNacimiento").blur(function() {
+    calcularEdad ()    
+});
+
+function calcularEdad () {
+if ($('#benFechaNacimiento').val() != '') {
+        var today = new Date();
+        var birthDate = new Date($('#benFechaNacimiento').datepicker('getDate'));
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        $('#benEdad').val(age);
+    } else {
+        $('#benEdad').val('');
+    }
+}
 function GetAge(birthDate) {
     var today = new Date();
     var age = today.getFullYear() - birthDate.getFullYear();
@@ -596,6 +661,7 @@ $('#benParentesco').change(function() {
 var cantBeneficiarios = 0;
 var idTablaGlobal;
 var arrayBeneficiarios = [];
+var optHolder = false;
 $("#addBeneficiario").on("click", function() {
     $('#form2').addClass('was-validated');
     if ($('#form2')[0].checkValidity() === true) {
@@ -621,6 +687,9 @@ $("#addBeneficiario").on("click", function() {
         strHtmlTable += '<td>' + serialForm[7]['value'] + '</td>';
         strHtmlTable += '<td>' + serialForm[8]['value'] + '</td>';
         strHtmlTable += '<td>' + serialForm[9]['value'] + '</td>';
+
+        if (serialForm[0]['value'] == 'Holder')
+            optHolder = true;
 
         arrayBeneficiarios["'" + cantBeneficiarios + "'"] = [];
         arrayBeneficiarios["'" + cantBeneficiarios + "'"] = arrayLinea;
@@ -669,7 +738,7 @@ $("#updateBeneficiario").on("click", function() {
         $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html('');
         $('#listaBeneficiarios > tbody #trBen_' + idTablaGlobal).html(strHtmlTable + '<td><button type="button" onClick="editarBen(' + idTablaGlobal + ')" class="btn btn-info"><i class="bi bi-pen-fill"></i></button></td><td><button type="button" class="btn btn-danger" onClick="quitarBen(' + idTablaGlobal + ')"><i class="bi bi-trash-fill"></i></button></td>');
         $("option[value=optionvalue]").html('New text');
-        $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').html(arrayLinea[1]);
+        $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').html(arrayLinea[1] + " " + arrayLinea[2]);
         $('[id^=benPregunta]').selectpicker('refresh');
         $('#cteNombres option[value=' + idTablaGlobal + ']').html(arrayLinea[1]);
         $('#cteNombres').selectpicker('refresh');
@@ -793,6 +862,10 @@ modalConfirm(function(confirm) {
     if (confirm) {
         //Acciones si el usuario confirma
         $('#listaBeneficiarios #trBen_' + idTablaGlobal).remove();
+
+        if (arrayBeneficiarios["'" + idTablaGlobal + "'"][0] == 'Holder')
+            optHolder = false;
+
         delete arrayBeneficiarios["'" + idTablaGlobal + "'"];
         $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
         $('[id^=benPregunta]').selectpicker('refresh');
@@ -858,13 +931,13 @@ $("#finish").on("click", function() {
     $("div.spanner").addClass("show");
     $("div.overlay").addClass("show");
     objSend = {};
-    $("#finish").prop('disabled', true);
+    //$("#finish").prop('disabled', true);
     arrayBeneficiariosData = arrayBeneficiarios;
     for (let key in arrayBeneficiariosData) {
         dateOpt = new Date(arrayBeneficiariosData[key]['3']);
         arrayBeneficiarios[key]['3'] = dateOpt.toISOString().slice(0, 10)
     }
-
+    $('#valorTc').prop('disabled', false);
     objSend.form1 = getFormData($('#form1'))
     objSend.form2 = Object.assign({}, arrayBeneficiariosData);
     objSend.form3 = getFormData($('#form3'));
@@ -874,6 +947,7 @@ $("#finish").on("click", function() {
     objSend.form7 = getFormData($('#form7'));
     objSend.form8 = getFormData($('#form8'));
     objSend.language = $('#flagLanguage').val();
+    $('#valorTc').prop('disabled', true);
 
     var myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
@@ -971,6 +1045,8 @@ function chgMedioPago(that) {
         $('#tarjeta').show();
         $('#cheque').hide();
         $('#transferencia').hide();
+        calculaValor = (parseFloat($('#planValorHide').val()) + parseFloat($('#planValorCargoHide').val())).toFixed(2);
+        $('#valorTc').val(calculaValor);
 
         $("#franquiciaCT").attr('required', true);
         $("#nombretc").attr('required', true);

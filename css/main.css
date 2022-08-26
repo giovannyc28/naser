@@ -15,6 +15,14 @@
     transform: skewY(-5deg);
 }
 
+.datepicker.dropdown-menu{
+    margin:  3.125rem 0 0 !important;
+}
+
+.progress {
+    background-color: #b5b5b5!important
+}
+
 .bgProgress1 {
     background-color: #101D42!important
 }

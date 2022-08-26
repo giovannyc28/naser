@@ -1,20 +1,38 @@
 var myHeaders = new Headers();
-var urlBase = window.location.origin.replace('naser', 'apinaser').replace('8080', '8000') + "/public/api/";
-
+var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
+//var urlBase = 'https://api.naserglobal.com'+"/public/api/";
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+//myHeaders.append('Origin','https://api.naserglobal.com');
+//myHeaders.append('Access-Control-Allow-Origin', 'https://api.naserglobal.com');
+//myHeaders.append('Access-Control-Allow-Credentials', 'true');
+
 var urlencoded = new URLSearchParams();
 
 var requestOptions = {
+    //mode: 'cors',
     method: 'POST',
     headers: myHeaders,
     body: urlencoded,
-    redirect: 'follow'
+    redirect: 'follow',
 };
 
 if (!localStorage.language) {
     localStorage.setItem("language", "es");
 }
+
+$(function() {
+
+
+});
+
+function updateCalendar(idElemet) {
+    $('#' + idElemet).data().datepicker.o.language = localStorage.language;
+    $('#' + idElemet).datepicker('update');
+    $('#' + idElemet).data().datepicker.picker.find('tr:nth(2)').remove(); // Remove DOW row
+    $('#' + idElemet).datepicker('fillDow'); // Regenerate DOW row 
+}
+
 
 $("#flagLanguage").val(localStorage.language);
 
@@ -39,10 +57,15 @@ function changeLanguage() {
     seccion = window.location.pathname.replace('.html', '').replace('/', '');
     fetch(urlBase + "idioma/" + localStorage.language + "/" + seccion, requestOptions)
         .then(resp => {
+
             return resp.json();
         })
         .then(data => {
+            if ($("#table").length && (seccion != 'index' || seccion != 'login')) {
+                initTable();
+            }
             $.each(data, function(key, value) {
+
                 if (value.attr == 'html') {
                     $('#' + value.element).html(value.label);
                 } else if (value.attr == 'text') {
@@ -53,38 +76,44 @@ function changeLanguage() {
                     $("[for='" + value.element + "'").html(value.label);
                 } else if (value.attr == 'optionClass') {
                     $('option[class=' + value.element + ']').text(value.label);
-                    $('select').selectpicker('refresh');
                 } else if (value.attr == 'titleSelectPicker') {
                     $(value.element).selectpicker({ title: value.label });
-                    $('select').selectpicker('refresh');
                 } else if (value.attr == 'variable') {
                     eval("localStorage.setItem('" + value.element + "', '" + value.label + "')");
-                    console.log("Definiendo Var : " + value.element);
-                } else {
+                }  else {
                     $('#' + value.element).attr(value.attr, value.label);
                 }
             });
+            
             $('select').selectpicker('refresh');
             if (seccion == 'index' || seccion == 'login') {
                 selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
+                getPaisesMulti(selectorPais);
                 getMaritalStatus(['#estadoCivil']);
                 getRelationShips(['#benParentesco', "#cteParentesco"]);
-                getPaisesMulti(selectorPais);
                 getPlanPeriodo(['#planPeriodo']);
                 $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
-                for (let key in arrayBeneficiarios) {
-                    relation = arrayBeneficiarios[key]['0'];
-                    relationShips = JSON.parse(eval('localStorage.' + 'getRelationShips'));
-                    if (localStorage.language == 'en')
-                        arrayBeneficiarios[key]['10'] = relation
-                    else
-                        arrayBeneficiarios[key]['10'] = eval('relationShips.' + relation)
-                    index = key.replace(/\'/g, "");
-                    $("#trBen_" + index + " td:first").html(arrayBeneficiarios[key]['10']);
+                if (seccion == 'index') {
+                    for (let key in arrayBeneficiarios) {
+                        relation = arrayBeneficiarios[key]['0'];
+                        relationShips = JSON.parse(eval('localStorage.' + 'getRelationShips'));
+                        if (localStorage.language == 'en')
+                            arrayBeneficiarios[key]['10'] = relation
+                        else
+                            arrayBeneficiarios[key]['10'] = eval('relationShips.' + relation)
+                        index = key.replace(/\'/g, "");
+                        $("#trBen_" + index + " td:first").html(arrayBeneficiarios[key]['10']);
+                    }
+                }
+                if (seccion != 'login' || seccion != 'contratos') {
+                    updateCalendar('fechaNacimiento');
+                    updateCalendar('fechaDebitoTc');
+                    updateCalendar('fechaDebitoTB');
+                    updateCalendar('fechaDebitoBC');
+                    updateCalendar('expiraTc');
+                    updateCalendar('benFechaNacimiento');
                 }
 
-            } else {
-                initTable();
             }
 
         })
@@ -166,6 +195,7 @@ function getPlanPeriodo(elemento) {
 }
 
 function getOptionsCMR(parameters) {
+
     var raw = JSON.stringify({
         "metodo": parameters['metodo'],
         "attrIngles": parameters['attrIngles'],
@@ -181,12 +211,28 @@ function getOptionsCMR(parameters) {
     $.each($(parameters['idSelect']), function(key, value) {
         $(value + " option[value!='']").remove();
     })
-
     if (eval('localStorage.' + parameters['metodo'])) {
         $("div.spanner").addClass("show");
         $("div.overlay").addClass("show");
         $.each($(parameters['idSelect']), function(llave, idElemento) {
-            $.each(JSON.parse(eval('localStorage.' + parameters['metodo'])), function(key, value) {
+            data = JSON.parse(eval('localStorage.' + parameters['metodo']));
+            
+            if (localStorage.language == 'en'){
+                data = Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
+                console.log(data)
+            }
+
+            if (localStorage.language == 'es'){
+                            dataSortValue= sortByValue(data);
+                            dataSort = [];
+                            for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]])}
+                            data = Object.fromEntries(dataSort);
+
+            }
+
+            localStorage.setItem(parameters['metodo'], JSON.stringify(data));
+                
+            $.each(data, function(key, value) {
                 if (localStorage.language == 'en')
                     $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
                 else
@@ -212,14 +258,27 @@ function getOptionsCMR(parameters) {
 
         fetch(urlBase + "options", requestOptions)
             .then(resp => {
-                localStorage.setItem("codeRespondegetRelationShips", resp.status);
+                localStorage.setItem('codeResponde' + parameters['metodo'], resp.status);
                 return resp.json();
             })
             .then(data => {
-                if (localStorage.codeRespondegetRelationShips == 200) {
+                if (JSON.parse(eval('localStorage.' + 'codeResponde' + parameters['metodo'])) == 200) {
+                    data = Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
                     localStorage.setItem(parameters['metodo'], JSON.stringify(data));
+
                     $.each($(parameters['idSelect']), function(llave, idElemento) {
+                        //if (localStorage.language == 'en')
+                            //Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
+                        if (localStorage.language == 'es'){
+                            dataSortValue= sortByValue(data);
+                            dataSort = [];
+                            for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]])}
+                            data = Object.fromEntries(dataSort);
+                            localStorage.setItem(parameters['metodo'], JSON.stringify(data));
+                        }
+
                         $.each(data, function(key, value) {
+                            console.log(key)
                             if (localStorage.language == 'en')
                                 $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
                             else
@@ -238,4 +297,14 @@ function getOptionsCMR(parameters) {
             })
             .catch(error => console.log('error', error));
     }
+}
+
+function sortByValue(jsObj){
+    var sortedArray = [];
+    for(var i in jsObj)
+    {
+        // Push each JSON Object entry in array by [value, key]
+        sortedArray.push([jsObj[i], i]);
+    }
+    return sortedArray.sort();
 }

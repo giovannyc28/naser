@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
 <link href="./css/main.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16"  href="./img/favicons/favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
 </head>
 
 
@@ -25,7 +28,7 @@
     <div class="fixed-top">
         <nav class="navbar navbar-dark bg-dark">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="">Menu</span>
             </button>
             <div>
                 <select id='flagLanguage' class="selectpicker" style="z-index: -1 !important;" data-width="fit">
@@ -38,7 +41,7 @@
             <div class="bg-dark p-4">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a id='homeLink' class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a id='adminUserLink' class="nav-link" href="./adminUsers.html">Administrar Usuarios</a>
@@ -141,13 +144,13 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="estadoCivil">Estado Civil</label>
-                            <select id="estadoCivil" name="strMaritalStatus" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="estadoCivil" name="strMaritalStatus" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="genero">Genero</label>
-                            <select id="genero" name="strGender" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="genero" name="strGender" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                                 <option id='optFemale' value="female">Mujer</option>
                                 <option id='optMale' value="male">Hombre</option>
@@ -170,7 +173,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="paisResidencia">País Residencia</label>
-                            <select id="paisResidencia" name="strCountryofResidence" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="paisResidencia" name="strCountryofResidence" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>  
                             </select>
                         </div>
@@ -186,7 +189,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="paisOrigen">País Origen</label>
-                            <select id="paisOrigen" name="strAHAddress1CountrOrRegion" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="paisOrigen" name="strAHAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -216,7 +219,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="benParentesco">Parentesco</label>
-                            <select id="benParentesco" name="benParentesco" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="benParentesco" name="benParentesco" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -246,13 +249,13 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisResidencia">País Residencia</label>
-                            <select id="benPaisResidencia" name="benPaisResidencia" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="benPaisResidencia" name="benPaisResidencia" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="benPaisOrigen">País Origen</label>
-                            <select id="benPaisOrigen" name="benPaisOrigen" class="selectpicker form-control" data-live-search="true" required>
+                            <select id="benPaisOrigen" name="benPaisOrigen" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -395,7 +398,9 @@
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="cteNombres">Nombres</label>
-                            <select id='cteNombres' name="strECFirstName" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search="true" required></select>
+                            <select id='cteNombres' name="strECFirstName" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search-style="startsWith" data-live-search="true" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                            </select>
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="cteApellidos">Apellidos</label>
@@ -403,7 +408,7 @@
                         </div>
                         <div class="form-group   col-md-4">
                             <label for="cteParentesco">Parentesco</label>
-                            <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" required>
+                            <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>                               
                             </select>
                         </div>
@@ -430,7 +435,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="ctePais">País</label>
-                            <select id="ctePais" name="strECAddress1CountrOrRegion" class="selectpicker form-control" required>
+                            <select id="ctePais" name="strECAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -450,7 +455,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="cteEmail" name="strECEmail" required>
+                                <input type="email" class="form-control" id="cteEmail" name="strECEmail" >
                             </div>
 
                         </div>
@@ -475,13 +480,13 @@
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="plan">Nombre del plan</label>
-                            <select id="plan" name="plan" class="selectpicker form-control" required>
+                            <select id="plan" name="plan" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                           </select>
                         </div>
                         <div class="form-group   col-md-5">
                             <label for="planPeriodo">Modalidad de pago</label>
-                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" required>
+                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true"  required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                             <!--<div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
@@ -545,12 +550,14 @@
             <div class="card-body">
                 <h5 class="card-title"><a id="titulo6">Información de la tarjeta (Donde recibe el estado de cuenta)</a></h5>
                 <form id="form6" class="needs-validation" novalidate>
-                    <input type="hidden" name="strAddress1CountrOrRegionValue" id="infoPaisValue" value="">
-                    <p class="p-2 bg-white">
-                        <label id="infoPregunta1Label">Por favor indique si la dirección es la misma que el contratante</label>
-                        <input id='infoPregunta1' name='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
-                    </p>
-
+                    
+                    <div class="form-row">
+                        <input type="hidden" name="strAddress1CountrOrRegionValue" id="infoPaisValue" value="">
+                        <p  style="font-size: 0.7em;" class="p-2 bg-white">
+                            <label id="infoPregunta1Label">Por favor indique si la dirección es la misma que el contratante</label>
+                            <input id='infoPregunta1' name='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox"  data-toggle="toggle" data-size="small" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </p>
+                    </div>
                     <div class="form-row">
                         <div class="form-group   col-md-6">
                             <label for="infoNombres">Nombres</label>
@@ -582,7 +589,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoPais">País</label>
-                            <select id="infoPais" name="strAddress1CountrOrRegion" class="selectpicker form-control" required>
+                            <select id="infoPais" name="strAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true"  required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -608,11 +615,13 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div id='signature' class="form-group   col-md-12"></div>
-                        <div class="custom-control custom-checkbox checkbox-lg">
-                            <input type="checkbox" class="custom-control-input" id="infoDeAcuerdo" required>
-                            <label class="custom-control-label" for="infoDeAcuerdo">Estoy de Acuerdo</label>
-                        </div>
+                         <div class="form-group   col-md-6">
+                                <div id='signature' class="form-group"></div>
+                            </div>
+                            <div class="form-group   col-md-6 custom-checkbox checkbox-lg">
+                                <input type="checkbox" class="custom-control-input" id="infoDeAcuerdo" required>
+                                <label class="custom-control-label" for="infoDeAcuerdo">Estoy de Acuerdo</label>
+                            </div>
                     </div>
                 </form>
             </div>
@@ -628,12 +637,12 @@
                         <div class="form-group col-md-3">
                             <!--<label for="medioPago">Pago Con Cheque</label>
                             <input id='medioPago' name='medioPago' onChange='chgMedioPago(this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">-->
-                            <label for="medioPago">Medio de Pago</label>
+                            <label for="medioPago"> </label>
                             <select id='medioPago' name="medioPago" class="selectpicker form-control" onChange='chgMedioPago(this)' required>
                                     <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                                    <option  value = "TC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-credit-card"></span> Tarjeta de Credito'></option>
-                                    <option  value = "BC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-money-check-alt"></span> Cheque'></option>
-                                    <option  value = "TB" data-content='<span style="font-size: 1.37em; color: #60a0ff;" class="fas fa-random"></span> Transferencia'></option>
+                                    <option id='optValueTC' value = "TC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-credit-card"></span> <span id="optTC">Tarjeta de Credito</span>'></option>
+                                    <option id='optValueBC' value = "BC" data-content='<span style="font-size: 1.37em;color:#60a0ff;" class="fas fa-money-check-alt"></span> <span id="optBC"> Cheque</span'></option>
+                                    <option id='optValueTB' value = "TB" data-content='<span style="font-size: 1.37em; color: #60a0ff;" class="fas fa-random"></span> <span id="optTB">Transferencia</span>'></option>
                                 </select>
                         </div>
                     </div>
@@ -719,7 +728,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">USD$</span>
                                     </div>
-                                    <input id="valorTc" name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
+                                    <input id="valorTc" disabled name="valorTc" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;" required>
                                 </div>
                             </div>
                             <div class="form-group   col-md-3">
@@ -805,11 +814,11 @@
                                 <label for="numeroReferencia">Número de Referencia</label>
                                 <input type="text" class="form-control" id="numeroReferencia" name="numeroReferencia">
                             </div>
-                            <div class="form-group   col-md-2">
+                            <div class="form-group   col-md-3">
                                 <label for="numeroConfirmacion">Número de Confirmacion</label>
                                 <input type="text" class="form-control" id="numeroConfirmacion" name="numeroConfirmacion">
                             </div>
-                            <div class="form-group   col-md-3">
+                            <div class="form-group   col-md-2">
                                 <label for="fechaDebitoTB">Fecha a Debitar</label>
                                 <div class="input-group mb-0">
                                     <input type="text" class="form-control" id="fechaDebitoTB" name="fechaDebitoTB" data-date-start-date="0d" required>
@@ -939,7 +948,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.6/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer="defer"></script>
     <script src="./js/language.js"></script>
     <script src="./js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>-->
     <!--<script src="./js/jquery.creditCardValidator.js"></script>-->
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
