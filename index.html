@@ -16,7 +16,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
 <link href="./css/main.css" rel="stylesheet">
-<link rel="icon" type="image/png" sizes="16x16"  href="./img/favicons/favicon-16x16.png">
+<link rel="stylesheet" href="./css/record.css">
+<link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
 </head>
@@ -99,7 +100,8 @@
         <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
         <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-geo-alt-fill" style="font-size: 2rem;"></i></div>
         <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
-        <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
+        <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-mic-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb9' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
     </div>
 
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
@@ -455,7 +457,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="email" class="form-control" id="cteEmail" name="strECEmail" >
+                                <input type="email" class="form-control" id="cteEmail" name="strECEmail">
                             </div>
 
                         </div>
@@ -478,15 +480,26 @@
                     <input type="hidden" id="planValorHide" name="planValorHide">
                     <input type="hidden" id="planValorCargoHide" name="planValorCargoHide">
                     <div class="form-row">
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-4">
+                            <label for="region">Region</label>
+                            <select id="region" name="region" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                                <option id='en' value="en">USA</option>
+                                <option id='es' value="es">LATAM</option>
+                          </select>
+                        </div>
                         <div class="form-group   col-md-4">
                             <label for="plan">Nombre del plan</label>
                             <select id="plan" name="plan" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                           </select>
                         </div>
-                        <div class="form-group   col-md-5">
+                        <div class="form-group   col-md-4">
                             <label for="planPeriodo">Modalidad de pago</label>
-                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true"  required>
+                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                             <!--<div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
@@ -550,12 +563,12 @@
             <div class="card-body">
                 <h5 class="card-title"><a id="titulo6">Información de la tarjeta (Donde recibe el estado de cuenta)</a></h5>
                 <form id="form6" class="needs-validation" novalidate>
-                    
+
                     <div class="form-row">
                         <input type="hidden" name="strAddress1CountrOrRegionValue" id="infoPaisValue" value="">
-                        <p  style="font-size: 0.7em;" class="p-2 bg-white">
+                        <p style="font-size: 0.7em;" class="p-2 bg-white">
                             <label id="infoPregunta1Label">Por favor indique si la dirección es la misma que el contratante</label>
-                            <input id='infoPregunta1' name='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox"  data-toggle="toggle" data-size="small" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                            <input id='infoPregunta1' name='infoPregunta1' onChange='respuestaInfoCheck(this)' type="checkbox" data-toggle="toggle" data-size="small" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
                         </p>
                     </div>
                     <div class="form-row">
@@ -589,7 +602,7 @@
                         </div>
                         <div class="form-group   col-md-3">
                             <label for="infoPais">País</label>
-                            <select id="infoPais" name="strAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true"  required>
+                            <select id="infoPais" name="strAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
                                 <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
                             </select>
                         </div>
@@ -615,13 +628,13 @@
                         </div>
                     </div>
                     <div class="form-row">
-                         <div class="form-group   col-md-6">
-                                <div id='signature' class="form-group"></div>
-                            </div>
-                            <div class="form-group   col-md-6 custom-checkbox checkbox-lg">
-                                <input type="checkbox" class="custom-control-input" id="infoDeAcuerdo" required>
-                                <label class="custom-control-label" for="infoDeAcuerdo">Estoy de Acuerdo</label>
-                            </div>
+                        <div class="form-group   col-md-6">
+                            <div id='signature' class="form-group"></div>
+                        </div>
+                        <div class="form-group   col-md-6 custom-checkbox checkbox-lg">
+                            <input type="checkbox" class="custom-control-input" id="infoDeAcuerdo" required>
+                            <label class="custom-control-label" for="infoDeAcuerdo">Estoy de Acuerdo</label>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -857,9 +870,35 @@
                 <form id="form8" class="needs-validation" novalidate>
                     <!-- Title -->
                     <h5 class="card-title"><a id="titulo8">OBSERVACIONES</a></h5>
-                    <textarea class="form-control " id="observacionBox" name="observacionBox" placeholder="" required></textarea>
+                    <textarea class="form-control " id="observacionBox" name="observacionBox" placeholder=""></textarea>
                 </form>
             </div>
+        </div>
+        <div id='seccion9' class="choice unset justify-content-center">
+            <div class="audio-recording-container">
+                <h1 class="title">Audio Recording API Demo</h1>
+                <i class="start-recording-button fa fa-microphone" aria-hidden="true"></i>
+                <div class="recording-contorl-buttons-container hide">
+                    <i class="cancel-recording-button fa fa-times-circle-o" aria-hidden="true"></i>
+                    <div class="recording-elapsed-time">
+                        <i class="red-recording-dot fa fa-circle" aria-hidden="true"></i>
+                        <p class="elapsed-time"></p>
+                    </div>
+                    <i class="stop-recording-button fa fa-stop-circle-o" aria-hidden="true"></i>
+                </div>
+                <div class="text-indication-of-audio-playing-container">
+                    <p class="text-indication-of-audio-playing hide">Audio is playing<span>.</span><span>.</span><span>.</span></p>
+                </div>
+            </div>
+            <div class="overlay hide">
+                <div class="browser-not-supporting-audio-recording-box">
+                    <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
+                    <button type="button" class="close-browser-not-supported-box">Ok.</button>
+                </div>
+            </div>
+
+            <audio controls class="audio-element hide">
+            </audio>
         </div>
 
     </div>
@@ -948,6 +987,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.6/dayjs.min.js" integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer="defer"></script>
     <script src="./js/language.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/record.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>-->
     <!--<script src="./js/jquery.creditCardValidator.js"></script>-->
 

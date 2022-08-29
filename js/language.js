@@ -1,5 +1,8 @@
 var myHeaders = new Headers();
-var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
+if (window.location.origin == "http://naser.local:8080")
+    var urlBase = "http://apinaser.local:8000/public/api/"
+else
+    var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
 //var urlBase = 'https://api.naserglobal.com'+"/public/api/";
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -80,11 +83,11 @@ function changeLanguage() {
                     $(value.element).selectpicker({ title: value.label });
                 } else if (value.attr == 'variable') {
                     eval("localStorage.setItem('" + value.element + "', '" + value.label + "')");
-                }  else {
+                } else {
                     $('#' + value.element).attr(value.attr, value.label);
                 }
             });
-            
+
             $('select').selectpicker('refresh');
             if (seccion == 'index' || seccion == 'login') {
                 selectorPais = ['#paisResidencia', '#paisOrigen', '#benPaisResidencia', '#benPaisOrigen', '#ctePais', '#infoPais'];
@@ -216,22 +219,22 @@ function getOptionsCMR(parameters) {
         $("div.overlay").addClass("show");
         $.each($(parameters['idSelect']), function(llave, idElemento) {
             data = JSON.parse(eval('localStorage.' + parameters['metodo']));
-            
-            if (localStorage.language == 'en'){
+
+            if (localStorage.language == 'en') {
                 data = Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
                 console.log(data)
             }
 
-            if (localStorage.language == 'es'){
-                            dataSortValue= sortByValue(data);
-                            dataSort = [];
-                            for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]])}
-                            data = Object.fromEntries(dataSort);
+            if (localStorage.language == 'es') {
+                dataSortValue = sortByValue(data);
+                dataSort = [];
+                for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]]) }
+                data = Object.fromEntries(dataSort);
 
             }
 
             localStorage.setItem(parameters['metodo'], JSON.stringify(data));
-                
+
             $.each(data, function(key, value) {
                 if (localStorage.language == 'en')
                     $(idElemento).append('<option value= "' + key + '">' + key + '</option>')
@@ -268,11 +271,11 @@ function getOptionsCMR(parameters) {
 
                     $.each($(parameters['idSelect']), function(llave, idElemento) {
                         //if (localStorage.language == 'en')
-                            //Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
-                        if (localStorage.language == 'es'){
-                            dataSortValue= sortByValue(data);
+                        //Object.keys(data).sort().reduce((a, c) => (a[c] = data[c], a), {});
+                        if (localStorage.language == 'es') {
+                            dataSortValue = sortByValue(data);
                             dataSort = [];
-                            for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]])}
+                            for (let key in dataSortValue) { dataSort.push([dataSortValue[key][1], dataSortValue[key][0]]) }
                             data = Object.fromEntries(dataSort);
                             localStorage.setItem(parameters['metodo'], JSON.stringify(data));
                         }
@@ -299,12 +302,11 @@ function getOptionsCMR(parameters) {
     }
 }
 
-function sortByValue(jsObj){
+function sortByValue(jsObj) {
     var sortedArray = [];
-    for(var i in jsObj)
-    {
+    for (var i in jsObj) {
         // Push each JSON Object entry in array by [value, key]
         sortedArray.push([jsObj[i], i]);
     }
     return sortedArray.sort();
-}
+}   

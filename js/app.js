@@ -44,10 +44,10 @@ function getTarifas() {
         .then(data => {
             if (localStorage.codeResponde == 200) {
                 planesRequest = data;
-                $.each(planesRequest, function(key, value) {
+                /*$.each(planesRequest, function(key, value) {
                     $('<option>').val(value.id).text(value.plan_type).appendTo('#plan');
                 });
-                $('#plan').selectpicker('refresh');
+                $('#plan').selectpicker('refresh');*/
             } else
                 $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
 
@@ -183,6 +183,7 @@ $(document).ready(function() {
     $('#planCheck').bootstrapToggle('disable');
     $("[name^='planPeridoOpt_']").addClass('disabled')
 
+
     $('#plan').change(function() {
         opcion = $(this).val();
         if (opcion > 0) {
@@ -249,11 +250,11 @@ $(document).ready(function() {
 
     $('#telefono').inputmask('999 999 9999');
     $('#cteTelefono').inputmask('999 999 9999');
-    $('#fechaNacimiento').inputmask({alias: "mm/dd/yyyy"});
-    $('#fechaDebitoTc').inputmask({alias: "mm/dd/yyyy"});
-    $('#fechaDebitoTB').inputmask({alias: "mm/dd/yyyy"});
-    $('#fechaDebitoBC').inputmask({alias: "mm/dd/yyyy"});
-    $('#benFechaNacimiento').inputmask({alias: "mm/dd/yyyy"});
+    $('#fechaNacimiento').inputmask({ alias: "mm/dd/yyyy" });
+    $('#fechaDebitoTc').inputmask({ alias: "mm/dd/yyyy" });
+    $('#fechaDebitoTB').inputmask({ alias: "mm/dd/yyyy" });
+    $('#fechaDebitoBC').inputmask({ alias: "mm/dd/yyyy" });
+    $('#benFechaNacimiento').inputmask({ alias: "mm/dd/yyyy" });
 
     maskCel();
     $('#tarjeta').hide();
@@ -262,11 +263,33 @@ $(document).ready(function() {
 
     $(".filter-option").on("click", function() {
         idSelect = $(this).closest("button").attr('data-id');
-        $('#'+idSelect).selectpicker('toggle');
+        $('#' + idSelect).selectpicker('toggle');
         //alert(idSelect);
     });
 
-    $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais').trigger('change');
+
+
+    $("#region").change(function() {
+        $("#plan option[value!='']").remove();
+        $('#plan').selectpicker('refresh');
+        $.each(planesRequest, function(key, value) {
+            if (value.language == $('#region').val()) {
+                console.log(value.language);
+                $('<option>').val(value.id).text(value.plan_type).appendTo('#plan');
+            }
+        });
+        $('#plan').val("");
+        $('#planPeriodo').val("");
+        $('#plan').selectpicker('refresh');
+        $('#planPeriodo').selectpicker('refresh');
+        $('#plan').trigger('change');
+        $('#planValor').val(0);
+        $('#planValorCargo').val(0);
+        $('#planValorHide').val(0);
+        $('#planValorCargoHide').val(0)
+    });
+
+    $('#estadoCivil, #genero, #paisResidencia, #paisOrigen, #benPaisResidencia, #benPaisOrigen, #ctePais, #cteParentesco, #infoPais, #region').trigger('change');
 
 });
 
@@ -291,7 +314,7 @@ function valTarjeta(idSelector) {
 
 function calcValorPlan(idPlan) {
     userPlan = namePlanes[$('#form5 #planPeriodo').val()]
-    if (userPlan !== undefined ) {
+    if (userPlan !== undefined) {
         discountStr = userPlan.replace("fee", "subscription_discount");
         if (planSeleccionado.cant_person == -1) {
             valorTotal = 0;
@@ -320,7 +343,7 @@ function calcValorPlan(idPlan) {
                 noCuotas = 1;
 
             valorTotal = ((cantMenores * planSeleccionado.value_kid) + (cantMayores * planSeleccionado.value_adult)) * noCuotas
-        
+
 
             $('#planValor').val(valorTotal);
             $('#planValorCargo').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
@@ -329,7 +352,7 @@ function calcValorPlan(idPlan) {
         } else {
 
             $('#planValor').val(eval('planSeleccionado.' + userPlan));
-            $('#planValorCargo').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee) );
+            $('#planValorCargo').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
             $('#planValorHide').val(eval('planSeleccionado.' + userPlan));
             $('#planValorCargoHide').val(planSeleccionado.subscription_fee - (planSeleccionado[discountStr] * planSeleccionado.subscription_fee));
         }
@@ -338,7 +361,7 @@ function calcValorPlan(idPlan) {
 
 
 $('.selectpicker').selectpicker({
-    container: 'body'   
+    container: 'body'
 });
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
@@ -410,7 +433,7 @@ $('#cteNombres').change(function() {
         $('#ctePais').selectpicker('refresh');
         $('#cteTelefono').val($('#form1 #telefono').val());
         $('#cteCelular').val($('#form1 #celular').val());
-        $('#cteEmail').val($('#form1 #email').val()); 
+        $('#cteEmail').val($('#form1 #email').val());
     } else {
         $('#cteParentesco').val('');
         $('#cteParentesco').selectpicker('refresh');
@@ -443,7 +466,7 @@ $("#next").on("click", function() {
         else
             $('#form' + seccionInicial).addClass('was-validated');
 
-         if (seccionInicial == 2 && !optHolder) {
+        if (seccionInicial == 2 && !optHolder) {
             $("#cteNombres option[value='-2']").remove();
             $('#cteNombres').append('<option value= "-2">' + $('#form1 #nombres').val() + '</option>');
             $('#cteNombres').selectpicker('refresh');
@@ -570,15 +593,15 @@ $('#benFechaNacimiento').datepicker("setDate", new Date());
 
 
 $("#benFechaNacimiento").change(function() {
-    calcularEdad ()    
+    calcularEdad()
 });
 
 $("#benFechaNacimiento").blur(function() {
-    calcularEdad ()    
+    calcularEdad()
 });
 
-function calcularEdad () {
-if ($('#benFechaNacimiento').val() != '') {
+function calcularEdad() {
+    if ($('#benFechaNacimiento').val() != '') {
         var today = new Date();
         var birthDate = new Date($('#benFechaNacimiento').datepicker('getDate'));
         var age = today.getFullYear() - birthDate.getFullYear();
@@ -591,6 +614,7 @@ if ($('#benFechaNacimiento').val() != '') {
         $('#benEdad').val('');
     }
 }
+
 function GetAge(birthDate) {
     var today = new Date();
     var age = today.getFullYear() - birthDate.getFullYear();
