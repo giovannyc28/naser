@@ -2,7 +2,7 @@ var myHeaders = new Headers();
 if (window.location.origin == "http://naser.local:8080")
     var urlBase = "http://apinaser.local:8000/public/api/"
 else if (window.location.origin == "https://www.naser.ibitsoluciones.com")
-    var urlBase = "https://apinaser.ibitsoluciones.com/public/api/"
+    var urlBase = "https://wwww.apinaser.ibitsoluciones.com/public/api/"
 else
     var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
 //var urlBase = 'https://api.naserglobal.com'+"/public/api/";
