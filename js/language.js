@@ -1,10 +1,10 @@
 var myHeaders = new Headers();
+var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
 if (window.location.origin == "http://naser.local:8080")
     var urlBase = "http://apinaser.local:8000/public/api/"
-else if (window.location.origin == "https://www.naser.ibitsoluciones.com")
+if (window.location.origin == "https://www.naser.ibitsoluciones.com")
     var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
-else
-    var urlBase = window.location.origin.replace('portal.', 'api.').replace('8080', '8000') + "/public/api/";
+
 //var urlBase = 'https://api.naserglobal.com'+"/public/api/";
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
