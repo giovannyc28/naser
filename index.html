@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css'>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet" />
@@ -100,8 +101,8 @@
         <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
         <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-geo-alt-fill" style="font-size: 2rem;"></i></div>
         <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
-        <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-mic-fill" style="font-size: 2rem;"></i></div>
-        <div id='pb9' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
+        <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
+        <div id='pb9' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-mic-fill" style="font-size: 2rem;"></i></div>
     </div>
 
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
@@ -875,30 +876,48 @@
             </div>
         </div>
         <div id='seccion9' class="choice unset justify-content-center">
-            <div class="audio-recording-container">
-                <h1 class="title">Audio Recording API Demo</h1>
-                <i class="start-recording-button fa fa-microphone" aria-hidden="true"></i>
-                <div class="recording-contorl-buttons-container hide">
-                    <i class="cancel-recording-button fa fa-times-circle-o" aria-hidden="true"></i>
-                    <div class="recording-elapsed-time">
-                        <i class="red-recording-dot fa fa-circle" aria-hidden="true"></i>
-                        <p class="elapsed-time"></p>
-                    </div>
-                    <i class="stop-recording-button fa fa-stop-circle-o" aria-hidden="true"></i>
-                </div>
-                <div class="text-indication-of-audio-playing-container">
-                    <p class="text-indication-of-audio-playing hide">Audio is playing<span>.</span><span>.</span><span>.</span></p>
-                </div>
-            </div>
-            <div class="overlay hide">
-                <div class="browser-not-supporting-audio-recording-box">
-                    <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
-                    <button type="button" class="close-browser-not-supported-box">Ok.</button>
-                </div>
-            </div>
+            <form id='form9' class="needs-validation" novalidate>
 
-            <audio controls class="audio-element hide">
-            </audio>
+                <div class="form-row">
+                    <div class="form-group   col-md-3">
+
+                    </div>
+                    <div class="form-group   col-md-3">
+                        <div class="audio-recording-container">
+                            <h1 id="tituloGrabar" class="title"></h1>
+                            <i class="start-recording-button fa fa-microphone" aria-hidden="true"></i>
+                            <div class="recording-contorl-buttons-container hide">
+                                <i class="cancel-recording-button fa fa-times-circle-o" aria-hidden="true"></i>
+                                <div class="recording-elapsed-time">
+                                    <i class="red-recording-dot fa fa-circle" aria-hidden="true"></i>
+                                    <p class="elapsed-time"></p>
+                                </div>
+                                <i class="stop-recording-button fa fa-stop-circle-o" aria-hidden="true"></i>
+                            </div>
+                            <i class="play-recording-button fa fa-play" aria-hidden="true"></i>
+                            <div class="text-indication-of-audio-playing-container">
+                                <p class="text-indication-of-audio-playing hide"><span>.</span><span>.</span><span>.</span></p>
+                            </div>
+                        </div>
+                        <div class="warningRecord hide">
+                            <div class="browser-not-supporting-audio-recording-box">
+                                <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
+                                <button type="button" class="close-browser-not-supported-box">Ok.</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group   col-md-3">
+                        <audio controls class="audio-element hide">
+                        </audio>
+                    </div>
+                    <div class="form-group   col-md-3">
+
+                    </div>
+                </div>
+
+
+            </form>
         </div>
 
     </div>

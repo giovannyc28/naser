@@ -9,7 +9,7 @@ var stopRecordingButton = document.getElementsByClassName("stop-recording-button
 var cancelRecordingButton = document.getElementsByClassName("cancel-recording-button")[0];
 var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
 var closeBrowserNotSupportedBoxButton = document.getElementsByClassName("close-browser-not-supported-box")[0];
-var overlay = document.getElementsByClassName("overlay")[0];
+var overlay = document.getElementsByClassName("warning")[0];
 var audioElement = document.getElementsByClassName("audio-element")[0];
 var audioElementSource = document.getElementsByClassName("audio-element")[0]
     .getElementsByTagName("source")[0];

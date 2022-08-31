@@ -15,8 +15,8 @@
     transform: skewY(-5deg);
 }
 
-.datepicker.dropdown-menu{
-    margin:  3.125rem 0 0 !important;
+.datepicker.dropdown-menu {
+    margin: 3.125rem 0 0 !important;
 }
 
 .progress {
@@ -49,6 +49,16 @@
 
 .bgProgress7 {
     background: color #101d42;
+    !important
+}
+
+.bgProgress8 {
+    background: color #33906b;
+    !important
+}
+
+.bgProgress9 {
+    background: color #b4b718;
     !important
 }
 
