@@ -452,8 +452,8 @@ var audioRecorder = {
     },
     /** Reset all the recording properties including the media recorder and stream being captured*/
     resetRecordingProperties: function() {
-        audioRecorder.mediaRecorder = null;
-        audioRecorder.streamBeingCaptured = null;
+        //audioRecorder.mediaRecorder = null;
+        //audioRecorder.streamBeingCaptured = null;
 
         /*No need to remove event listeners attached to mediaRecorder as
         If a DOM element which is removed is reference-free (no references pointing to it), the element itself is picked
