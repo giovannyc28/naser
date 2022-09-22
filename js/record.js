@@ -249,11 +249,11 @@ function playAudio(recorderAudioAsBlob) {
         audioElementSource.type = BlobType
 
         //call the load method as it is used to update the audio element after changing the source or other settings
-        //audioElement.load();
+        audioElement.load();
 
         //play the audio after successfully setting new src and type that corresponds to the recorded audio
         console.log("Playing audio...");
-        //audioElement.play();
+        audioElement.play();
 
         //Display text indicator of having the audio play in the background
         displayTextIndicatorOfAudioPlaying();
