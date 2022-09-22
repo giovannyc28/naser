@@ -246,6 +246,10 @@
     display: none;
 }
 
+#contadorAudio.hide {
+    display: none;
+}
+
 .text-indication-of-audio-playing-container {
     height: 20px;
 }
