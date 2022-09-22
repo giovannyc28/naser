@@ -30,6 +30,9 @@ playButton.onclick = startPlay;
 //Listen to stop recording button
 stopRecordingButton.onclick = stopAudioRecording;
 
+//stopPlaying
+stopPlayingButton.onclick = stopAudioPlaying
+
 //Listen to cancel recording button
 cancelRecordingButton.onclick = cancelAudioRecording;
 
@@ -207,6 +210,16 @@ function cancelAudioRecording() {
 
     //hide recording control button & return record icon
     handleHidingRecordingControlButtons();
+}
+
+/** Cancel the currently started audio recording */
+function stopAudioPlaying() {
+    console.log("Stopping audio playing...");
+
+    //stop he audio playing  API
+    audioRecorder.stop;
+
+
 }
 
 /** Plays recorded audio using the audio element in the HTML document
