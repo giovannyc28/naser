@@ -167,6 +167,11 @@
     }
 }
 
+.elapsed-time {
+    font-size: 2.5em;
+    vertical-align: middle;
+}
+
 .recording-contorl-buttons-container.hide {
     display: none;
 }
