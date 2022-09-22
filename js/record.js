@@ -6,7 +6,7 @@
 //var microphoneButton = document.getElementsByClassName("start-recording-button")[0];
 var microphoneButton = document.getElementById("microphoneBtn");
 //var playButton = document.getElementsByClassName("play-recording-button")[0];
-var playButton = document.getElementById("playBtn");
+//var playButton = document.getElementById("playBtn");
 var recordingControlButtonsContainer = document.getElementsByClassName("contadorAudio")[0];
 var stopRecordingButton = document.getElementById("stopBtn");
 //var stopRecordingButton = document.getElementsByClassName("stop-recording-button")[0];
@@ -19,20 +19,20 @@ var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
 var audioElement = document.getElementById("audioComponent");
 var audioElementSource = document.getElementById("audioComponent").getElementsByTagName("source")[0];
 //var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
-var stopPlayingButton = document.getElementById("stopPlayingBtn");
+//var stopPlayingButton = document.getElementById("stopPlayingBtn");
 //Listeners
 
 //Listen to start recording button
 microphoneButton.onclick = startAudioRecording;
 
 //play
-playButton.onclick = startPlay;
+//playButton.onclick = startPlay;
 
 //Listen to stop recording button
 stopRecordingButton.onclick = stopAudioRecording;
 
 //stopPlaying
-stopPlayingButton.onclick = stopAudioPlaying
+//stopPlayingButton.onclick = stopAudioPlaying
 
 //Listen to cancel recording button
 //cancelRecordingButton.onclick = cancelAudioRecording;
@@ -52,7 +52,7 @@ function startPlay() {
 function handleDisplayingRecordingControlButtons() {
     //Hide the microphone button that starts audio recording
     microphoneButton.style.display = "none";
-    playButton.style.display = "none";
+    //playButton.style.display = "none";
     stopRecordingButton.style.display = "block";
     audioElement.style.display = "none";
 
@@ -68,7 +68,7 @@ function handleDisplayingRecordingControlButtons() {
 function handleHidingRecordingControlButtons() {
     //Display the microphone button that starts audio recording
     microphoneButton.style.display = "block";
-    playButton.style.display = "block";
+    //playButton.style.display = "block";
     stopRecordingButton.style.display = "none";
 
     //Hide the recording control buttons
