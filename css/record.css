@@ -100,7 +100,7 @@
 }
 
 .enAccion {
-    color: red;
+    color: white;
     /*transitions with Firefox, IE and Opera Support browser support*/
     animation-name: flashing-recording-dot;
     -webkit-animation-name: flashing-recording-dot;
