@@ -246,7 +246,7 @@
     display: none;
 }
 
-#contadorAudio.hide {
+.contadorAudio.hide {
     display: none;
 }
 
