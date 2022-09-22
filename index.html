@@ -108,34 +108,18 @@
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
 
         <div id='seccion1' class="choice unset justify-content-center">
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="">Menu</span>
-                </button>
-                <div>
-                    <select id='flagLanguage' class="selectpicker" style="z-index: -1 !important;" data-width="fit">
-                        <option  value = "en" data-content='<span class="flag-icon flag-icon-us"></span>'>English</option>
-                        <option  value = "es" data-content='<span class="flag-icon flag-icon-es"></span>'>Español</option>
-                    </select>
-                </div>
-            </nav>
-            <nav class="navbar navbar-fixed-top navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">WebSiteName</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul>
-                </div>
-            </nav>
             <div class="card-body">
                 <!-- Title -->
-
                 <h5 class="card-title"><a id='titulo1'>INFORMACION DEL CONTRATANTE</a></h5>
+                <div class="card-title">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <button type="button" id="microphoneBtn" class="btn btn-outline-secondary fa fa-microphone"></button>
+                        <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
+                        <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
+                        <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
+                        <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
+                    </div>
+                </div>
                 <form id='form1' class="needs-validation" novalidate>
                     <input type="hidden" name="strSupervisor" id="strSupervisor" value="Susana Gomez">
                     <input type="hidden" name="estadoCivilValue" id="estadoCivilValue" value="">
@@ -145,42 +129,20 @@
                     <div class="form-row">
 
 
-                        <div class="btn-group" role="group" aria-label="First group">
-                            <button type="button" id="microphoneBtn" class="btn btn-outline-secondary fa fa-microphone"></button>
-                            <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
-                            <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
-                            <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
-                            <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
 
-                        </div>
                         <div class="form-group   col-md-12">
                             <div class="row d-flex justify-content-center">
-
-                                <!--Grid column-->
                                 <div class="col-md-6">
-
                                     <audio controls class="audio-element hide">
                                     </audio>
-                                    <div class="text-indication-of-audio-playing-container">
-                                        <p class="text-indication-of-audio-playing hide"><span>.</span><span>.</span><span>.</span></p>
-                                    </div>
                                     <div class="recording-contorl-buttons-container hide">
                                         <div class="recording-elapsed-time">
                                             <p class="elapsed-time"></p>
                                         </div>
                                     </div>
-                                    <div class="warningRecord hide">
-                                        <div class="browser-not-supporting-audio-recording-box">
-                                            <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
-                                            <button type="button" class="close-browser-not-supported-box">Ok.</button>
-                                        </div>
-                                    </div>
 
                                 </div>
-                                <!--Grid column-->
-
                             </div>
-
                         </div>
                     </div>
                     <div class="form-row">

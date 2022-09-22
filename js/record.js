@@ -14,10 +14,10 @@ var stopRecordingButton = document.getElementById("stopBtn");
 var cancelRecordingButton = document.getElementById("cancelBtn");
 var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
 var closeBrowserNotSupportedBoxButton = document.getElementsByClassName("close-browser-not-supported-box")[0];
-var overlay = document.getElementsByClassName("warningRecord")[0];
+//var overlay = document.getElementsByClassName("warningRecord")[0];
 var audioElement = document.getElementsByClassName("audio-element")[0];
 var audioElementSource = document.getElementsByClassName("audio-element")[0].getElementsByTagName("source")[0];
-var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
+//var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
 
 //Listeners
 
@@ -75,12 +75,12 @@ function handleHidingRecordingControlButtons() {
 
 /** Displays browser not supported info box for the user*/
 function displayBrowserNotSupportedOverlay() {
-    overlay.classList.remove("hide");
+    //overlay.classList.remove("hide");
 }
 
 /** Displays browser not supported info box for the user*/
 function hideBrowserNotSupportedOverlay() {
-    overlay.classList.add("hide");
+    //overlay.classList.add("hide");
 }
 
 /** Creates a source element for the the audio element in the HTML document*/
@@ -93,12 +93,12 @@ function createSourceForAudioElement() {
 
 /** Display the text indicator of the audio being playing in the background */
 function displayTextIndicatorOfAudioPlaying() {
-    textIndicatorOfAudiPlaying.classList.remove("hide");
+    //textIndicatorOfAudiPlaying.classList.remove("hide");
 }
 
 /** Hide the text indicator of the audio being playing in the background */
 function hideTextIndicatorOfAudioPlaying() {
-    textIndicatorOfAudiPlaying.classList.add("hide");
+    //textIndicatorOfAudiPlaying.classList.add("hide");
 }
 
 //Controller
