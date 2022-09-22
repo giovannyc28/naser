@@ -102,13 +102,35 @@
         <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-geo-alt-fill" style="font-size: 2rem;"></i></div>
         <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
         <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
-        <div id='pb9' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-mic-fill" style="font-size: 2rem;"></i></div>
+        <!--<div id='pb9' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-mic-fill" style="font-size: 2rem;"></i></div>-->
     </div>
 
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
 
         <div id='seccion1' class="choice unset justify-content-center">
+            <div class="audio-recording-container">
+                <i class="start-recording-button fa fa-microphone" aria-hidden="true"></i>
+                <div class="recording-contorl-buttons-container hide">
+                    <i class="cancel-recording-button fa fa-times-circle-o" aria-hidden="true"></i>
+                    <div class="recording-elapsed-time">
+                        <i class="red-recording-dot fa fa-circle" aria-hidden="true"></i>
+                        <p class="elapsed-time"></p>
+                    </div>
+                    <i class="stop-recording-button fa fa-stop-circle-o" aria-hidden="true"></i>
+                </div>
+                <div class="text-indication-of-audio-playing-container">
+                    <p class="text-indication-of-audio-playing hide">Audio is playing<span>.</span><span>.</span><span>.</span></p>
+                </div>
+            </div>
+            <div class="warningRecord hide">
+                <div class="browser-not-supporting-audio-recording-box">
+                    <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
+                    <button type="button" class="close-browser-not-supported-box">Ok.</button>
+                </div>
+            </div>
 
+            <audio controls class="audio-element hide">
+            </audio>
             <div class="card-body">
                 <!-- Title -->
                 <h5 class="card-title"><a id='titulo1'>INFORMACION DEL CONTRATANTE</a></h5>
@@ -118,8 +140,30 @@
                     <input type="hidden" name="strGenderValue" id="strGenderValue" value="">
                     <input type="hidden" name="strCountryofResidenceValue" id="strCountryofResidenceValue" value="">
                     <input type="hidden" name="strAHAddress1CountrOrRegionValue" id="strAHAddress1CountrOrRegionValue" value="">
+                    <div class="form-row">
+                        <div class="form-group   col-md-12">
+                            <!-- <div class="row d-flex justify-content-center">
+
+                                <div class="col-md-6">
+
+                                    <div class="btn-group" role="group" aria-label="First group">
+                                        <button type="button" id="microphoneBtn" class="btn btn-outline-secondary fa fa-microphone"></button>
+                                        <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
+                                        <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
+                                        <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
+                                        <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
+
+                                    </div>
 
 
+
+
+                                </div>
+
+                            </div>-->
+
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group   col-md-4">
                             <label for="nombres">Nombres</label>
@@ -323,7 +367,15 @@
                 <form id='form3' class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <label for="strPregunta1">¿Usted, o alguno de sus beneficiarios han sido diagnosticados con alguna enfermedad que involucre muerte inminente?</label>
+                            <label for="strPregunta0">¿Entiende que sus respuestas podrían afectar su periodo de espera o el de los suyos?</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta0' name='Pregunta0' onChange='respuestaCheck(0, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta1">¿Usted, o alguno de sus beneficiarios han sido diagnosticados Sida, Cáncer (en los pasados 10 años), Diabetes tipo 1 (Insulina dependiente), o ha requerido de diálisis, trasplante de órgano, Incapacidad Mental, Desordenes Neurológicos, Enfermedades Respiratorias en los pasados 5 años?</label>
                         </div>
                         <div class="form-group col-md-1">
                             <input id='Pregunta1' name='Pregunta1' onChange='respuestaCheck(1, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
@@ -339,7 +391,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <label for="strPregunta2">¿Usted o alguno de sus beneficiarios están actualmente hospitalizados o en un asilo? (casa de cuidado a personas mayores de edad)</label>
+                            <label for="strPregunta2">¿Usted o alguno de sus beneficiarios están actualmente hospitalizados o en un asilo en los últimos 8 meses? (casa de cuidado a personas mayores de edad)</label>
                         </div>
                         <div class="form-group col-md-1">
                             <input id='Pregunta2' name='Pregunta2' onChange='respuestaCheck(2, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
@@ -355,7 +407,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <label for="strPregunta3">¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)</label>
+                            <label for="strPregunta3">¿Usted, o alguno de sus beneficiarios han sido diagnosticados con alguna enfermedad que involucre muerte inminente?</label>
                         </div>
                         <div class="form-group col-md-1">
                             <input id='Pregunta3' name='Pregunta3' onChange='respuestaCheck(3, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
@@ -372,7 +424,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-11">
-                            <label for="strPregunta4">¿Usted, o alguno de sus beneficiarios han sido diagnosticados con sida, cancer, o ha requerido de dialisis o un transplante de organo en los pasados 3 años?</label>
+                            <label for="strPregunta4">¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)</label>
                         </div>
                         <div class="form-group col-md-1">
                             <input id='Pregunta4' name='Pregunta4' onChange='respuestaCheck(4, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
@@ -383,6 +435,14 @@
                             <select id='benPregunta4' name='benPregunta4[]' class="selectpicker" multiple title="Selecciona ..." data-width="100%" disabled required>
                           
                         </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-11">
+                            <label for="strPregunta5">¿Alguno de sus beneficiarios están actualmente privados de la libertad? (encarcelado)</label>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <input id='Pregunta5' name='Pregunta5' onChange='respuestaCheck(5, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
                         </div>
                     </div>
                 </form>
@@ -875,6 +935,7 @@
                 </form>
             </div>
         </div>
+        <!--
         <div id='seccion9' class="choice unset justify-content-center">
             <form id='form9' class="needs-validation" novalidate>
 
@@ -919,7 +980,7 @@
 
             </form>
         </div>
-
+        !-->
     </div>
 
     <div class="card-footer text-muted text-center">
