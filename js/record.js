@@ -217,7 +217,7 @@ function stopAudioPlaying() {
     console.log("Stopping audio playing...");
 
     //stop he audio playing  API
-    audioRecorder.stop;
+    audioRecorder.stop();
 
 
 }
