@@ -18,7 +18,7 @@ var closeBrowserNotSupportedBoxButton = document.getElementsByClassName("close-b
 var audioElement = document.getElementsByClassName("audio-element")[0];
 var audioElementSource = document.getElementsByClassName("audio-element")[0].getElementsByTagName("source")[0];
 //var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
-
+var stopPlayingButton = document.getElementById("stopPlayingBtn");
 //Listeners
 
 //Listen to start recording button
