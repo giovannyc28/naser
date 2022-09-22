@@ -108,7 +108,18 @@
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
 
         <div id='seccion1' class="choice unset justify-content-center">
-            <nav navbar navbar-fixed-top navbar-light bg-light>
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="">Menu</span>
+                </button>
+                <div>
+                    <select id='flagLanguage' class="selectpicker" style="z-index: -1 !important;" data-width="fit">
+                        <option  value = "en" data-content='<span class="flag-icon flag-icon-us"></span>'>English</option>
+                        <option  value = "es" data-content='<span class="flag-icon flag-icon-es"></span>'>Español</option>
+                    </select>
+                </div>
+            </nav>
+            <nav class="navbar navbar-fixed-top navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">WebSiteName</a>
@@ -133,16 +144,15 @@
                     <input type="hidden" name="strAHAddress1CountrOrRegionValue" id="strAHAddress1CountrOrRegionValue" value="">
                     <div class="form-row">
 
-                        <nav class="navbar navbar-fixed-top navbar-light bg-light">
-                            <div class="btn-group" role="group" aria-label="First group">
-                                <button type="button" id="microphoneBtn" class="btn btn-outline-secondary fa fa-microphone"></button>
-                                <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
-                                <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
-                                <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
-                                <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
 
-                            </div>
-                        </nav>
+                        <div class="btn-group" role="group" aria-label="First group">
+                            <button type="button" id="microphoneBtn" class="btn btn-outline-secondary fa fa-microphone"></button>
+                            <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
+                            <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
+                            <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
+                            <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
+
+                        </div>
                         <div class="form-group   col-md-12">
                             <div class="row d-flex justify-content-center">
 
