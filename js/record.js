@@ -249,11 +249,11 @@ function playAudio(recorderAudioAsBlob) {
         audioElementSource.type = BlobType
 
         //call the load method as it is used to update the audio element after changing the source or other settings
-        audioElement.load();
+        //audioElement.load();
 
         //play the audio after successfully setting new src and type that corresponds to the recorded audio
         console.log("Playing audio...");
-        audioElement.play();
+        //audioElement.play();
 
         //Display text indicator of having the audio play in the background
         displayTextIndicatorOfAudioPlaying();
@@ -452,8 +452,8 @@ var audioRecorder = {
     },
     /** Reset all the recording properties including the media recorder and stream being captured*/
     resetRecordingProperties: function() {
-        //audioRecorder.mediaRecorder = null;
-        //audioRecorder.streamBeingCaptured = null;
+        audioRecorder.mediaRecorder = null;
+        audioRecorder.streamBeingCaptured = null;
 
         /*No need to remove event listeners attached to mediaRecorder as
         If a DOM element which is removed is reference-free (no references pointing to it), the element itself is picked
