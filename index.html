@@ -111,16 +111,13 @@
             <div class="card-body">
                 <!-- Title -->
                 <h5 class="card-title"><a id='titulo1'>INFORMACION DEL CONTRATANTE</a></h5>
-                <div class="card-title">
+                <!--<div class="card-title">
                     <div class="btn-group" role="group" aria-label="First group">
-
                         <button type="button" id="cancelBtn" class="btn btn-outline-secondary fa fa-times-circle-o "></button>
-                        <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
-                        <button type="button" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
                         <button type="button" id="stopPlayingBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
                         <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
                     </div>
-                </div>
+                </div>-->
                 <form id='form1' class="needs-validation" novalidate>
                     <input type="hidden" name="strSupervisor" id="strSupervisor" value="Susana Gomez">
                     <input type="hidden" name="estadoCivilValue" id="estadoCivilValue" value="">
@@ -131,12 +128,14 @@
                         <div class="form-group   col-md-12">
                             <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">
-                                    <button id='microphoneBtn' type="button" class="btn btn-danger border-0 shadow-none "> 
+                                    <button id='microphoneBtn' type="button" class="btn btn-outline-danger border-0 shadow-none hide"> 
                                         <i class="bi bi-mic-fill"></i>
                                      </button>
-                                     <button id='stopBtn' type="button" class="btn btn-outline-danger border-0 shadow-none hide"> 
+
+                                     <button id='stopBtn' type="button" class="btn btn-danger border-0 shadow-none hide"> 
                                         <i class="bi bi-mic-fill"></i>
                                      </button>
+                                
                                     <audio controls id='audioComponent'>
                                     </audio>
                                 </span>
