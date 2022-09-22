@@ -15,8 +15,8 @@ var cancelRecordingButton = document.getElementById("cancelBtn");
 var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
 //var closeBrowserNotSupportedBoxButton = document.getElementsByClassName("close-browser-not-supported-box")[0];
 //var overlay = document.getElementsByClassName("warningRecord")[0];
-var audioElement = document.getElementById("audio-element");
-var audioElementSource = document.getElementById("audio-element").getElementsByTagName("source")[0];
+var audioElement = document.getElementsByClassName("audio-element")[0];
+var audioElementSource = document.getElementsByClassName("audio-element")[0].getElementsByTagName("source")[0];
 //var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
 var stopPlayingButton = document.getElementById("stopPlayingBtn");
 //Listeners
