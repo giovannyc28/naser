@@ -99,10 +99,8 @@
     align-items: center;
 }
 
-.red-recording-dot {
-    font-size: 25px;
+.enAccion {
     color: red;
-    margin-right: 12px;
     /*transitions with Firefox, IE and Opera Support browser support*/
     animation-name: flashing-recording-dot;
     -webkit-animation-name: flashing-recording-dot;

@@ -52,9 +52,11 @@ function handleDisplayingRecordingControlButtons() {
     //Hide the microphone button that starts audio recording
     microphoneButton.style.display = "none";
     playButton.style.display = "none";
+    stopRecordingButton.style.display = "block";
 
     //Display the recording control buttons
     recordingControlButtonsContainer.classList.remove("hide");
+    stopRecordingButton.classList.add('enAccion')
 
     //Handle the displaying of the elapsed recording time
     handleElapsedRecordingTime();
@@ -65,9 +67,11 @@ function handleHidingRecordingControlButtons() {
     //Display the microphone button that starts audio recording
     microphoneButton.style.display = "block";
     playButton.style.display = "block";
+    stopRecordingButton.style.display = "none";
 
     //Hide the recording control buttons
     recordingControlButtonsContainer.classList.add("hide");
+    microphoneButton.classList.remove('enAccion')
 
     //stop interval that handles both time elapsed and the red dot
     clearInterval(elapsedTimeTimer);
