@@ -12,7 +12,7 @@ var stopRecordingButton = document.getElementById("stopBtn");
 //var stopRecordingButton = document.getElementsByClassName("stop-recording-button")[0];
 var stopRecordingButton = document.getElementById("stopBtn");
 //var cancelRecordingButton = document.getElementsByClassName("cancel-recording-button")[0];
-var cancelRecordingButton = document.getElementById("cancelBtn");
+//var cancelRecordingButton = document.getElementById("cancelBtn");
 var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
 //var closeBrowserNotSupportedBoxButton = document.getElementsByClassName("close-browser-not-supported-box")[0];
 //var overlay = document.getElementsByClassName("warningRecord")[0];
@@ -35,7 +35,7 @@ stopRecordingButton.onclick = stopAudioRecording;
 stopPlayingButton.onclick = stopAudioPlaying
 
 //Listen to cancel recording button
-cancelRecordingButton.onclick = cancelAudioRecording;
+//cancelRecordingButton.onclick = cancelAudioRecording;
 
 //Listen to when the ok button is clicked in the browser not supporting audio recording box
 //closeBrowserNotSupportedBoxButton.onclick = hideBrowserNotSupportedOverlay;
