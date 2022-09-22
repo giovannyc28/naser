@@ -4,7 +4,7 @@
 
 //View
 var microphoneButton = document.getElementsByClassName("start-recording-button")[0];
-var recordingControlButtonsContainer = document.getElementsByClassName("recording-contorl-buttons-container")[0];
+var recordingControlButtonsContainer = document.getElementsByClassName("contadorAudio")[0];
 var stopRecordingButton = document.getElementsByClassName("stop-recording-button")[0];
 var cancelRecordingButton = document.getElementsByClassName("cancel-recording-button")[0];
 var elapsedTimeTag = document.getElementsByClassName("elapsed-time")[0];
