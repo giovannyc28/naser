@@ -108,29 +108,7 @@
     <div id='secciones' class="shadow-sm p-1 mb-5 bg-white rounded container mt-1 justify-content-center">
 
         <div id='seccion1' class="choice unset justify-content-center">
-            <div class="audio-recording-container">
-                <i class="start-recording-button fa fa-microphone" aria-hidden="true"></i>
-                <div class="recording-contorl-buttons-container hide">
-                    <i class="cancel-recording-button fa fa-times-circle-o" aria-hidden="true"></i>
-                    <div class="recording-elapsed-time">
-                        <i class="red-recording-dot fa fa-circle" aria-hidden="true"></i>
-                        <p class="elapsed-time"></p>
-                    </div>
-                    <i class="stop-recording-button fa fa-stop-circle-o" aria-hidden="true"></i>
-                </div>
-                <div class="text-indication-of-audio-playing-container">
-                    <p class="text-indication-of-audio-playing hide">Audio is playing<span>.</span><span>.</span><span>.</span></p>
-                </div>
-            </div>
-            <div class="warningRecord hide">
-                <div class="browser-not-supporting-audio-recording-box">
-                    <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
-                    <button type="button" class="close-browser-not-supported-box">Ok.</button>
-                </div>
-            </div>
 
-            <audio controls class="audio-element hide">
-            </audio>
             <div class="card-body">
                 <!-- Title -->
                 <h5 class="card-title"><a id='titulo1'>INFORMACION DEL CONTRATANTE</a></h5>
@@ -142,8 +120,9 @@
                     <input type="hidden" name="strAHAddress1CountrOrRegionValue" id="strAHAddress1CountrOrRegionValue" value="">
                     <div class="form-row">
                         <div class="form-group   col-md-12">
-                            <!-- <div class="row d-flex justify-content-center">
+                            <div class="row d-flex justify-content-center">
 
+                                <!--Grid column-->
                                 <div class="col-md-6">
 
                                     <div class="btn-group" role="group" aria-label="First group">
@@ -152,15 +131,28 @@
                                         <button type="button" class="btn btn-outline-secondary fa fa-circle"></button>
                                         <button type="button" id="stopBtn" class="btn btn-outline-secondary fa fa-stop-circle-o"></button>
                                         <button type="button" id="playBtn" class="btn btn-outline-secondary fa fa-play"></button>
-
+                                        <audio controls class="audio-element ">
+                                        </audio>
+                                    </div>
+                                    <div class="text-indication-of-audio-playing-container">
+                                        <p class="text-indication-of-audio-playing hide"><span>.</span><span>.</span><span>.</span></p>
+                                    </div>
+                                    <div class="recording-contorl-buttons-container hide">
+                                        <div class="recording-elapsed-time">
+                                            <p class="elapsed-time"></p>
+                                        </div>
+                                    </div>
+                                    <div class="warningRecord hide">
+                                        <div class="browser-not-supporting-audio-recording-box">
+                                            <p>To record audio, use browsers like Chrome and Firefox that support audio recording.</p>
+                                            <button type="button" class="close-browser-not-supported-box">Ok.</button>
+                                        </div>
                                     </div>
 
-
-
-
                                 </div>
+                                <!--Grid column-->
 
-                            </div>-->
+                            </div>
 
                         </div>
                     </div>
