@@ -259,8 +259,8 @@ function playAudio(recorderAudioAsBlob) {
         audioElement.load();
 
         //play the audio after successfully setting new src and type that corresponds to the recorded audio
-        console.log("Playing audio...");
-        audioElement.play();
+        //console.log("Playing audio...");
+        //audioElement.play();
 
         //Display text indicator of having the audio play in the background
         displayTextIndicatorOfAudioPlaying();
