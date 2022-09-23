@@ -482,6 +482,10 @@ $("#next").on("click", function() {
             $('#cteNombres').selectpicker('refresh');
             $('#cteNombres').selectpicker('refresh');
         }
+        if (seccionInicial == 3) {
+            stopAudioRecording
+        }
+
 
         $('#pb' + seccionInicial).removeClass("bg-transparent");
         $('#pb' + seccionInicial).addClass("bgProgress" + seccionInicial);
