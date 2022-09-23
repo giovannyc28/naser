@@ -484,6 +484,7 @@ $("#next").on("click", function() {
         }
         if (seccionInicial == 3) {
             stopAudioRecording();
+            stopAudioPlaying()
         }
 
 
@@ -515,15 +516,16 @@ $("#next").on("click", function() {
 $("#previous").on("click", function() {
     $('#pb' + seccionInicial).removeClass("bgProgress" + seccionInicial);
     $('#pb' + seccionInicial).addClass("bg-transparent");
+    if (seccionInicial == 3) {
+        stopAudioRecording();
+        stopAudioPlaying()
+    }
     if (seccionInicial > 1 && seccionInicial < $(".choice").length + 1) {
         seccionInicial--;
         $("#next").prop('disabled', false);
     } else
         $("#previous").prop('disabled', true);
 
-    if (seccionInicial == 3) {
-        stopAudioRecording();
-    }
     $('#finish').hide();
 
 
