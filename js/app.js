@@ -521,8 +521,11 @@ $("#previous").on("click", function() {
     } else
         $("#previous").prop('disabled', true);
 
-
+    if (seccionInicial == 3) {
+        stopAudioRecording();
+    }
     $('#finish').hide();
+
 
     //seccionInicial = 1;
     // $("#pb"+seccionInicial).attr('aria-valuenow', 0).css('width', 0+'%');
