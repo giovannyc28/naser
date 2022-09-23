@@ -483,7 +483,7 @@ $("#next").on("click", function() {
             $('#cteNombres').selectpicker('refresh');
         }
         if (seccionInicial == 3) {
-            stopAudioRecording
+            stopAudioRecording();
         }
 
 
