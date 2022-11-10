@@ -209,7 +209,7 @@ $(document).ready(function() {
                 $("[name='planPeridoOpt_4']").addClass('disabled')
 
             if (Object.keys(arrayBeneficiarios).length > planSeleccionado.cant_person && planSeleccionado.cant_person > 0) {
-                resetForm('form3');
+                resetForm('form5');
                 $("[name^='planPeridoOpt']").addClass('disabled')
                 $('#planCheck').bootstrapToggle('off')
                 $('#planCheck').bootstrapToggle('disable');
@@ -228,7 +228,7 @@ $(document).ready(function() {
                 calcValorPlan();
             }
 
-            $('#form3 #planPeriodo').change(function() {
+            $('#form5 #planPeriodo').change(function() {
                 calcValorPlan()
             })
         }
@@ -269,14 +269,6 @@ $(document).ready(function() {
         idSelect = $(this).closest("button").attr('data-id');
         $('#' + idSelect).selectpicker('toggle');
         //alert(idSelect);
-    });
-
-    $("#iniciarGrabacion").on("click", function() {
-        $("#intruccionesRec").modal('show');
-    });
-
-    $("#microphoneBtn").on("click", function() {
-        $("#intruccionesRec").modal('hide');
     });
 
 
@@ -325,7 +317,7 @@ function valTarjeta(idSelector) {
 }
 
 function calcValorPlan(idPlan) {
-    userPlan = namePlanes[$('#form3 #planPeriodo').val()]
+    userPlan = namePlanes[$('#form5 #planPeriodo').val()]
     if (userPlan !== undefined) {
         discountStr = userPlan.replace("fee", "subscription_discount");
         if (planSeleccionado.cant_person == -1) {
@@ -472,25 +464,25 @@ $('#cteNombres').change(function() {
 $("#next").on("click", function() {
 
     $('#form' + seccionInicial).addClass('was-validated');
-    if (($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 4) || (seccionInicial == 4 && Object.keys(arrayBeneficiarios).length > 0)) {
-        if (seccionInicial == 4)
+    if (($('#form' + seccionInicial)[0].checkValidity() === true && seccionInicial != 2) || (seccionInicial == 2 && Object.keys(arrayBeneficiarios).length > 0)) {
+        if (seccionInicial == 2)
             $('#form' + seccionInicial).removeClass('was-validated');
         else
             $('#form' + seccionInicial).addClass('was-validated');
 
-        if (seccionInicial == 4 && !optHolder) {
+        if (seccionInicial == 2 && !optHolder) {
             $("#cteNombres option[value='-2']").remove();
             $('#cteNombres').append('<option value= "-2">' + $('#form1 #nombres').val() + '</option>');
             $('#cteNombres').selectpicker('refresh');
             $('#cteNombres').selectpicker('refresh');
         }
 
-        if (seccionInicial == 4 && optHolder) {
+        if (seccionInicial == 2 && optHolder) {
             $("#cteNombres option[value='-2']").remove();
             $('#cteNombres').selectpicker('refresh');
             $('#cteNombres').selectpicker('refresh');
         }
-        if (seccionInicial == 5) {
+        if (seccionInicial == 3) {
             stopAudioRecording();
             stopAudioPlaying()
         }
@@ -524,7 +516,7 @@ $("#next").on("click", function() {
 $("#previous").on("click", function() {
     $('#pb' + seccionInicial).removeClass("bgProgress" + seccionInicial);
     $('#pb' + seccionInicial).addClass("bg-transparent");
-    if (seccionInicial == 5) {
+    if (seccionInicial == 3) {
         stopAudioRecording();
         stopAudioPlaying()
     }
@@ -647,55 +639,55 @@ function GetAge(birthDate) {
 }
 
 $('#benParentesco').change(function() {
-    opcionParentesco = $('#form4 #benParentesco').val();
+    opcionParentesco = $('#form2 #benParentesco').val();
     if (opcionParentesco.toLowerCase() == 'titular' || opcionParentesco.toLowerCase() == 'holder') {
         if (updateBen === true) {
-            $('#form4 #benParentesco').prop('disabled', true);
+            $('#form2 #benParentesco').prop('disabled', true);
         }
-        $('#form4 #benNombres').prop('readonly', true);
-        $('#form4 #benNombres').val($('#form1 #nombres').val().trim());
-        $('#form4 #benApellidos').prop('readonly', true);
-        $('#form4 #benApellidos').val($('#form1 #apellidos').val().trim());
-        $('#form4 #benFechaNacimiento').datepicker("setDate", $('#form1 #fechaNacimiento').val());
-        $('#form4 #benFechaNacimiento').prop('readonly', true);
-        $('#form4 #benPaisResidencia').val($('#form1 #paisResidencia').val());
-        $('#form4 #benPaisResidenciaValue').val($('#form1 #paisResidencia option:selected').text())
-        $('#form4 #benPaisOrigen').val($('#form1 #paisOrigen').val());
-        $('#form4 #benPaisOrigenValue').val($('#form1 #paisOrigen option:selected').text());
-        $('#form4 #benPaisResidencia').prop('disabled', true);
-        $('#form4 #benPaisOrigen').prop('disabled', true);
-        $('#form4 #benCiudad').prop('readonly', true);
-        $('#form4 #benCiudad').val($('#form1 #ciudad').val());
-        $('#form4 #benProvincia').prop('readonly', true);
-        $('#form4 #benProvincia').val($('#form1 #provincia').val());
-        $('#form4 #benEmail').prop('readonly', true);
-        $('#form4 #benEmail').val($('#form1 #email').val());
-        $('#form4 select').selectpicker('refresh');
+        $('#form2 #benNombres').prop('readonly', true);
+        $('#form2 #benNombres').val($('#form1 #nombres').val().trim());
+        $('#form2 #benApellidos').prop('readonly', true);
+        $('#form2 #benApellidos').val($('#form1 #apellidos').val().trim());
+        $('#form2 #benFechaNacimiento').datepicker("setDate", $('#form1 #fechaNacimiento').val());
+        $('#form2 #benFechaNacimiento').prop('readonly', true);
+        $('#form2 #benPaisResidencia').val($('#form1 #paisResidencia').val());
+        $('#form2 #benPaisResidenciaValue').val($('#form1 #paisResidencia option:selected').text())
+        $('#form2 #benPaisOrigen').val($('#form1 #paisOrigen').val());
+        $('#form2 #benPaisOrigenValue').val($('#form1 #paisOrigen option:selected').text());
+        $('#form2 #benPaisResidencia').prop('disabled', true);
+        $('#form2 #benPaisOrigen').prop('disabled', true);
+        $('#form2 #benCiudad').prop('readonly', true);
+        $('#form2 #benCiudad').val($('#form1 #ciudad').val());
+        $('#form2 #benProvincia').prop('readonly', true);
+        $('#form2 #benProvincia').val($('#form1 #provincia').val());
+        $('#form2 #benEmail').prop('readonly', true);
+        $('#form2 #benEmail').val($('#form1 #email').val());
+        $('#form2 select').selectpicker('refresh');
         $('#benFechaNacimiento').trigger('change');
 
     } else if (updateBen === true) {
-        $('#form4 #benNombres').prop('readonly', false);
-        $('#form4 #benApellidos').prop('readonly', false);
-        $('#form4 #benFechaNacimiento').prop('readonly', false);
-        $('#form4 #benPaisResidencia').prop('disabled', false);
-        $('#form4 #benPaisOrigen').prop('disabled', false);
-        $('#form4 #benCiudad').prop('readonly', false);
-        $('#form4 #benProvincia').prop('readonly', false);
-        $('#form4 #benEmail').prop('readonly', false);
-        $('#form4 select').selectpicker('refresh');
+        $('#form2 #benNombres').prop('readonly', false);
+        $('#form2 #benApellidos').prop('readonly', false);
+        $('#form2 #benFechaNacimiento').prop('readonly', false);
+        $('#form2 #benPaisResidencia').prop('disabled', false);
+        $('#form2 #benPaisOrigen').prop('disabled', false);
+        $('#form2 #benCiudad').prop('readonly', false);
+        $('#form2 #benProvincia').prop('readonly', false);
+        $('#form2 #benEmail').prop('readonly', false);
+        $('#form2 select').selectpicker('refresh');
     } else {
-        resetForm('form4');
+        resetForm('form2');
         $('#benParentesco').val(opcionParentesco);
-        $('#form4 select').selectpicker('refresh');
-        $('#form4 #benNombres').prop('readonly', false);
-        $('#form4 #benApellidos').prop('readonly', false);
-        $('#form4 #benFechaNacimiento').prop('readonly', false);
-        $('#form4 #benPaisResidencia').prop('disabled', false);
-        $('#form4 #benPaisOrigen').prop('disabled', false);
-        $('#form4 #benCiudad').prop('readonly', false);
-        $('#form4 #benProvincia').prop('readonly', false);
-        $('#form4 #benEmail').prop('readonly', false);
-        $('#form4 select').selectpicker('refresh');
+        $('#form2 select').selectpicker('refresh');
+        $('#form2 #benNombres').prop('readonly', false);
+        $('#form2 #benApellidos').prop('readonly', false);
+        $('#form2 #benFechaNacimiento').prop('readonly', false);
+        $('#form2 #benPaisResidencia').prop('disabled', false);
+        $('#form2 #benPaisOrigen').prop('disabled', false);
+        $('#form2 #benCiudad').prop('readonly', false);
+        $('#form2 #benProvincia').prop('readonly', false);
+        $('#form2 #benEmail').prop('readonly', false);
+        $('#form2 select').selectpicker('refresh');
     }
     $('#benParentescoValue').val($("#benParentesco option:selected").text())
 })
@@ -708,12 +700,12 @@ var idTablaGlobal;
 var arrayBeneficiarios = [];
 var optHolder = false;
 $("#addBeneficiario").on("click", function() {
-    $('#form4').addClass('was-validated');
-    if ($('#form4')[0].checkValidity() === true) {
-        $('#form4 #benPaisResidencia').prop('disabled', false);
-        $('#form4 #benPaisOrigen').prop('disabled', false);
-        $('#form4 select').selectpicker('refresh');
-        var serialForm = ($('#form4').serializeArray());
+    $('#form2').addClass('was-validated');
+    if ($('#form2')[0].checkValidity() === true) {
+        $('#form2 #benPaisResidencia').prop('disabled', false);
+        $('#form2 #benPaisOrigen').prop('disabled', false);
+        $('#form2 select').selectpicker('refresh');
+        var serialForm = ($('#form2').serializeArray());
         console.log("---------SERIALIZE------------");
         console.log(serialForm);
         strHtmlTable = '';
@@ -744,30 +736,24 @@ $("#addBeneficiario").on("click", function() {
         $('#cteNombres').append('<option value=' + cantBeneficiarios + '>' + arrayLinea[1] + '</option>');
         $('#cteNombres').selectpicker('refresh');
         $("#listaBeneficiarios > tbody").append(strHtmlTable);
-        $('#form4')[0].reset();
-        $('#form4 select').selectpicker('refresh');
-        $('#form4').removeClass('was-validated');
-        if (Object.keys(arrayBeneficiarios).length > planSeleccionado.cant_person && planSeleccionado.cant_person > 0) {
-            $("#alertaPLan").modal('show');
-            idTablaGlobal = cantBeneficiarios
-            actualizarBen()
-        } else {
-            cantBeneficiarios++;
-        }
-    }
+        $('#form2')[0].reset();
+        $('#form2 select').selectpicker('refresh');
+        $('#form2').removeClass('was-validated');
+        cantBeneficiarios++;
 
-    //$('#plan').trigger('change');
+    }
+    $('#plan').trigger('change');
 });
 
 $("#updateBeneficiario").on("click", function() {
-    $('#form4').addClass('was-validated');
-    if ($('#form4')[0].checkValidity() === true) {
+    $('#form2').addClass('was-validated');
+    if ($('#form2')[0].checkValidity() === true) {
         updateBen = false;
-        $('#form4 #benPaisResidencia').prop('disabled', false);
-        $('#form4 #benPaisOrigen').prop('disabled', false);
-        $('#form4 #benParentesco').prop('disabled', false);
-        $('#form4 select').selectpicker('refresh');
-        var serialForm = ($('#form4').serializeArray());
+        $('#form2 #benPaisResidencia').prop('disabled', false);
+        $('#form2 #benPaisOrigen').prop('disabled', false);
+        $('#form2 #benParentesco').prop('disabled', false);
+        $('#form2 select').selectpicker('refresh');
+        var serialForm = ($('#form2').serializeArray());
         strHtmlTable = '';
         arrayLinea = []
         serialForm.forEach(function(element) {
@@ -795,10 +781,10 @@ $("#updateBeneficiario").on("click", function() {
         $('#cteNombres').selectpicker('refresh');
         $('#addBeneficiario').show();
         $('#updateBeneficiario').hide();
-        $('#form4')[0].reset();
-        $('#form4').removeClass('was-validated');
+        $('#form2')[0].reset();
+        $('#form2').removeClass('was-validated');
         $('#cancelarUpdateBeneficiario').hide();
-        $('#form4 select').selectpicker('refresh');
+        $('#form2 select').selectpicker('refresh');
     }
 });
 
@@ -818,7 +804,7 @@ function editarBen(idTabla) {
     $('#addBeneficiario').hide();
     $('#updateBeneficiario').show();
     $('#cancelarUpdateBeneficiario').show();
-    $('#form4 select').selectpicker('refresh');
+    $('#form2 select').selectpicker('refresh');
     $('#benParentesco').trigger('change');
 }
 
@@ -829,13 +815,13 @@ function quitarBen(idTabla) {
 }
 
 function resetForm(idForm) {
-    if (idForm == 'form4') {
-        $('#form4')[0].reset();
+    if (idForm == 'form2') {
+        $('#form2')[0].reset();
         $('#updateBeneficiario').hide();
         $('#cancelarUpdateBeneficiario').hide();
         $('#addBeneficiario').show();
-        $('#form4 #benParentesco').prop('disabled', false);
-        $('#form4 select').selectpicker('refresh');
+        $('#form2 #benParentesco').prop('disabled', false);
+        $('#form2 select').selectpicker('refresh');
         updateBen = false;
     } else {
         $('#' + idForm)[0].reset();
@@ -844,7 +830,7 @@ function resetForm(idForm) {
 }
 
 $("#cancelarUpdateBeneficiario").on("click", function() {
-    resetForm('form4');
+    resetForm('form2');
 });
 
 function respuestaCheck(idPregunta, elemento) {
@@ -912,24 +898,21 @@ $('#cerrarSesion').on("click", function() {
 modalConfirm(function(confirm) {
     if (confirm) {
         //Acciones si el usuario confirma
-        actualizarBen()
+        $('#listaBeneficiarios #trBen_' + idTablaGlobal).remove();
+
+        if (arrayBeneficiarios["'" + idTablaGlobal + "'"][0] == 'Holder')
+            optHolder = false;
+
+        delete arrayBeneficiarios["'" + idTablaGlobal + "'"];
+        $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
+        $('[id^=benPregunta]').selectpicker('refresh');
+        $('#cteNombres option[value=' + idTablaGlobal + ']').remove();
+        $('#plan').trigger('change');
+        $('#cteNombres').selectpicker('refresh');
 
     }
 });
 
-function actualizarBen() {
-    $('#listaBeneficiarios #trBen_' + idTablaGlobal).remove();
-
-    if (arrayBeneficiarios["'" + idTablaGlobal + "'"][0] == 'Holder')
-        optHolder = false;
-
-    delete arrayBeneficiarios["'" + idTablaGlobal + "'"];
-    $('[id^=benPregunta] option[value=' + idTablaGlobal + ']').remove();
-    $('[id^=benPregunta]').selectpicker('refresh');
-    $('#cteNombres option[value=' + idTablaGlobal + ']').remove();
-    $('#plan').trigger('change');
-    $('#cteNombres').selectpicker('refresh');
-}
 
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -994,9 +977,9 @@ $("#finish").on("click", function() {
     $('#valorTc').prop('disabled', false);
     objSend.form1 = getFormData($('#form1'))
     objSend.form2 = Object.assign({}, arrayBeneficiariosData);
-    objSend.form3 = getFormData($('#form5'));
-    objSend.form4 = getFormData($('#form2'));
-    objSend.form5 = getFormData($('#form3'));
+    objSend.form3 = getFormData($('#form3'));
+    objSend.form4 = getFormData($('#form4'));
+    objSend.form5 = getFormData($('#form5'));
     objSend.form6 = getFormData($('#form6'));
     objSend.form7 = getFormData($('#form7'));
     objSend.form8 = getFormData($('#form8'));
@@ -1051,7 +1034,6 @@ $("#finish").on("click", function() {
             console.log('error', error)
         });
 });
-iniciarGrabacion
 
 function chgMedioPago(that) {
     console.log($(that).val())

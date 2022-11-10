@@ -5,6 +5,7 @@
 //View
 //var microphoneButton = document.getElementsByClassName("start-recording-button")[0];
 var microphoneButton = document.getElementById("microphoneBtn");
+var microphoneButtonAct = document.getElementById("iniciarGrabacion");
 //var playButton = document.getElementsByClassName("play-recording-button")[0];
 //var playButton = document.getElementById("playBtn");
 var recordingControlButtonsContainer = document.getElementsByClassName("contadorAudio")[0];
@@ -51,7 +52,7 @@ function startPlay() {
 /** Displays recording control buttons */
 function handleDisplayingRecordingControlButtons() {
     //Hide the microphone button that starts audio recording
-    microphoneButton.style.display = "none";
+    microphoneButtonAct.style.display = "none";
     //playButton.style.display = "none";
     stopRecordingButton.style.display = "block";
     audioElement.style.display = "none";
@@ -67,14 +68,14 @@ function handleDisplayingRecordingControlButtons() {
 /** Hide the displayed recording control buttons */
 function handleHidingRecordingControlButtons() {
     //Display the microphone button that starts audio recording
-    microphoneButton.style.display = "block";
+    microphoneButtonAct.style.display = "block";
     //playButton.style.display = "block";
     stopRecordingButton.style.display = "none";
 
     //Hide the recording control buttons
     recordingControlButtonsContainer.classList.add("hide");
     audioElement.style.display = "block";
-    microphoneButton.classList.remove('enAccion')
+    microphoneButtonAct.classList.remove('enAccion')
 
     //stop interval that handles both time elapsed and the red dot
     clearInterval(elapsedTimeTimer);

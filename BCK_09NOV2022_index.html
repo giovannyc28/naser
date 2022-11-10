@@ -95,10 +95,10 @@
 
     <div class="progress mt-5 justify-content-center" style="height: 55px;">
         <div id='pb1' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-person-check-fill" style="font-size: 2rem;"></i></div>
-        <div id='pb2' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-phone-vibrate-fill" style="font-size: 2rem;"></i></div>
-        <div id='pb3' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
-        <div id='pb4' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-people-fill" style="font-size: 2rem;"></i></div>
-        <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-ui-checks" style="font-size: 2rem;"></i></div>
+        <div id='pb2' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-people-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb3' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-ui-checks" style="font-size: 2rem;"></i></div>
+        <div id='pb4' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-phone-vibrate-fill" style="font-size: 2rem;"></i></div>
+        <div id='pb5' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-box-seam" style="font-size: 2rem;"></i></div>
         <div id='pb6' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-geo-alt-fill" style="font-size: 2rem;"></i></div>
         <div id='pb7' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i></div>
         <div id='pb8' class="progress-bar bg-transparent" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="70"><i class="bi bi-card-text" style="font-size: 2rem;"></i></div>
@@ -214,179 +214,9 @@
 
             <div class="card-body">
                 <!-- Title -->
-                <h5 class="card-title"><a id="titulo4">CONTACTO DE EMERGENCIA</a></h5>
-                <form id="form2" class="needs-validation" novalidate>
-
-
-                    <div class="form-row">
-                        <div class="form-group   col-md-4">
-                            <label for="cteNombres">Nombres</label>
-                            <select id='cteNombres' name="strECFirstName" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search-style="startsWith" data-live-search="true" required>
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                            </select>
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="cteApellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="cteApellidos" name="strECLastName" required>
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="cteParentesco">Parentesco</label>
-                            <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" data-live-search-style="startsWith" data-live-search="true" required>
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>                               
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group   col-md-12">
-                            <label for="cteDireccion">Dirección</label>
-                            <input type="text" class="form-control" id="cteDireccion" name='strECAddress1Street1' required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group   col-md-3">
-                            <label for="cteCiudad">Ciudad</label>
-                            <input type="text" class="form-control" id="cteCiudad" name="strECAddress1City" required>
-                        </div>
-                        <div class="form-group   col-md-3">
-                            <label for="cteProvincia">Provincia o Estado</label>
-                            <input type="text" class="form-control" id="cteProvincia" name="strECAddress1StateOrProvince" required>
-                        </div>
-                        <div class="form-group   col-md-3">
-                            <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
-                            <input type="text" class="form-control" id="cteCodigoPostal" name="strECAddress1ZIPOrPostalCode" required>
-                        </div>
-                        <div class="form-group   col-md-3">
-                            <label for="ctePais">País</label>
-                            <select id="ctePais" name="strECAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group   col-md-3">
-                            <label for="cteTelefono">telefono</label>
-                            <input type="text" class="form-control" id="cteTelefono" name="strECBusinessPhone" required>
-                        </div>
-                        <div class="form-group   col-md-3">
-                            <label for="cteCelular">Celular</label>
-                            <input type="text" class="form-control" id="cteCelular" name="strECMobilePhone" required>
-                        </div>
-                        <div class="form-group   col-md-6">
-                            <label for="cteEmail">Correo Electrónico</label>
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
-                                </div>
-                                <input type="email" class="form-control" id="cteEmail" name="strECEmail">
-                            </div>
-
-                        </div>
-                    </div>
-                    <input type="hidden" name="strECAddress1CountrOrRegionValue" id="strECAddress1CountrOrRegionValue" value="">
-                    <input type="hidden" name="cteParentescoValue" id="cteParentescoValue" value="">
-                </form>
-            </div>
-        </div>
-
-        <div id='seccion3' class="choice unset justify-content-center">
-
-            <div class="card-body">
-                <!-- Title -->
-                <h5 class="card-title">
-                    <a id="titulo5">ELIJA SU PLAN DE PREVISIÓN</a>
-                </h5>
-                <!-- Text -->
-                <form id="form3" class="needs-validation" novalidate>
-                    <input type="hidden" id="planValorHide" name="planValorHide">
-                    <input type="hidden" id="planValorCargoHide" name="planValorCargoHide">
-                    <div class="form-row">
-
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group   col-md-4">
-                            <label for="region">Region</label>
-                            <select id="region" name="region" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                                <option id='en' value="en">USA</option>
-                                <option id='es' value="es">LATAM</option>
-                          </select>
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="plan">Nombre del plan</label>
-                            <select id="plan" name="plan" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                          </select>
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="planPeriodo">Modalidad de pago</label>
-                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
-                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
-                            </select>
-                            <!--<div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
-                                <label for="anualOpt" class="btn btn-outline-secondary">
-                                <input type="radio" name="options" id="anualOpt" id="nameOpt" value="yearly_fee" required>
-                                    <div id="anualOptLabel">Anual</div>
-                              </label>
-                                <label for="semestralOpt" class="btn btn-outline-secondary">
-                                <input type="radio" name="options" id="semestralOpt" name="semestralOpt" value="halfyear_fee" required>
-                                <div id="semestralOptLabel">Semestral</div>
-                              </label>
-                                <label for="trimestralOpt" class="btn btn-outline-secondary">
-                                <input type="radio" name="options" id="trimestralOpt" name="trimestralOpt" value="quarterly_fee" required>
-                                <div id="trimestralOptLabel">Trimestral</div>
-                              </label>
-                                <label for="mensualOpt" class="btn btn-outline-secondary">
-                                <input type="radio" name="options" id="mensualOpt" name="mensualOpt" value="monthly_fee" required>
-                                <div id="mensualOptLabel">Mensual</div>
-                              </label>
-                            </div>-->
-                        </div>
-                        <!--<div id="checAnualDiv" class="form-group  col-md-3">
-                            <div class="checkbox disabled">
-                                <label for="planCheck" id="planCheckLabel">Pago Anual a Cuotas</label>
-                                <div>
-                                    <input type="checkbox" id="planCheck" name='planCheck' class="form-control" data-toggle="toggle" data-on="Si" data-off="No">
-                                </div>
-                            </div>
-                        </div>-->
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group   col-md-4">
-                            <label for="planValor">Valor</label>
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">USD$</span>
-                                </div>
-                                <input id="planValor" disabled required name="planValor" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
-                            </div>
-
-                        </div>
-                        <div class="form-group   col-md-4">
-                            <label for="planValorCargo">Cargo Administración</label>
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">USD$</span>
-                                </div>
-                                <input id="planValorCargo" disabled required name="planValorCargo" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
-
-                                <!--<input type="date" id="start" name="trip-start" data-date-format="mm/dd/yyyy" >-->
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-
-        <div id='seccion4' class="choice unset justify-content-center">
-
-            <div class="card-body">
-                <!-- Title -->
                 <h5 class="card-title"><a id='titulo2'>DATOS DE LOS BENEFICIARIOS</a></h5>
                 <!-- Text -->
-                <form id='form4' class="needs-validation" novalidate>
+                <form id='form2' class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="benParentesco">Parentesco</label>
@@ -484,11 +314,11 @@
 
         </div>
 
-        <div id='seccion5' class="choice unset justify-content-center">
+        <div id='seccion3' class="choice unset justify-content-center">
             <div class="card-body">
                 <!-- Title -->
                 <h5 class="card-title"><a id='titulo3'>CUESTIONARIO DE PREEXISTENCIAS</a></h5>
-                <form id='form5' class="needs-validation" novalidate>
+                <form id='form3' class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="form-group   col-md-4">
 
@@ -496,7 +326,7 @@
                         <div class="form-group   col-md-5">
                             <div class="input-group ">
                                 <span class="input-group-text" id="basic-addon1">
-                                    <button id='iniciarGrabacion' type="button" class="btn btn-outline-danger border-0 shadow-none "> 
+                                    <button id='microphoneBtn' type="button" class="btn btn-outline-danger border-0 shadow-none "> 
                                         <i class="bi bi-mic-fill"></i>
                                      </button>
 
@@ -515,27 +345,6 @@
                                 </span>
 
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <label for="InfostrPregunta-3"></label>
-                        </div>
-                        <div class="form-group col-md-1">
-                            <input id='Pregunta-3' name='Pregunta0-3' onChange='respuestaCheck(0, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="InfostrPregunta-2"></label>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <label for="InfostrPregunta-1"></label>
-                        </div>
-                        <div class="form-group col-md-1">
-                            <input id='Pregunta-1' name='Pregunta-1' onChange='respuestaCheck(0, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
                         </div>
                     </div>
                     <div class="form-row">
@@ -618,9 +427,174 @@
                             <input id='Pregunta5' name='Pregunta5' onChange='respuestaCheck(5, this)' type="checkbox" data-toggle="toggle" data-on="Si" data-off="No" data-onstyle="info" data-offstyle="light">
                         </div>
                     </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id='seccion4' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title"><a id="titulo4">CONTACTO DE EMERGENCIA</a></h5>
+                <form id="form4" class="needs-validation" novalidate>
+
+
                     <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <label for="InfostrPregunta6"></label>
+                        <div class="form-group   col-md-4">
+                            <label for="cteNombres">Nombres</label>
+                            <select id='cteNombres' name="strECFirstName" class="selectpicker form-control" title="Selecciona ..." data-width="100%" data-live-search-style="startsWith" data-live-search="true" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                            </select>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="cteApellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="cteApellidos" name="strECLastName" required>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="cteParentesco">Parentesco</label>
+                            <select id="cteParentesco" class="selectpicker form-control" name="cteParentesco" class="form-control" data-live-search-style="startsWith" data-live-search="true" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>                               
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group   col-md-12">
+                            <label for="cteDireccion">Dirección</label>
+                            <input type="text" class="form-control" id="cteDireccion" name='strECAddress1Street1' required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteCiudad">Ciudad</label>
+                            <input type="text" class="form-control" id="cteCiudad" name="strECAddress1City" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteProvincia">Provincia o Estado</label>
+                            <input type="text" class="form-control" id="cteProvincia" name="strECAddress1StateOrProvince" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCodigoPostal">Codigo Postal(si aplica)</label>
+                            <input type="text" class="form-control" id="cteCodigoPostal" name="strECAddress1ZIPOrPostalCode" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="ctePais">País</label>
+                            <select id="ctePais" name="strECAddress1CountrOrRegion" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-3">
+                            <label for="cteTelefono">telefono</label>
+                            <input type="text" class="form-control" id="cteTelefono" name="strECBusinessPhone" required>
+                        </div>
+                        <div class="form-group   col-md-3">
+                            <label for="cteCelular">Celular</label>
+                            <input type="text" class="form-control" id="cteCelular" name="strECMobilePhone" required>
+                        </div>
+                        <div class="form-group   col-md-6">
+                            <label for="cteEmail">Correo Electrónico</label>
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="email" class="form-control" id="cteEmail" name="strECEmail">
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="hidden" name="strECAddress1CountrOrRegionValue" id="strECAddress1CountrOrRegionValue" value="">
+                    <input type="hidden" name="cteParentescoValue" id="cteParentescoValue" value="">
+                </form>
+            </div>
+        </div>
+
+        <div id='seccion5' class="choice unset justify-content-center">
+
+            <div class="card-body">
+                <!-- Title -->
+                <h5 class="card-title">
+                    <a id="titulo5">ELIJA SU PLAN DE PREVISIÓN</a>
+                </h5>
+                <!-- Text -->
+                <form id="form5" class="needs-validation" novalidate>
+                    <input type="hidden" id="planValorHide" name="planValorHide">
+                    <input type="hidden" id="planValorCargoHide" name="planValorCargoHide">
+                    <div class="form-row">
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-4">
+                            <label for="region">Region</label>
+                            <select id="region" name="region" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                                <option id='en' value="en">USA</option>
+                                <option id='es' value="es">LATAM</option>
+                          </select>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="plan">Nombre del plan</label>
+                            <select id="plan" name="plan" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required data-live-search-style="startsWith">
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                          </select>
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="planPeriodo">Modalidad de pago</label>
+                            <select id="planPeriodo" name="planPeriodo" class="selectpicker form-control" data-live-search-style="startsWith" data-live-search="true" required>
+                                <option class = 'selectDefaultOpt' selected disabled value>Selecciona Uno</option>
+                            </select>
+                            <!--<div class="btn-group btn-group-toggle" role="group" data-toggle="buttons" required>
+                                <label for="anualOpt" class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="anualOpt" id="nameOpt" value="yearly_fee" required>
+                                    <div id="anualOptLabel">Anual</div>
+                              </label>
+                                <label for="semestralOpt" class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="semestralOpt" name="semestralOpt" value="halfyear_fee" required>
+                                <div id="semestralOptLabel">Semestral</div>
+                              </label>
+                                <label for="trimestralOpt" class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="trimestralOpt" name="trimestralOpt" value="quarterly_fee" required>
+                                <div id="trimestralOptLabel">Trimestral</div>
+                              </label>
+                                <label for="mensualOpt" class="btn btn-outline-secondary">
+                                <input type="radio" name="options" id="mensualOpt" name="mensualOpt" value="monthly_fee" required>
+                                <div id="mensualOptLabel">Mensual</div>
+                              </label>
+                            </div>-->
+                        </div>
+                        <!--<div id="checAnualDiv" class="form-group  col-md-3">
+                            <div class="checkbox disabled">
+                                <label for="planCheck" id="planCheckLabel">Pago Anual a Cuotas</label>
+                                <div>
+                                    <input type="checkbox" id="planCheck" name='planCheck' class="form-control" data-toggle="toggle" data-on="Si" data-off="No">
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group   col-md-4">
+                            <label for="planValor">Valor</label>
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="planValor" disabled required name="planValor" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
+                            </div>
+
+                        </div>
+                        <div class="form-group   col-md-4">
+                            <label for="planValorCargo">Cargo Administración</label>
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD$</span>
+                                </div>
+                                <input id="planValorCargo" disabled required name="planValorCargo" class="form-control" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'placeholder': '0'" style="text-align: right;">
+
+                                <!--<input type="date" id="start" name="trip-start" data-date-format="mm/dd/yyyy" >-->
+                            </div>
+
                         </div>
                     </div>
                 </form>
@@ -1051,31 +1025,6 @@
 
                 <div class="modal-footer">
                     <button type="button" id="aceptarAlerta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="intruccionesRec" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="instruccioneRecTitle">Instrucciones para la Grabación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="instruccionTxt" class="modal-body">
-                    <p id="instruccionesRecCuerpo" class="p-2 ">
-                        The following script is required to complete and submit this application for a Naser Global Funeral Plan.<br><br> 1. Please have the Plan selected and quoted PRIOR to doing this recording.<br><br> 2. If the application is being
-                        taken face to face, please make sure that your client is close enough to the microphone (Laptop, Cellphone, PC, Earphones, etc.) to be heard. If taken via telesales, please put your device on speaker and near to your microphone.
-                        Only clear recordings of BOTH parties will be accepted, to issue the Plan.<br><br> 3. This script must be read verbatim and not altered in any way. All questions must be answered honestly and clearly.<br><br> 4. Click the record
-                        button to begin.<br><br> Thank you for your business and being part of the NASER Global Team!
-                    </p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" id="microphoneBtn" class="btn btn-primary" data-dismiss="modal">Iniciar Grabación</button>
                 </div>
             </div>
         </div>
