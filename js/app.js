@@ -67,6 +67,7 @@ namePlanes['Annual 3 payments'] = "yearly_fee";
 namePlanes['Monthly'] = "monthly_fee";
 namePlanes['Quartely'] = "quarterly_fee";
 namePlanes['Semester'] = "halfyear_fee";
+namePlanes['Biannual'] = "halfyear_fee";
 
 /*$(".choice").removeClass("expand unset ");
 $(".choice").addClass("small");
@@ -279,6 +280,10 @@ $(document).ready(function() {
         $("#intruccionesRec").modal('hide');
     });
 
+    $("#aceptarGrabacion").on("click", function() {
+        $("#intruccionesRecPrevias").modal('hide');
+    });
+
 
 
     $("#region").change(function() {
@@ -325,6 +330,7 @@ function valTarjeta(idSelector) {
 }
 
 function calcValorPlan(idPlan) {
+
     userPlan = namePlanes[$('#form3 #planPeriodo').val()]
     if (userPlan !== undefined) {
         discountStr = userPlan.replace("fee", "subscription_discount");
@@ -490,11 +496,11 @@ $("#next").on("click", function() {
             $('#cteNombres').selectpicker('refresh');
             $('#cteNombres').selectpicker('refresh');
         }
+
         if (seccionInicial == 5) {
             stopAudioRecording();
             stopAudioPlaying()
         }
-
 
         $('#pb' + seccionInicial).removeClass("bg-transparent");
         $('#pb' + seccionInicial).addClass("bgProgress" + seccionInicial);
@@ -504,6 +510,11 @@ $("#next").on("click", function() {
             $("#previous").prop('disabled', false);
         } else {
             $("#next").prop('disabled', true);
+        }
+        if (seccionInicial == 5) {
+            $("#intruccionesRecPrevias").modal('show');
+        } else {
+            $("#intruccionesRecPrevias").modal('hide');
         }
 
         if (seccionInicial == $(".choice").length) {
@@ -533,6 +544,12 @@ $("#previous").on("click", function() {
         $("#next").prop('disabled', false);
     } else
         $("#previous").prop('disabled', true);
+
+    if (seccionInicial == 5) {
+        $("#intruccionesRecPrevias").modal('show');
+    } else {
+        $("#intruccionesRecPrevias").modal('hide');
+    }
 
     $('#finish').hide();
 
